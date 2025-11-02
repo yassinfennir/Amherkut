@@ -3012,10 +3012,10 @@
             </a>
             
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home" class="nav-link">Inicio</a></li>
-                <li><a href="productos.html" class="nav-link">Productos</a></li>
-                <li><a href="#about" class="nav-link">Nosotros</a></li>
-                <li><a href="#quick-contact" class="nav-link">Contacto</a></li>
+                <li><a href="#home" class="nav-link" data-translate="nav.home">Inicio</a></li>
+                <li><a href="productos.html" class="nav-link" data-translate="nav.products">Productos</a></li>
+                <li><a href="#about" class="nav-link" data-translate="nav.about">Nosotros</a></li>
+                <li><a href="#quick-contact" class="nav-link" data-translate="nav.contact">Contacto</a></li>
                 <li>
                     <div class="language-selector">
                         <button class="language-toggle" id="language-toggle" aria-label="Cambiar idioma" aria-expanded="false">
@@ -3030,13 +3030,17 @@
                             </svg>
                         </button>
                         <div class="language-dropdown" id="language-dropdown">
-                            <button class="language-option" data-lang="fi" data-code="FI">
-                                <span class="language-flag">🇫🇮</span>
-                                <span class="language-name">Suomi</span>
+                            <button class="language-option" data-lang="es" data-code="ES">
+                                <span class="language-flag">🇪🇸</span>
+                                <span class="language-name">Español</span>
                             </button>
                             <button class="language-option" data-lang="en" data-code="EN">
                                 <span class="language-flag">🇬🇧</span>
                                 <span class="language-name">English</span>
+                            </button>
+                            <button class="language-option" data-lang="fi" data-code="FI">
+                                <span class="language-flag">🇫🇮</span>
+                                <span class="language-name">Suomi</span>
                             </button>
                             <button class="language-option" data-lang="sv" data-code="SV">
                                 <span class="language-flag">🇸🇪</span>
@@ -3055,7 +3059,7 @@
                         <span class="cart-badge" id="cart-count">0</span>
                     </button>
                 </li>
-                <li><a href="#quick-contact" class="btn btn-order-now">Ordenar Ahora</a></li>
+                <li><a href="#quick-contact" class="btn btn-order-now" data-translate="nav.order">Ordenar Ahora</a></li>
             </ul>
             
             <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -3071,11 +3075,11 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text fade-in-up">
-                    <h1>Café Premium Artesanal</h1>
-                    <p>Descubre los mejores granos de café, tostados con pasión en el corazón de Helsinki</p>
+                    <h1 data-translate="hero.title">Café Premium Artesanal</h1>
+                    <p data-translate="hero.subtitle">Descubre los mejores granos de café, tostados con pasión en el corazón de Helsinki</p>
                     <div class="hero-buttons">
-                        <a href="productos.html" class="btn btn-primary">Explorar Menú</a>
-                        <a href="#quick-contact" class="btn btn-secondary">Contáctanos</a>
+                        <a href="productos.html" class="btn btn-primary" data-translate="hero.btn1">Explorar Menú</a>
+                        <a href="#quick-contact" class="btn btn-secondary" data-translate="hero.btn2">Contáctanos</a>
                     </div>
                 </div>
                 <div class="hero-image fade-in-up">
@@ -3133,12 +3137,12 @@
                     <img src="assets/images/hakaniemet/amherkut_post_12_24_2023_11_30_13 PM3265096146870456722.jpg" alt="AM Herkut Leipomo" class="about-main-image" />
                 </div>
                 <div class="about-text">
-                    <h2>Nuestra Historia</h2>
-                    <p>Nuestra historia comienza en las vibrantes calles de Marrakech, donde los aromas de especias, té de menta y panes tradicionales llenan el aire. Inspirados por las tradiciones artesanales marroquíes de los zocos, trajimos a Helsinki la autenticidad y pasión por los productos caseros y de calidad.</p>
+                    <h2 data-translate="about.title">Nuestra Historia</h2>
+                    <p data-translate="about.text1">Nuestra historia comienza en las vibrantes calles de Marrakech, donde los aromas de especias, té de menta y panes tradicionales llenan el aire. Inspirados por las tradiciones artesanales marroquíes de los zocos, trajimos a Helsinki la autenticidad y pasión por los productos caseros y de calidad.</p>
                     
                     <div class="divider"></div>
                     
-                    <p>AM Herkut nació del deseo de fusionar las técnicas tradicionales de panadería marroquí con los mejores ingredientes finlandeses. Cada croissant, cada pan y cada pastel lleva consigo las recetas heredadas de generaciones, combinadas con harina local, mantequilla finlandesa y frutas orgánicas de la región.</p>
+                    <p data-translate="about.text2">AM Herkut nació del deseo de fusionar las técnicas tradicionales de panadería marroquí con los mejores ingredientes finlandeses. Cada croissant, cada pan y cada pastel lleva consigo las recetas heredadas de generaciones, combinadas con harina local, mantequilla finlandesa y frutas orgánicas de la región.</p>
                     
                     <div class="divider"></div>
                     
@@ -3943,5 +3947,8 @@
     <!-- Image Gallery Scripts -->
     <script src="assets/js/gallery-config.js"></script>
     <script src="assets/js/image-gallery.js"></script>
+    
+    <!-- Language Switcher -->
+    <script src="assets/js/language-switcher.js"></script>
 </body>
 </html>

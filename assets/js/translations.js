@@ -1,5 +1,56 @@
 // Sistema de Traducción AM Herkut
 const translations = {
+    es: {
+        // Navegación
+        'nav.home': 'Inicio',
+        'nav.about': 'Nosotros',
+        'nav.products': 'Productos',
+        'nav.menu': 'Menú',
+        'nav.contact': 'Contacto',
+        'nav.gallery': 'Galería',
+        'nav.order': 'Ordenar Ahora',
+        
+        // Hero Section
+        'hero.title': 'Café Premium Artesanal',
+        'hero.subtitle': 'Descubre los mejores granos de café, tostados con pasión en el corazón de Helsinki',
+        'hero.btn.menu': 'Explorar Menú',
+        'hero.btn.contact': 'Contáctanos',
+        
+        // About Section
+        'about.title': 'Nuestra Historia',
+        'about.text1': 'Nuestra historia comienza en las vibrantes calles de Marrakech, donde los aromas de especias, té de menta y panes tradicionales llenan el aire. Inspirados por las tradiciones artesanales marroquíes de los zocos, trajimos a Helsinki la autenticidad y pasión por los productos caseros y de calidad.',
+        'about.text2': 'AM Herkut nació del deseo de fusionar las técnicas tradicionales de panadería marroquí con los mejores ingredientes finlandeses. Cada croissant, cada pan y cada pastel lleva consigo las recetas heredadas de generaciones, combinadas con harina local, mantequilla finlandesa y frutas orgánicas de la región.',
+        
+        // Products Section
+        'products.title': 'Nuestro Menú Completo',
+        'products.subtitle': 'Explora todos nuestros productos. Cada bebida y producto es una obra de arte, preparada con pasión y los mejores ingredientes',
+        'products.count': 'fotos de productos',
+        
+        // Locations Section
+        'locations.title': 'Nuestras Ubicaciones',
+        'locations.subtitle': 'Visítanos en Helsinki',
+        'locations.hakaniemet.name': 'Hakaniemet Myymalá',
+        'locations.hakaniemet.address': 'Hämeentie 1a, 00530 Helsinki, Finland',
+        'locations.hakaniemet.hours': 'Lun - Sáb: 08:00 - 18:00 | Domingo: Cerrado',
+        'locations.leipomo.name': 'Leipomo & Kahvilla',
+        'locations.leipomo.address': 'Niittylänpolku 7, 00630 Helsinki, Finland',
+        'locations.leipomo.hours': 'Lun - Sáb: 08:00 - 18:00 | Domingo: Cerrado',
+        'locations.gallery': 'Galería',
+        'locations.gallery.videos': 'Galería de videos próximamente',
+        
+        // Contact
+        'contact.title': 'Contacto',
+        'contact.subtitle': 'Estamos aquí para ti',
+        'contact.phone': 'Teléfono',
+        'contact.email': 'Email',
+        'contact.visit': 'Visítanos',
+        'contact.hours': 'Horario',
+        
+        // Footer
+        'footer.follow': 'Síguenos',
+        'footer.copyright': '© 2024 AM Herkut. Todos los derechos reservados.'
+    },
+    
     fi: {
         // Navegación
         'nav.home': 'Koti',
@@ -316,7 +367,7 @@ const translations = {
 // Sistema de traducción
 class TranslationSystem {
     constructor() {
-        this.currentLanguage = 'fi'; // Idioma por defecto
+        this.currentLanguage = 'es'; // Idioma por defecto: español
         this.init();
     }
     
@@ -346,13 +397,17 @@ class TranslationSystem {
                     <i class="fas fa-chevron-down"></i>
                 </button>
                 <div class="language-menu" id="language-menu">
-                    <div class="language-option" data-lang="fi">
-                        <span class="flag">🇫🇮</span>
-                        <span>Suomi</span>
+                    <div class="language-option" data-lang="es">
+                        <span class="flag">🇪🇸</span>
+                        <span>Español</span>
                     </div>
                     <div class="language-option" data-lang="en">
                         <span class="flag">🇬🇧</span>
                         <span>English</span>
+                    </div>
+                    <div class="language-option" data-lang="fi">
+                        <span class="flag">🇫🇮</span>
+                        <span>Suomi</span>
                     </div>
                     <div class="language-option" data-lang="sv">
                         <span class="flag">🇸🇪</span>
@@ -411,14 +466,16 @@ class TranslationSystem {
         const langText = languageBtn.querySelector('.lang-text');
         
         const flags = {
-            'fi': '🇫🇮',
+            'es': '🇪🇸',
             'en': '🇬🇧',
+            'fi': '🇫🇮',
             'sv': '🇸🇪'
         };
         
         const codes = {
-            'fi': 'FI',
+            'es': 'ES',
             'en': 'EN',
+            'fi': 'FI',
             'sv': 'SV'
         };
         
