@@ -31,8 +31,7 @@ const GALLERY_IMAGES = {
         'amherkut_reel_1_27_2025_6_20_50 PM3554850618045899443.mp4',
         'amherkut_reel_2_8_2025_2_35_08 AM3563071468113069807.mp4',
         'amherkut_reel_3_28_2025_9_53_26 PM3598442201693363186.mp4',
-        'amherkut_reel_3_28_2025_9_58_20 PM3598444547592866697.mp4',
-        'Untitled video - Made with Clipchamp.mp4'
+        'amherkut_reel_3_28_2025_9_58_20 PM3598444547592866697.mp4'
     ],
 
     food: [
