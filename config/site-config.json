@@ -1,0 +1,212 @@
+{
+  "site": {
+    "name": "AM Herkut Leipomo",
+    "description": "Marokkolais-mediterraaninen leipomo Helsingin Hakaniemen Hallissa",
+    "url": "https://amherkut.fi",
+    "language": "fi",
+    "charset": "UTF-8",
+    "viewport": "width=device-width, initial-scale=1.0"
+  },
+  "seo": {
+    "title": "AM Herkut - Marokkolais-Mediterraaninen Leipomo Helsingissä | Artesaanileipä",
+    "description": "AM Herkut on Helsingin ainutlaatuinen leipomo, joka yhdistää marokkolaiset ja mediterraaniset maut perinteiseen suomalaiseen leipomiseen. Tuoretta ja herkullista Hakaniemen Hallissa.",
+    "keywords": "leipomo helsinki, marokkolainen leipä, mediterraaninen leipä, artesaanileipä, hakaniemen halli, am herkut, leipomo keskustassa",
+    "author": "AM Herkut Leipomo",
+    "robots": "index, follow",
+    "canonical": "https://amherkut.fi/",
+    "og_title": "AM Herkut - Marokkolais-Mediterraaninen Leipomo Helsingissä",
+    "og_description": "Yhdistämme marokkolaiset ja mediterraaniset maut perinteiseen suomalaiseen leipomiseen. Tuoretta ja ainutlaatuista Hakaniemen Hallissa.",
+    "og_image": "https://amherkut.fi/assets/images/hero-bakery.jpg",
+    "twitter_card": "summary_large_image"
+  },
+  "business": {
+    "name": "AM Herkut",
+    "type": "Moroccan-Mediterranean Bakery",
+    "address": {
+      "street": "Hakaniemen Halli 1",
+      "city": "Helsinki",
+      "postal_code": "00530",
+      "country": "Finland"
+    },
+    "coordinates": {
+      "latitude": 60.1796,
+      "longitude": 24.9503
+    },
+    "contact": {
+      "phone": "+358 50 405 9862",
+      "email": "larakimo@hotmail.com",
+      "website": "https://amherkut.fi"
+    },
+    "hours": {
+      "monday": "06:00-18:00",
+      "tuesday": "06:00-18:00",
+      "wednesday": "06:00-18:00",
+      "thursday": "06:00-18:00",
+      "friday": "06:00-18:00",
+      "saturday": "07:00-16:00",
+      "sunday": "08:00-15:00"
+    },
+    "social": {
+      "instagram": "https://www.instagram.com/amherkut",
+      "facebook": "https://www.facebook.com/amherkut",
+      "twitter": "https://www.twitter.com/amherkut"
+    }
+  },
+  "features": {
+    "chatbot": {
+      "enabled": true,
+      "ai_powered": true,
+      "languages": ["fi", "en"],
+      "welcome_message": "Hei! Olen AM Herkut leipomon virtuaalinen avustaja. Olemme marokkolais-mediterraaninen leipomo Hakaniemen Hallissa. Kuinka voin auttaa sinua tänään?"
+    },
+    "ordering": {
+      "enabled": true,
+      "delivery": true,
+      "pickup": true,
+      "delivery_fee": 5,
+      "currency": "EUR"
+    },
+    "analytics": {
+      "google_analytics": "GA_MEASUREMENT_ID",
+      "facebook_pixel": "FB_PIXEL_ID",
+      "custom_tracking": true
+    }
+  },
+  "content": {
+    "hero": {
+      "title": "Tervetuloa AM Herkut Leipomoon",
+      "subtitle": "Marokkolais-mediterraaninen leipomo Helsingissä",
+      "description": "Yhdistämme marokkolaiset ja mediterraaniset maut perinteiseen suomalaiseen leipomiseen. Tuoretta, ainutlaatuista ja herkullista Hakaniemen Hallissa!"
+    },
+    "about": {
+      "title": "Tietoa AM Herkut Leipomosta",
+      "subtitle": "Marokkolais-mediterraaninen leipomo perustettu joulukuussa 2020",
+      "description": "AM Herkut on ainutlaatuinen leipomo, joka yhdistää marokkolaiset ja mediterraaniset maut perinteiseen suomalaiseen leipomiseen. Perustettu joulukuussa 2020, olemme tuoneet uudenlaista makuelämystä Helsinkiin."
+    },
+    "products": {
+      "title": "Erityistuotteemme",
+      "subtitle": "Marokkolais-mediterraaninen fusion leipomossa"
+    }
+  },
+  "menu": {
+    "categories": [
+      {
+        "id": "bread",
+        "name": "Marokkolaiset Leivät",
+        "items": [
+          {
+            "name": "Marokkolainen Khobz",
+            "description": "Perinteinen marokkolainen leipä, täydellinen couscousin kanssa",
+            "price": 4.50
+          },
+          {
+            "name": "Marokkolainen M'semen",
+            "description": "Perinteinen marokkolainen ohut leipä, täydellinen aamupalaksi",
+            "price": 3.80
+          },
+          {
+            "name": "Marokkolainen Batbout",
+            "description": "Pehmeä marokkolainen sämpylä, täydellinen voileipään",
+            "price": 2.80
+          }
+        ]
+      },
+      {
+        "id": "pastries",
+        "name": "Pullat & Munkit",
+        "items": [
+          {
+            "name": "Korvapuusti",
+            "description": "Kanelipulla sokerilla",
+            "price": 2.80
+          },
+          {
+            "name": "Pulla",
+            "description": "Kardemummalla maustettu pulla",
+            "price": 2.50
+          },
+          {
+            "name": "Munkki",
+            "description": "Paistettu munkki sokerilla",
+            "price": 1.50
+          }
+        ]
+      },
+      {
+        "id": "cakes",
+        "name": "Kakut",
+        "items": [
+          {
+            "name": "Mansikkakakku",
+            "description": "Tuore mansikkakakku",
+            "price": 25.00
+          },
+          {
+            "name": "Suklaakakku",
+            "description": "Rikas suklaakakku",
+            "price": 28.00
+          },
+          {
+            "name": "Omenapiirakka",
+            "description": "Perinteinen omenapiirakka",
+            "price": 15.00
+          }
+        ]
+      },
+      {
+        "id": "cookies",
+        "name": "Keksit",
+        "items": [
+          {
+            "name": "Vohveli",
+            "description": "Tuore vohveli",
+            "price": 3.00
+          },
+          {
+            "name": "Korvapuustikeksi",
+            "description": "Pieni korvapuusti",
+            "price": 1.20
+          },
+          {
+            "name": "Mantelikeksi",
+            "description": "Mantelilla maustettu keksi",
+            "price": 1.80
+          }
+        ]
+      }
+    ]
+  },
+  "colors": {
+    "primary": "#d4a574",
+    "secondary": "#c49660",
+    "accent": "#2c3e50",
+    "background": "#f8f5f0",
+    "text": "#333333",
+    "text_light": "#666666"
+  },
+  "fonts": {
+    "primary": "Playfair Display",
+    "secondary": "Inter",
+    "fallback": "serif, sans-serif"
+  },
+  "images": {
+    "hero": "/assets/images/hero-bakery.jpg",
+    "about": "/assets/images/about-bakery.jpg",
+    "products": [
+      "/assets/images/ruisleipa.jpg",
+      "/assets/images/korvapuusti.jpg",
+      "/assets/images/mansikkakakku.jpg",
+      "/assets/images/munkki.jpg",
+      "/assets/images/valkoleipa.jpg",
+      "/assets/images/pulla.jpg"
+    ],
+    "gallery": [
+      "/assets/images/gallery-1.jpg",
+      "/assets/images/gallery-2.jpg",
+      "/assets/images/gallery-3.jpg",
+      "/assets/images/gallery-4.jpg",
+      "/assets/images/gallery-5.jpg",
+      "/assets/images/gallery-6.jpg"
+    ]
+  }
+}
