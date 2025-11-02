@@ -1,0 +1,44 @@
+# Carpeta de fotos originales (no necesaria en GitHub, solo assets/images/)
+Fotos/
+
+# Node modules (si usas npm)
+node_modules/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Variables de entorno
+.env
+.env.local
+.env.production
+
+# Archivos temporales
+*.tmp
+*.temp
+~*
+
+# Cache
+.cache/
+dist/
+build/
+
+# Videos muy grandes (opcional, descomenta si los videos son muy pesados)
+# *.mp4
+# *.mov
+# *.avi
+
