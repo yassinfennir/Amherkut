@@ -1,7 +1,7 @@
 // Language Switcher for AM Herkut
 class LanguageSwitcher {
     constructor() {
-        this.currentLang = 'es';
+        this.currentLang = 'fi';
         this.translations = {
             es: {
                 // Navigation
@@ -273,7 +273,7 @@ class LanguageSwitcher {
     updateLanguageButton() {
         const currentLangSpan = document.getElementById('language-current');
         if (currentLangSpan) {
-            const flags = { es: '🇪🇸', en: '🇬🇧', fi: '🇫🇮', sv: '🇸🇪' };
+            const flags = { en: '🇬🇧', fi: '🇫🇮', sv: '🇸🇪' };
             const flag = flags[this.currentLang] || '🌐';
             currentLangSpan.textContent = `${flag} ${this.currentLang.toUpperCase()}`;
         }
