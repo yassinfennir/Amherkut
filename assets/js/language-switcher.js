@@ -52,7 +52,34 @@ class LanguageSwitcher {
                 
                 // Contact Section
                 'contact.title': 'Contáctanos',
-                'contact.subtitle': 'Envíanos un mensaje o visita nuestra panadería'
+                'contact.subtitle': 'Envíanos un mensaje o visita nuestra panadería',
+                'contact.main.title': 'Estamos Aquí Para Ti',
+                'contact.main.subtitle': 'Ven a disfrutar de una experiencia de café única en Helsinki',
+                'contact.visit': 'Visítanos',
+                'contact.call': 'Llama',
+                'contact.write': 'Escríbenos',
+                'contact.hours.title': 'Horarios',
+                'contact.hours.text': 'Lun - Sáb: 08:00 - 18:00<br>Domingo: Cerrado',
+                'contact.chat': 'Chatea con nosotros',
+                'contact.chat.subtitle': 'Respuesta rápida por WhatsApp',
+                'contact.whatsapp': 'WhatsApp',
+                'contact.call.btn': 'Llamar',
+                
+                // Locations
+                'locations.title': 'Nuestras Ubicaciones',
+                'locations.subtitle': 'Visítanos en cualquiera de nuestras dos ubicaciones en Helsinki',
+                'locations.hours': 'Horarios',
+                'locations.hours.schedule': '<strong>Horario:</strong> Lun - Sáb: 08:00 - 18:00 | Domingo: Cerrado',
+                
+                // Footer
+                'footer.tagline': 'Café Premium Artesanal en Helsinki',
+                'footer.locations': 'Ubicaciones',
+                'footer.contact': 'Contacto',
+                'footer.follow': 'Síguenos',
+                'footer.rights': '© 2025 Amherkut. Todos los derechos reservados.',
+                'footer.privacy': 'Privacidad',
+                'footer.terms': 'Términos',
+                'footer.cookies': 'Política de Cookies'
             },
             fi: {
                 // Navigation
@@ -103,7 +130,44 @@ class LanguageSwitcher {
                 
                 // Contact Section
                 'contact.title': 'Ota Yhteyttä',
-                'contact.subtitle': 'Lähetä meille viesti tai tule käymään leipomossamme'
+                'contact.subtitle': 'Lähetä meille viesti tai tule käymään leipomossamme',
+                'contact.main.title': 'Olemme Täällä Sinua Varten',
+                'contact.main.subtitle': 'Tule nauttimaan ainutlaatuisesta kahvikokemuksesta Helsingissä',
+                'contact.visit': 'Käy Luonamme',
+                'contact.call': 'Soita Meille',
+                'contact.write': 'Kirjoita Meille',
+                'contact.hours.title': 'Aukioloajat',
+                'contact.hours.text': 'Ma - La: 08:00 - 18:00<br>Sunnuntai: Suljettu',
+                'contact.chat': 'Chattaile Kanssamme',
+                'contact.chat.subtitle': 'Nopea vastaus WhatsAppin kautta',
+                'contact.whatsapp': 'WhatsApp',
+                'contact.call.btn': 'Soita',
+                
+                // Locations
+                'locations.title': 'Toimipisteet',
+                'locations.subtitle': 'Vieraile jommallakummalla kahdesta toimipisteestämme Helsingissä',
+                'locations.hours': 'Aukioloajat',
+                'locations.hours.schedule': '<strong>Aukioloajat:</strong> Ma - La: 08:00 - 18:00 | Sunnuntai: Suljettu',
+                
+                // Footer
+                'footer.tagline': 'Premium Käsityökahvi Helsingissä',
+                'footer.locations': 'Toimipisteet',
+                'footer.contact': 'Yhteystiedot',
+                'footer.follow': 'Seuraa Meitä',
+                'footer.rights': '© 2025 Amherkut. Kaikki oikeudet pidätetään.',
+                'footer.privacy': 'Tietosuoja',
+                'footer.terms': 'Ehdot',
+                'footer.cookies': 'Evästekäytäntö',
+                
+                // Products Page
+                'products.view': 'Näytä Tuotteet',
+                'products.description': 'Tutustu kaikkiin tuotteisiimme. Jokainen juoma ja tuote on taideteos, valmistettu intohimolla ja parhaista raaka-aineista',
+                'products.count.number': '80',
+                'products.count': 'tuotekuvaa',
+                
+                // Cart
+                'cart.title': 'Ostoskorisi',
+                'cart.checkout': 'Siirry Kassalle'
             },
             en: {
                 // Navigation
@@ -154,7 +218,44 @@ class LanguageSwitcher {
                 
                 // Contact Section
                 'contact.title': 'Get in Touch',
-                'contact.subtitle': 'Send us a message or visit our bakery'
+                'contact.subtitle': 'Send us a message or visit our bakery',
+                'contact.main.title': 'We Are Here For You',
+                'contact.main.subtitle': 'Come and enjoy a unique coffee experience in Helsinki',
+                'contact.visit': 'Visit Us',
+                'contact.call': 'Call Us',
+                'contact.write': 'Write To Us',
+                'contact.hours.title': 'Hours',
+                'contact.hours.text': 'Mon - Sat: 08:00 - 18:00<br>Sunday: Closed',
+                'contact.chat': 'Chat With Us',
+                'contact.chat.subtitle': 'Quick response via WhatsApp',
+                'contact.whatsapp': 'WhatsApp',
+                'contact.call.btn': 'Call',
+                
+                // Locations
+                'locations.title': 'Our Locations',
+                'locations.subtitle': 'Visit us at any of our two locations in Helsinki',
+                'locations.hours': 'Hours',
+                'locations.hours.schedule': '<strong>Hours:</strong> Mon - Sat: 08:00 - 18:00 | Sunday: Closed',
+                
+                // Footer
+                'footer.tagline': 'Premium Artisan Coffee in Helsinki',
+                'footer.locations': 'Locations',
+                'footer.contact': 'Contact',
+                'footer.follow': 'Follow Us',
+                'footer.rights': '© 2025 Amherkut. All rights reserved.',
+                'footer.privacy': 'Privacy',
+                'footer.terms': 'Terms',
+                'footer.cookies': 'Cookie Policy',
+                
+                // Products Page
+                'products.view': 'View Products',
+                'products.description': 'Explore all our products. Each drink and product is a work of art, prepared with passion and the best ingredients',
+                'products.count.number': '80',
+                'products.count': 'product photos',
+                
+                // Cart
+                'cart.title': 'Your Cart',
+                'cart.checkout': 'Proceed to Checkout'
             },
             sv: {
                 // Navigation
@@ -205,7 +306,44 @@ class LanguageSwitcher {
                 
                 // Contact Section
                 'contact.title': 'Kontakta Oss',
-                'contact.subtitle': 'Skicka oss ett meddelande eller besök vårt bageri'
+                'contact.subtitle': 'Skicka oss ett meddelande eller besök vårt bageri',
+                'contact.main.title': 'Vi Är Här För Dig',
+                'contact.main.subtitle': 'Kom och njut av en unik kaffeupplevelse i Helsingfors',
+                'contact.visit': 'Besök Oss',
+                'contact.call': 'Ring Oss',
+                'contact.write': 'Skriv Till Oss',
+                'contact.hours.title': 'Öppettider',
+                'contact.hours.text': 'Mån - Lör: 08:00 - 18:00<br>Söndag: Stängt',
+                'contact.chat': 'Chatta Med Oss',
+                'contact.chat.subtitle': 'Snabbt svar via WhatsApp',
+                'contact.whatsapp': 'WhatsApp',
+                'contact.call.btn': 'Ring',
+                
+                // Locations
+                'locations.title': 'Våra Platser',
+                'locations.subtitle': 'Besök oss på någon av våra två platser i Helsingfors',
+                'locations.hours': 'Öppettider',
+                'locations.hours.schedule': '<strong>Öppettider:</strong> Mån - Lör: 08:00 - 18:00 | Söndag: Stängt',
+                
+                // Footer
+                'footer.tagline': 'Premium Hantverkskaffe i Helsingfors',
+                'footer.locations': 'Platser',
+                'footer.contact': 'Kontakt',
+                'footer.follow': 'Följ Oss',
+                'footer.rights': '© 2025 Amherkut. Alla rättigheter förbehållna.',
+                'footer.privacy': 'Integritet',
+                'footer.terms': 'Villkor',
+                'footer.cookies': 'Cookie Policy',
+                
+                // Products Page
+                'products.view': 'Visa Produkter',
+                'products.description': 'Utforska alla våra produkter. Varje dryck och produkt är ett konstverk, förberett med passion och de bästa ingredienserna',
+                'products.count.number': '80',
+                'products.count': 'produktfoton',
+                
+                // Cart
+                'cart.title': 'Din Varukorg',
+                'cart.checkout': 'Gå Till Kassan'
             }
         };
         
@@ -284,7 +422,13 @@ class LanguageSwitcher {
         elements.forEach(element => {
             const key = element.getAttribute('data-translate');
             if (this.translations[this.currentLang] && this.translations[this.currentLang][key]) {
-                element.textContent = this.translations[this.currentLang][key];
+                const translation = this.translations[this.currentLang][key];
+                // Si la traducción contiene HTML, usar innerHTML; de lo contrario, usar textContent
+                if (translation.includes('<')) {
+                    element.innerHTML = translation;
+                } else {
+                    element.textContent = translation;
+                }
             }
         });
     }

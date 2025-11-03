@@ -367,7 +367,7 @@ const translations = {
 // Sistema de traducción
 class TranslationSystem {
     constructor() {
-        this.currentLanguage = 'es'; // Idioma por defecto: español
+        this.currentLanguage = 'fi'; // Idioma por defecto: finlandés
         this.init();
     }
     

@@ -158,7 +158,7 @@ const TRANSLATIONS = {
 };
 
 // Inicializar sistema de idiomas
-let currentLang = localStorage.getItem('amherkut-lang') || 'es';
+let currentLang = localStorage.getItem('amherkut-lang') || 'fi';
 
 function setLanguage(lang) {
     if (TRANSLATIONS[lang]) {

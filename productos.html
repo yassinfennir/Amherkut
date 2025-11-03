@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="fi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <!-- Primary Meta Tags -->
-    <title>Menú Completo - Amherkut Café Premium | Todos nuestros Productos</title>
-    <meta name="description" content="Descubre nuestro menú completo: café artesanal, pasteles, bebidas especiales y más. Productos frescos en Amherkut, Helsinki.">
-    <meta name="keywords" content="café helsinki, cafetería premium, café artesanal, especialidad café, amherkut, café finlandia, barista, café de calidad">
-    <meta name="author" content="Amherkut - Café Premium">
+    <title>Koko Valikoimamme - Amherkut Premium Leipomo | Kaikki Tuotteemme</title>
+    <meta name="description" content="Tutustu koko valikoimaamme: käsityökahvi, tuoreet leivonnaiset, erikoisjuomat ja paljon muuta. Tuoreita tuotteita Amherkutissa, Helsinki.">
+    <meta name="keywords" content="leipomo helsinki, premium kahvila, käsityöleipomo, erikoiskahvi, amherkut, kahvi suomi, kahvila, laadukasta kahvia">
+    <meta name="author" content="Amherkut - Premium Leipomo">
     <meta name="robots" content="index, follow">
     
     <!-- Theme Color -->
@@ -19,15 +19,15 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://amherkut.fi/">
-    <meta property="og:title" content="Amherkut - Café Premium Artesanal en Helsinki">
-    <meta property="og:description" content="Descubre el mejor café artesanal de Helsinki en Amherkut. Ambiente premium, baristas expertos y granos de café de la más alta calidad.">
+    <meta property="og:title" content="Amherkut - Premium Käsityöleipomo Helsingissä">
+    <meta property="og:description" content="Löydä paras käsityöleipomo Helsingistä. Premium ilmapiiri, asiantuntevat leipurit ja korkeimman laadun raaka-aineet.">
     <meta property="og:image" content="https://amherkut.fi/assets/images/hero-cafe.jpg">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://amherkut.fi/">
-    <meta name="twitter:title" content="Amherkut - Café Premium Artesanal en Helsinki">
-    <meta name="twitter:description" content="Descubre el mejor café artesanal de Helsinki en Amherkut. Ambiente premium, baristas expertos y granos de café de la más alta calidad.">
+    <meta name="twitter:title" content="Amherkut - Premium Käsityöleipomo Helsingissä">
+    <meta name="twitter:description" content="Löydä paras käsityöleipomo Helsingistä. Premium ilmapiiri, asiantuntevat leipurit ja korkeimman laadun raaka-aineet.">
     <meta name="twitter:image" content="https://amherkut.fi/assets/images/hero-cafe.jpg">
     
     <!-- Favicon -->
@@ -1510,177 +1510,6 @@
         }
         
         /* ========================================
-           PROMO POPUP
-           ======================================== */
-        
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 9999;
-            backdrop-filter: blur(5px);
-            animation: fadeIn 0.3s ease;
-        }
-        
-        .popup-overlay.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .popup-container {
-            background: white;
-            border-radius: 20px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.4s ease;
-            background-image: repeating-linear-gradient(
-                0deg,
-                #f8f8f8 0px,
-                #ffffff 1px,
-                #ffffff 59px,
-                #f8f8f8 60px
-            );
-            padding: 3rem;
-        }
-        
-        .popup-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #666;
-            color: white;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        
-        .popup-close:hover {
-            background: #333;
-            transform: rotate(90deg);
-        }
-        
-        .popup-content {
-            text-align: center;
-        }
-        
-        .popup-headline {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #1a1a1a;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-        }
-        
-        .popup-validity {
-            font-size: 1rem;
-            color: #555;
-            margin-bottom: 2rem;
-        }
-        
-        .popup-product {
-            font-size: 3rem;
-            font-weight: 900;
-            color: #D4B86A;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .popup-price {
-            font-size: 6rem;
-            font-weight: 900;
-            color: #D4B86A;
-            margin-bottom: 0.5rem;
-            line-height: 1;
-        }
-        
-        .popup-condition {
-            font-size: 1.2rem;
-            color: #333;
-            margin-bottom: 2rem;
-        }
-        
-        .popup-icon {
-            font-size: 4rem;
-            margin: 1rem 0;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem;
-            }
-            
-            .hero-text h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-text p {
-                font-size: 1.1rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            .popup-headline {
-                font-size: 1.8rem;
-            }
-            
-            .popup-product {
-                font-size: 2rem;
-            }
-            
-            .popup-price {
-                font-size: 4rem;
-            }
-            
-            .popup-validity,
-            .popup-condition {
-                font-size: 0.9rem;
-            }
-        }
-        
-        /* ========================================
            ANIMATIONS
            ======================================== */
         
@@ -2701,12 +2530,12 @@
             </a>
             
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="index.html" class="nav-link">Inicio</a></li>
-                <li><a href="productos.html" class="nav-link" style="color: var(--primary-brown); font-weight: 600;">Productos</a></li>
-                <li><a href="index.html#about" class="nav-link">Nosotros</a></li>
-                <li><a href="index.html#quick-contact" class="nav-link">Contacto</a></li>
+                <li><a href="index.html" class="nav-link" data-translate="nav.home">Koti</a></li>
+                <li><a href="productos.html" class="nav-link" style="color: var(--primary-brown); font-weight: 600;" data-translate="nav.products">Tuotteet</a></li>
+                <li><a href="index.html#about" class="nav-link" data-translate="nav.about">Tietoa meistä</a></li>
+                <li><a href="index.html#quick-contact" class="nav-link" data-translate="nav.contact">Yhteystiedot</a></li>
                 <li>
-                    <button class="cart-toggle" id="cart-toggle" aria-label="Abrir carrito">
+                    <button class="cart-toggle" id="cart-toggle" aria-label="Avaa ostoskori">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="9" cy="21" r="1"></circle>
                             <circle cx="20" cy="21" r="1"></circle>
@@ -2715,7 +2544,7 @@
                         <span class="cart-badge" id="cart-count">0</span>
                     </button>
                 </li>
-                <li><a href="#quick-contact" class="btn btn-order-now">Ordenar Ahora</a></li>
+                <li><a href="#quick-contact" class="btn btn-order-now" data-translate="nav.order">Tilaa Nyt</a></li>
             </ul>
             
             <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -2731,11 +2560,11 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text fade-in-up" style="text-align: center; grid-column: 1 / -1;">
-                    <h1>Nuestro Menú Completo</h1>
-                    <p>Descubre todos nuestros productos: café artesanal, pasteles frescos y bebidas especiales</p>
+                    <h1 data-translate="products.title">Koko Valikoimamme</h1>
+                    <p data-translate="products.subtitle">Tutustu kaikkiin tuotteisiimme: käsityökahvi, tuoreet leivonnaiset ja erikoisjuomat</p>
                     <div class="hero-buttons" style="justify-content: center;">
-                        <a href="#products" class="btn btn-primary">Ver Productos</a>
-                        <a href="index.html#quick-contact" class="btn btn-secondary">Contáctanos</a>
+                        <a href="#products" class="btn btn-primary" data-translate="products.view">Näytä Tuotteet</a>
+                        <a href="index.html#quick-contact" class="btn btn-secondary" data-translate="contact.title">Ota Yhteyttä</a>
                     </div>
                 </div>
             </div>
@@ -2745,11 +2574,11 @@
     <!-- Products Section -->
     <section id="products" class="products section">
         <div class="container">
-            <h2 class="section-title">Nuestro Menú Completo</h2>
-            <p class="section-subtitle">Explora todos nuestros productos. Cada bebida y producto es una obra de arte, preparada con pasión y los mejores ingredientes</p>
+            <h2 class="section-title" data-translate="products.title">Koko Valikoimamme</h2>
+            <p class="section-subtitle" data-translate="products.description">Tutustu kaikkiin tuotteisiimme. Jokainen juoma ja tuote on taideteos, valmistettu intohimolla ja parhaista raaka-aineista</p>
             
             <div class="products-info">
-                <p id="products-count">80 fotos de productos</p>
+                <p id="products-count"><span data-translate="products.count.number">80</span> <span data-translate="products.count">tuotekuvaa</span></p>
             </div>
             
             <div class="food-gallery" id="products-grid" data-gallery="food">
@@ -2766,7 +2595,7 @@
                 <!-- Logo y descripción centrados -->
                 <div class="footer-brand">
                     <img src="assets/icons/amherkut-logo-original.jpg" alt="Amherkut logo" class="footer-logo-img" />
-                    <p class="footer-tagline">Café Premium Artesanal en Helsinki</p>
+                    <p class="footer-tagline" data-translate="footer.tagline">Premium Käsityökahvi Helsingissä</p>
                 </div>
                 
                 <!-- Línea divisora con gradiente -->
@@ -2775,7 +2604,7 @@
                 <!-- Tres columnas -->
                 <div class="footer-nav">
                     <div class="footer-nav-section">
-                        <h5 class="footer-nav-title">Ubicaciones</h5>
+                        <h5 class="footer-nav-title" data-translate="footer.locations">Toimipisteet</h5>
                         <div class="footer-contact-item">
                             <span class="footer-contact-label">Hakaniemen Myymälä</span>
                             <span class="footer-contact-value">Hämeentie 1a, 00530 Helsinki</span>
@@ -2787,7 +2616,7 @@
                     </div>
                     
                     <div class="footer-nav-section">
-                        <h5 class="footer-nav-title">Contacto</h5>
+                        <h5 class="footer-nav-title" data-translate="footer.contact">Yhteystiedot</h5>
                         <div class="footer-contact-item">
                             <a href="tel:+358504059862" class="footer-contact-link">+358 50 405 9862</a>
                         </div>
@@ -2797,7 +2626,7 @@
                     </div>
                     
                     <div class="footer-nav-section">
-                        <h5 class="footer-nav-title">Síguenos</h5>
+                        <h5 class="footer-nav-title" data-translate="footer.follow">Seuraa Meitä</h5>
                         <div class="footer-social">
                             <a href="https://www.facebook.com/people/Amherkut/61570069226598/" class="footer-social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -2818,32 +2647,18 @@
         <!-- Footer Bottom - Full Width Bar -->
         <div class="footer-bottom">
             <div class="footer-bottom-content">
-                <p class="footer-copyright">&copy; 2025 Amherkut. Todos los derechos reservados.</p>
+                <p class="footer-copyright" data-translate="footer.rights">&copy; 2025 Amherkut. Kaikki oikeudet pidätetään.</p>
                 <div class="footer-legal">
-                    <a href="#" class="footer-legal-link">Privacidad</a>
+                    <a href="#" class="footer-legal-link" data-translate="footer.privacy">Tietosuoja</a>
                     <span class="footer-legal-separator">•</span>
-                    <a href="#" class="footer-legal-link">Términos</a>
+                    <a href="#" class="footer-legal-link" data-translate="footer.terms">Ehdot</a>
                     <span class="footer-legal-separator">•</span>
-                    <a href="#" class="footer-legal-link">Política de Cookies</a>
+                    <a href="#" class="footer-legal-link" data-translate="footer.cookies">Evästekäytäntö</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Promo Popup -->
-    <div class="popup-overlay" id="promoPopup">
-        <div class="popup-container">
-            <button class="popup-close" onclick="closePopup()">×</button>
-            <div class="popup-content">
-                <div class="popup-headline">OTA KUVA KAUPPAUS NYT</div>
-                <div class="popup-validity">Tämä tarjous on voimassa 30.4.2026 asti</div>
-                <div class="popup-product">KAHVI / MINTTUTEE</div>
-                <div class="popup-price">0€</div>
-                <div class="popup-condition">kun ostat yli 20€</div>
-                <div class="popup-icon">☕</div>
-            </div>
-        </div>
-    </div>
 
     <script>
         // ========================================
@@ -2855,36 +2670,6 @@
         initNavigation();
         initScrollEffects();
         initAnimations();
-        initPopup();
-        });
-        
-        // Popup functionality
-        function initPopup() {
-            const popup = document.getElementById('promoPopup');
-            
-            // Show popup after 2 seconds
-            setTimeout(function() {
-                if (!localStorage.getItem('popupClosed')) {
-                    popup.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                }
-            }, 2000);
-        }
-        
-        function closePopup() {
-            const popup = document.getElementById('promoPopup');
-            popup.classList.remove('active');
-            document.body.style.overflow = '';
-            
-            // Remember that popup was closed
-            localStorage.setItem('popupClosed', 'true');
-        }
-        
-        // Close popup when clicking overlay
-        document.getElementById('promoPopup').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closePopup();
-            }
         });
         
         // Navigation functionality
@@ -2992,8 +2777,8 @@
     <div id="cart-drawer" class="cart-drawer">
         <div class="cart-drawer-content">
             <div class="cart-drawer-header">
-                <h2>Tu Carrito</h2>
-                <button class="cart-close" id="cart-close" aria-label="Cerrar carrito">
+                <h2 data-translate="cart.title">Ostoskorisi</h2>
+                <button class="cart-close" id="cart-close" aria-label="Sulje ostoskori">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M18 6L6 18M6 6l12 12"></path>
                     </svg>
@@ -3009,8 +2794,8 @@
                         <span class="cart-total" id="cart-total">€0,00</span>
                     </div>
                 </div>
-                <button class="btn btn-primary btn-large" onclick="cartManager.closeCart(); window.location.href='index.html#quick-contact'">
-                    Proceder al Checkout
+                <button class="btn btn-primary btn-large" data-translate="cart.checkout" onclick="cartManager.closeCart(); window.location.href='index.html#quick-contact'">
+                    Siirry Kassalle
                 </button>
             </div>
         </div>
@@ -3021,18 +2806,18 @@
 
     <!-- Image Lightbox Modal -->
     <div id="image-lightbox" class="image-lightbox">
-        <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Sulje">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
         </button>
-        <button class="lightbox-nav prev" id="lightbox-prev" aria-label="Imagen anterior">
+        <button class="lightbox-nav prev" id="lightbox-prev" aria-label="Edellinen kuva">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
         </button>
-        <button class="lightbox-nav next" id="lightbox-next" aria-label="Imagen siguiente">
+        <button class="lightbox-nav next" id="lightbox-next" aria-label="Seuraava kuva">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="9 18 15 12 9 6"></polyline>
             </svg>

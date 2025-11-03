@@ -1508,136 +1508,6 @@
             }
         }
         
-        /* ========================================
-           PROMO POPUP
-           ======================================== */
-        
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 9999;
-            backdrop-filter: blur(5px);
-            animation: fadeIn 0.3s ease;
-        }
-        
-        .popup-overlay.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .popup-container {
-            background: white;
-            border-radius: 20px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.4s ease;
-            background-image: repeating-linear-gradient(
-                0deg,
-                #f8f8f8 0px,
-                #ffffff 1px,
-                #ffffff 59px,
-                #f8f8f8 60px
-            );
-            padding: 3rem;
-        }
-        
-        .popup-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #666;
-            color: white;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        
-        .popup-close:hover {
-            background: #333;
-            transform: rotate(90deg);
-        }
-        
-        .popup-content {
-            text-align: center;
-        }
-        
-        .popup-headline {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #1a1a1a;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-        }
-        
-        .popup-validity {
-            font-size: 1rem;
-            color: #555;
-            margin-bottom: 2rem;
-        }
-        
-        .popup-product {
-            font-size: 3rem;
-            font-weight: 900;
-            color: #D4B86A;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .popup-price {
-            font-size: 6rem;
-            font-weight: 900;
-            color: #D4B86A;
-            margin-bottom: 0.5rem;
-            line-height: 1;
-        }
-        
-        .popup-condition {
-            font-size: 1.2rem;
-            color: #333;
-            margin-bottom: 2rem;
-        }
-        
-        .popup-icon {
-            font-size: 4rem;
-            margin: 1rem 0;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
         @media (max-width: 480px) {
             .container {
                 padding: 0 1rem;
@@ -1659,23 +1529,6 @@
             .btn {
                 width: 100%;
                 max-width: 300px;
-            }
-            
-            .popup-headline {
-                font-size: 1.8rem;
-            }
-            
-            .popup-product {
-                font-size: 2rem;
-            }
-            
-            .popup-price {
-                font-size: 4rem;
-            }
-            
-            .popup-validity,
-            .popup-condition {
-                font-size: 0.9rem;
             }
         }
         
@@ -3211,8 +3064,8 @@
                 <!-- Left Side - Contact Info -->
                 <div class="modern-contact-info">
                     <div class="contact-header">
-                        <h2 class="contact-main-title">Estamos aquí para ti</h2>
-                        <p class="contact-subtitle">Ven a disfrutar de una experiencia de café única en Helsinki</p>
+                        <h2 class="contact-main-title" data-translate="contact.main.title">Olemme Täällä Sinua Varten</h2>
+                        <p class="contact-subtitle" data-translate="contact.main.subtitle">Tule nauttimaan ainutlaatuisesta kahvikokemuksesta Helsingissä</p>
                     </div>
                     
                     <div class="contact-items-grid">
@@ -3224,7 +3077,7 @@
                                 </svg>
                             </div>
                             <div class="contact-card-content">
-                                <h3 class="contact-card-title">Visítanos</h3>
+                                <h3 class="contact-card-title" data-translate="contact.visit">Käy Luonamme</h3>
                                 <p class="contact-card-text">Hakaniemen Myymälä<br>Hämeentie 1a, 00530 Helsinki</p>
                                 <p class="contact-card-text secondary">Leipomo & Kahvilla<br>Niittylänpolku 7, 00620 Helsinki</p>
                             </div>
@@ -3237,7 +3090,7 @@
                                 </svg>
                             </div>
                             <div class="contact-card-content">
-                                <h3 class="contact-card-title">Llama</h3>
+                                <h3 class="contact-card-title" data-translate="contact.call">Soita Meille</h3>
                                 <a href="tel:+358504059862" class="contact-link">+358 50 405 9862</a>
                                 <a href="tel:+358442441623" class="contact-link">+358 44 244 1623</a>
                             </div>
@@ -3251,7 +3104,7 @@
                                 </svg>
                             </div>
                             <div class="contact-card-content">
-                                <h3 class="contact-card-title">Escríbenos</h3>
+                                <h3 class="contact-card-title" data-translate="contact.write">Kirjoita Meille</h3>
                                 <a href="mailto:amherkut.hakis@gmail.com" class="contact-link">amherkut.hakis@gmail.com</a>
                             </div>
                         </div>
@@ -3264,8 +3117,8 @@
                                 </svg>
                             </div>
                             <div class="contact-card-content">
-                                <h3 class="contact-card-title">Horarios</h3>
-                                <p class="contact-card-text">Lun - Sáb: 08:00 - 18:00<br>Domingo: Cerrado</p>
+                                <h3 class="contact-card-title" data-translate="contact.hours.title">Aukioloajat</h3>
+                                <p class="contact-card-text" data-translate="contact.hours.text">Ma - La: 08:00 - 18:00<br>Sunnuntai: Suljettu</p>
                             </div>
                         </div>
                     </div>
@@ -3292,20 +3145,20 @@
                                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
                             </svg>
                         </div>
-                        <h3 class="cta-title">Chatea con nosotros</h3>
-                        <p class="cta-text">Respuesta rápida por WhatsApp</p>
+                        <h3 class="cta-title" data-translate="contact.chat">Chattaile Kanssamme</h3>
+                        <p class="cta-text" data-translate="contact.chat.subtitle">Nopea vastaus WhatsAppin kautta</p>
                         <div class="cta-buttons">
                             <a href="https://wa.me/358504059862" class="cta-btn cta-btn-primary" target="_blank" rel="noopener noreferrer">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
                                 </svg>
-                                WhatsApp
+                                <span data-translate="contact.whatsapp">WhatsApp</span>
                             </a>
                             <a href="tel:+358504059862" class="cta-btn cta-btn-secondary">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                                 </svg>
-                                Llamar
+                                <span data-translate="contact.call.btn">Soita</span>
                             </a>
                         </div>
                     </div>
@@ -3317,8 +3170,8 @@
     <!-- Locations Section -->
     <section id="locations" class="locations section">
         <div class="container">
-            <h2 class="locations-title fade-in-up">Nuestras Ubicaciones</h2>
-            <p class="locations-subtitle fade-in-up">Visítanos en cualquiera de nuestras dos ubicaciones en Helsinki</p>
+            <h2 class="locations-title fade-in-up" data-translate="locations.title">Toimipisteet</h2>
+            <p class="locations-subtitle fade-in-up" data-translate="locations.subtitle">Vieraile jommallakummalla kahdesta toimipisteestämme Helsingissä</p>
             
             <div class="locations-grid">
                 <!-- Location 1: Hakaniemet Myymalá -->
@@ -3332,8 +3185,8 @@
                             </svg>
                             <span>Hämeentie 1a, 00530 Helsinki, Finland</span>
                         </div>
-                        <div class="location-hours">
-                            <strong>Horario:</strong> Lun - Sáb: 08:00 - 18:00 | Domingo: Cerrado
+                        <div class="location-hours" data-translate="locations.hours.schedule">
+                            <strong>Aukioloajat:</strong> Ma - La: 08:00 - 18:00 | Sunnuntai: Suljettu
                         </div>
                     </div>
                     
@@ -3357,7 +3210,7 @@
                                 <circle cx="8.5" cy="8.5" r="1.5"></circle>
                                 <polyline points="21 15 16 10 5 21"></polyline>
                             </svg>
-                            <span>Galería</span>
+                            <span data-translate="locations.hours">Galleria</span>
                         </div>
                         <div class="gallery-thumbnails" data-gallery="hakaniemet">
                             <!-- La galería se cargará dinámicamente con JavaScript -->
@@ -3376,8 +3229,8 @@
                             </svg>
                             <span>Niittylänpolku 7, 00630 Helsinki, Finland</span>
                         </div>
-                        <div class="location-hours">
-                            <strong>Horario:</strong> Lun - Sáb: 08:00 - 18:00 | Domingo: Cerrado
+                        <div class="location-hours" data-translate="locations.hours.schedule">
+                            <strong>Aukioloajat:</strong> Ma - La: 08:00 - 18:00 | Sunnuntai: Suljettu
                         </div>
                     </div>
                     
@@ -3401,7 +3254,7 @@
                                 <circle cx="8.5" cy="8.5" r="1.5"></circle>
                                 <polyline points="21 15 16 10 5 21"></polyline>
                             </svg>
-                            <span>Galería</span>
+                            <span data-translate="locations.hours">Galleria</span>
                         </div>
                         <div class="gallery-thumbnails" data-gallery="leipomo">
                             <!-- La galería se cargará dinámicamente con JavaScript -->
@@ -3443,7 +3296,7 @@
                 <!-- Logo y descripción centrados -->
                 <div class="footer-brand">
                     <img src="assets/icons/amherkut-logo-original.jpg" alt="Amherkut logo" class="footer-logo-img" />
-                    <p class="footer-tagline">Café Premium Artesanal en Helsinki</p>
+                    <p class="footer-tagline" data-translate="footer.tagline">Premium Käsityökahvi Helsingissä</p>
                 </div>
                 
                 <!-- Línea divisora con gradiente -->
@@ -3452,7 +3305,7 @@
                 <!-- Tres columnas -->
                 <div class="footer-nav">
                     <div class="footer-nav-section">
-                        <h5 class="footer-nav-title">Ubicaciones</h5>
+                        <h5 class="footer-nav-title" data-translate="footer.locations">Toimipisteet</h5>
                         <div class="footer-contact-item">
                             <span class="footer-contact-label">Hakaniemen Myymälä</span>
                             <span class="footer-contact-value">Hämeentie 1a, 00530 Helsinki</span>
@@ -3464,7 +3317,7 @@
                     </div>
                     
                     <div class="footer-nav-section">
-                        <h5 class="footer-nav-title">Contacto</h5>
+                        <h5 class="footer-nav-title" data-translate="footer.contact">Yhteystiedot</h5>
                         <div class="footer-contact-item">
                             <a href="tel:+358504059862" class="footer-contact-link">+358 50 405 9862</a>
                         </div>
@@ -3474,7 +3327,7 @@
                     </div>
                     
                     <div class="footer-nav-section">
-                        <h5 class="footer-nav-title">Síguenos</h5>
+                        <h5 class="footer-nav-title" data-translate="footer.follow">Seuraa Meitä</h5>
                         <div class="footer-social">
                             <a href="https://www.facebook.com/people/Amherkut/61570069226598/" class="footer-social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -3495,32 +3348,18 @@
         <!-- Footer Bottom - Full Width Bar -->
         <div class="footer-bottom">
             <div class="footer-bottom-content">
-                <p class="footer-copyright">&copy; 2025 Amherkut. Todos los derechos reservados.</p>
+                <p class="footer-copyright" data-translate="footer.rights">&copy; 2025 Amherkut. Kaikki oikeudet pidätetään.</p>
                 <div class="footer-legal">
-                    <a href="#" class="footer-legal-link">Privacidad</a>
+                    <a href="#" class="footer-legal-link" data-translate="footer.privacy">Tietosuoja</a>
                     <span class="footer-legal-separator">•</span>
-                    <a href="#" class="footer-legal-link">Términos</a>
+                    <a href="#" class="footer-legal-link" data-translate="footer.terms">Ehdot</a>
                     <span class="footer-legal-separator">•</span>
-                    <a href="#" class="footer-legal-link">Política de Cookies</a>
+                    <a href="#" class="footer-legal-link" data-translate="footer.cookies">Evästekäytäntö</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Promo Popup -->
-    <div class="popup-overlay" id="promoPopup">
-        <div class="popup-container">
-            <button class="popup-close" onclick="closePopup()">×</button>
-            <div class="popup-content">
-                <div class="popup-headline">OTA KUVA KAUPPAUS NYT</div>
-                <div class="popup-validity">Tämä tarjous on voimassa 30.4.2026 asti</div>
-                <div class="popup-product">KAHVI / MINTTUTEE</div>
-                <div class="popup-price">0€</div>
-                <div class="popup-condition">kun ostat yli 20€</div>
-                <div class="popup-icon">☕</div>
-            </div>
-        </div>
-    </div>
 
     <script>
         // ========================================
@@ -3532,36 +3371,6 @@
         initNavigation();
         initScrollEffects();
         initAnimations();
-        initPopup();
-        });
-        
-        // Popup functionality
-        function initPopup() {
-            const popup = document.getElementById('promoPopup');
-            
-            // Show popup after 2 seconds
-            setTimeout(function() {
-                if (!localStorage.getItem('popupClosed')) {
-                    popup.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                }
-            }, 2000);
-        }
-        
-        function closePopup() {
-            const popup = document.getElementById('promoPopup');
-            popup.classList.remove('active');
-            document.body.style.overflow = '';
-            
-            // Remember that popup was closed
-            localStorage.setItem('popupClosed', 'true');
-        }
-        
-        // Close popup when clicking overlay
-        document.getElementById('promoPopup').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closePopup();
-            }
         });
         
         // Navigation functionality
