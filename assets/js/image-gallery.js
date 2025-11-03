@@ -32,7 +32,11 @@ class ImageGalleryManager {
     generateImagePaths(folder, imageFiles = []) {
         // Detectar si estamos en GitHub Pages
         const basePath = window.location.hostname.includes('github.io') ? '/Amherkut/' : '/';
-        return imageFiles.map(img => `${basePath}${folder}/${img}`);
+        return imageFiles.map(img => {
+            // Codificar espacios y caracteres especiales en la URL
+            const encodedImg = encodeURIComponent(img).replace(/%2F/g, '/');
+            return `${basePath}${folder}/${encodedImg}`;
+        });
     }
 
     // Renderizar galería de Hakaniemet
