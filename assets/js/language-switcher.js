@@ -93,7 +93,7 @@ class LanguageSwitcher {
                 
                 // Hero Section
                 'hero.title': 'Amherkut',
-                'hero.subtitle': 'MAKUJA, JOTKA KERTovat TARINAA',
+                'hero.subtitle': 'MAKUJA, JOTKA KERTOVAT TARINAA',
                 'hero.description': 'Astu sisään makujen maailmaan, jossa marokkolainen perinne ja suomalainen intohimo kohtaavat. Koe artesaanileipomomme lämpö ja aitous – jokainen suupala on valmistettu rakkaudella ja huolella, käyttäen vain parhaita luonnonmukaisia raaka-aineita. Nauti hetkestä, joka on täynnä perinteitä ja uusia elämyksiä.',
                 'hero.btn1': 'Tutustu Valikoimaan',
                 'hero.btn2': 'Tilaa Nyt',
