@@ -2941,8 +2941,8 @@
     <!-- Products Section -->
     <section id="products" class="products section">
         <div class="container">
-            <h2 class="section-title">Nuestros Favoritos</h2>
-            <p class="section-subtitle">Cada bebida es una obra de arte, preparada con pasión y los mejores ingredientes</p>
+            <h2 class="section-title" data-translate="favorites.title">Suosikkimme</h2>
+            <p class="section-subtitle" data-translate="favorites.subtitle">Jokainen juoma on taideteos, valmistettu intohimolla ja parhaista raaka-aineista</p>
             
             <!-- Search and Filters Bar -->
             <div class="products-controls">
@@ -2951,25 +2951,25 @@
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="m21 21-4.35-4.35"></path>
                     </svg>
-                    <input type="text" id="product-search" placeholder="Buscar productos..." autocomplete="off">
+                    <input type="text" id="product-search" placeholder="Hae tuotteita..." autocomplete="off" data-translate-placeholder="favorites.search">
                 </div>
 
                 <div class="filters-bar">
                     <select id="category-filter" class="filter-select">
-                        <option value="all">Todas las categorías</option>
+                        <option value="all" data-translate="favorites.all.categories">Kaikki kategoriat</option>
                     </select>
                     <select id="sort-filter" class="filter-select">
-                        <option value="bestSeller">Más vendidos</option>
-                        <option value="priceLow">Precio: menor a mayor</option>
-                        <option value="priceHigh">Precio: mayor a menor</option>
-                        <option value="new">Más nuevos</option>
-                        <option value="rating">Mejor valorados</option>
+                        <option value="bestSeller" data-translate="favorites.sort.bestseller">Myydyimmät</option>
+                        <option value="priceLow" data-translate="favorites.sort.price.low">Hinta: alin ensin</option>
+                        <option value="priceHigh" data-translate="favorites.sort.price.high">Hinta: korkein ensin</option>
+                        <option value="new" data-translate="favorites.sort.new">Uusimmat</option>
+                        <option value="rating" data-translate="favorites.sort.rating">Parhaat arvostelut</option>
                     </select>
                 </div>
             </div>
 
             <div class="products-info">
-                <p id="products-count">6 productos</p>
+                <p id="products-count">6 <span data-translate="favorites.products.count">tuotetta</span></p>
             </div>
             
             <div class="products-grid" id="products-grid">

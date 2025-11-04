@@ -165,6 +165,18 @@ class LanguageSwitcher {
                 'products.count.number': '80',
                 'products.count': 'tuotekuvaa',
                 
+                // Favorites Section
+                'favorites.title': 'Suosikkimme',
+                'favorites.subtitle': 'Jokainen juoma on taideteos, valmistettu intohimolla ja parhaista raaka-aineista',
+                'favorites.search': 'Hae tuotteita...',
+                'favorites.all.categories': 'Kaikki kategoriat',
+                'favorites.sort.bestseller': 'Myydyimmät',
+                'favorites.sort.price.low': 'Hinta: alin ensin',
+                'favorites.sort.price.high': 'Hinta: korkein ensin',
+                'favorites.sort.new': 'Uusimmat',
+                'favorites.sort.rating': 'Parhaat arvostelut',
+                'favorites.products.count': 'tuotetta',
+                
                 // Cart
                 'cart.title': 'Ostoskorisi',
                 'cart.checkout': 'Siirry Kassalle'
@@ -252,6 +264,18 @@ class LanguageSwitcher {
                 'products.description': 'Explore all our products. Each drink and product is a work of art, prepared with passion and the best ingredients',
                 'products.count.number': '80',
                 'products.count': 'product photos',
+                
+                // Favorites Section
+                'favorites.title': 'Our Favorites',
+                'favorites.subtitle': 'Each drink is a work of art, prepared with passion and the finest ingredients',
+                'favorites.search': 'Search products...',
+                'favorites.all.categories': 'All categories',
+                'favorites.sort.bestseller': 'Best sellers',
+                'favorites.sort.price.low': 'Price: low to high',
+                'favorites.sort.price.high': 'Price: high to low',
+                'favorites.sort.new': 'Newest',
+                'favorites.sort.rating': 'Best rated',
+                'favorites.products.count': 'products',
                 
                 // Cart
                 'cart.title': 'Your Cart',
@@ -341,6 +365,18 @@ class LanguageSwitcher {
                 'products.count.number': '80',
                 'products.count': 'produktfoton',
                 
+                // Favorites Section
+                'favorites.title': 'Våra Favoriter',
+                'favorites.subtitle': 'Varje dryck är ett konstverk, förberett med passion och de bästa ingredienserna',
+                'favorites.search': 'Sök produkter...',
+                'favorites.all.categories': 'Alla kategorier',
+                'favorites.sort.bestseller': 'Bästsäljare',
+                'favorites.sort.price.low': 'Pris: lågt till högt',
+                'favorites.sort.price.high': 'Pris: högt till lågt',
+                'favorites.sort.new': 'Nyaste',
+                'favorites.sort.rating': 'Bäst betyg',
+                'favorites.products.count': 'produkter',
+                
                 // Cart
                 'cart.title': 'Din Varukorg',
                 'cart.checkout': 'Gå Till Kassan'
@@ -429,6 +465,15 @@ class LanguageSwitcher {
                 } else {
                     element.textContent = translation;
                 }
+            }
+        });
+        
+        // Traducir placeholders
+        const placeholderElements = document.querySelectorAll('[data-translate-placeholder]');
+        placeholderElements.forEach(element => {
+            const key = element.getAttribute('data-translate-placeholder');
+            if (this.translations[this.currentLang] && this.translations[this.currentLang][key]) {
+                element.placeholder = this.translations[this.currentLang][key];
             }
         });
     }
