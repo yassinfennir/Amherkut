@@ -616,22 +616,31 @@ class LanguageSwitcher {
     }
 }
 
-// Instancia global - INICIALIZAR INMEDIATAMENTE
-let languageSwitcher = new LanguageSwitcher();
-
-// Función global para obtener traducciones - DISPONIBLE INMEDIATAMENTE
-function getTranslation(key) {
-    if (languageSwitcher && languageSwitcher.translations && languageSwitcher.translations[languageSwitcher.currentLang]) {
-        return languageSwitcher.translations[languageSwitcher.currentLang][key] || key;
-    }
-    // Fallback a finlandés si no está inicializado
-    if (languageSwitcher && languageSwitcher.translations && languageSwitcher.translations['fi']) {
-        return languageSwitcher.translations['fi'][key] || key;
+// DEFINIR FUNCIÓN getTranslation PRIMERO - Antes de inicializar
+window.getTranslation = function(key) {
+    try {
+        if (window.languageSwitcher && window.languageSwitcher.translations && window.languageSwitcher.translations[window.languageSwitcher.currentLang]) {
+            return window.languageSwitcher.translations[window.languageSwitcher.currentLang][key] || key;
+        }
+        // Fallback a finlandés
+        if (window.languageSwitcher && window.languageSwitcher.translations && window.languageSwitcher.translations['fi']) {
+            return window.languageSwitcher.translations['fi'][key] || key;
+        }
+    } catch (e) {
+        console.error('Error en getTranslation:', e);
     }
     return key;
-}
+};
 
 // Función global para obtener el idioma actual
-function getCurrentLanguage() {
-    return languageSwitcher ? languageSwitcher.currentLang : 'fi';
-}
+window.getCurrentLanguage = function() {
+    return window.languageSwitcher ? window.languageSwitcher.currentLang : 'fi';
+};
+
+// AHORA inicializar languageSwitcher
+window.languageSwitcher = new LanguageSwitcher();
+
+// Alias para compatibilidad
+const getTranslation = window.getTranslation;
+const getCurrentLanguage = window.getCurrentLanguage;
+const languageSwitcher = window.languageSwitcher;

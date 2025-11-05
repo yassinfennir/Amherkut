@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Forzar Recarga - Amherkut</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #D4B86A 0%, #6B4423 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: white;
+        }
+        .container {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(0,0,0,0.3);
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            max-width: 600px;
+        }
+        h1 { font-size: 3rem; margin: 0 0 1rem 0; }
+        .spinner {
+            font-size: 5rem;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .status {
+            font-size: 1.2rem;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+        }
+        .success { color: #4CAF50; }
+        .step {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="spinner">🔄</div>
+        <h1>Limpiando Cache</h1>
+        <div class="status" id="status">
+            <div class="step">⏳ Paso 1: Eliminando localStorage...</div>
+            <div class="step">⏳ Paso 2: Eliminando sessionStorage...</div>
+            <div class="step">⏳ Paso 3: Eliminando cookies...</div>
+            <div class="step">⏳ Paso 4: Desregistrando Service Workers...</div>
+            <div class="step">⏳ Paso 5: Limpiando caches...</div>
+        </div>
+        <p style="font-size: 1.1rem; opacity: 0.9;">Redirigiendo en <span id="countdown">3</span>...</p>
+    </div>
+
+    <script>
+        const steps = document.querySelectorAll('.step');
+        let currentStep = 0;
+        
+        function completeStep(index) {
+            if (steps[index]) {
+                steps[index].innerHTML = steps[index].innerHTML.replace('⏳', '✅').replace('...', ' - COMPLETADO');
+                steps[index].classList.add('success');
+            }
+        }
+        
+        async function clearEverything() {
+            // Paso 1: localStorage
+            try {
+                localStorage.clear();
+                completeStep(0);
+            } catch (e) {
+                steps[0].innerHTML = '❌ Error en localStorage: ' + e.message;
+            }
+            
+            await new Promise(r => setTimeout(r, 300));
+            
+            // Paso 2: sessionStorage
+            try {
+                sessionStorage.clear();
+                completeStep(1);
+            } catch (e) {
+                steps[1].innerHTML = '❌ Error en sessionStorage: ' + e.message;
+            }
+            
+            await new Promise(r => setTimeout(r, 300));
+            
+            // Paso 3: Cookies
+            try {
+                document.cookie.split(";").forEach(function(c) { 
+                    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+                });
+                completeStep(2);
+            } catch (e) {
+                steps[2].innerHTML = '❌ Error en cookies: ' + e.message;
+            }
+            
+            await new Promise(r => setTimeout(r, 300));
+            
+            // Paso 4: Service Workers
+            try {
+                if ('serviceWorker' in navigator) {
+                    const registrations = await navigator.serviceWorker.getRegistrations();
+                    for(let registration of registrations) {
+                        await registration.unregister();
+                    }
+                }
+                completeStep(3);
+            } catch (e) {
+                steps[3].innerHTML = '❌ Error en SW: ' + e.message;
+            }
+            
+            await new Promise(r => setTimeout(r, 300));
+            
+            // Paso 5: Caches
+            try {
+                if ('caches' in window) {
+                    const names = await caches.keys();
+                    for (let name of names) {
+                        await caches.delete(name);
+                    }
+                }
+                completeStep(4);
+            } catch (e) {
+                steps[4].innerHTML = '❌ Error en caches: ' + e.message;
+            }
+            
+            // Countdown y redirect
+            let count = 3;
+            const countdownEl = document.getElementById('countdown');
+            const interval = setInterval(() => {
+                count--;
+                countdownEl.textContent = count;
+                if (count <= 0) {
+                    clearInterval(interval);
+                    // Agregar timestamp para evitar cache
+                    window.location.href = 'index.html?v=' + Date.now() + '&cache=clear';
+                }
+            }, 1000);
+        }
+        
+        // Ejecutar al cargar
+        clearEverything();
+    </script>
+</body>
+</html>
+
