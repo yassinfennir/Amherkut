@@ -517,8 +517,18 @@ class ProductDisplay {
     renderProductCard(product) {
         const stockStatus = this.getStockStatus(product.stock);
         const isWishlisted = wishlistManager.isInWishlist(product.id);
+        
+        // DEBUG: Verificar si getTranslation existe
+        console.log('🔍 DEBUG - getTranslation existe?', typeof getTranslation);
+        console.log('🔍 DEBUG - window.getTranslation existe?', typeof window.getTranslation);
+        
         const productName = getTranslation(`product.${product.id}.name`) || product.name;
         const productDesc = getTranslation(`product.${product.id}.desc`) || product.description;
+        
+        console.log(`📦 Producto ${product.id}:`);
+        console.log(`   Original name: ${product.name}`);
+        console.log(`   Traducido name: ${productName}`);
+        console.log(`   Badge bestseller: ${getTranslation('badge.bestseller')}`);
 
         return `
             <div class="product-card enhanced" data-id="${product.id}">
