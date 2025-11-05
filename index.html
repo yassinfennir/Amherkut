@@ -426,37 +426,26 @@
             left: 0;
             width: 100%;
             height: 100%;
+            min-width: 100%;
+            min-height: 100%;
             object-fit: cover;
             z-index: 1;
             opacity: 1;
             filter: brightness(1.1);
             /* Optimización de rendimiento */
-            will-change: auto;
+            will-change: transform;
             transform: translateZ(0);
             backface-visibility: hidden;
-            /* Ocultar controles completamente */
-            pointer-events: none;
         }
         
         /* Ocultar cualquier control nativo del video */
-        .hero-video-bg::-webkit-media-controls {
-            display: none !important;
-        }
-        
-        .hero-video-bg::-webkit-media-controls-enclosure {
-            display: none !important;
-        }
-        
-        .hero-video-bg::-webkit-media-controls-panel {
-            display: none !important;
-        }
-        
-        .hero-video-bg::-webkit-media-controls-play-button {
-            display: none !important;
-        }
-        
+        .hero-video-bg::-webkit-media-controls,
+        .hero-video-bg::-webkit-media-controls-enclosure,
+        .hero-video-bg::-webkit-media-controls-panel,
+        .hero-video-bg::-webkit-media-controls-play-button,
         .hero-video-bg::-webkit-media-controls-start-playback-button {
             display: none !important;
+            -webkit-appearance: none !important;
         }
         
         /* Overlay suave para mejor legibilidad del texto */
@@ -3027,12 +3016,9 @@
             loop 
             playsinline 
             preload="auto"
-            webkit-playsinline
-            x-webkit-airplay="allow"
-            disablePictureInPicture
-            controlslist="nodownload nofullscreen noremoteplayback"
-            style="pointer-events: none;">
+            poster="assets/icons/amherkut-logo-original.jpg">
             <source src="Video/background2.mp4" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
         </video>
         
         <div class="container">
@@ -3872,73 +3858,70 @@
     
     <!-- Optimización del video de fondo -->
     <script>
-        // Reproducción inmediata y automática del video en todos los navegadores
+        // Reproducción automática del video - Simple y efectivo
         (function() {
-            const heroVideo = document.getElementById('hero-video');
+            const video = document.getElementById('hero-video');
+            if (!video) return;
             
-            if (!heroVideo) return;
+            // Asegurar que el video esté silenciado (requerido para autoplay)
+            video.muted = true;
+            video.defaultMuted = true;
+            video.volume = 0;
             
-            // Configuración para Safari iOS
-            heroVideo.setAttribute('playsinline', '');
-            heroVideo.setAttribute('webkit-playsinline', '');
-            heroVideo.muted = true;
-            heroVideo.defaultMuted = true;
-            
-            // Función para forzar reproducción
-            const forcePlay = () => {
-                heroVideo.play().then(() => {
-                    console.log('Video playing automatically');
-                }).catch((error) => {
-                    console.log('Auto-play prevented, retrying...', error);
-                    // Reintentar después de un corto delay
-                    setTimeout(() => {
-                        heroVideo.muted = true;
-                        heroVideo.play();
-                    }, 100);
-                });
+            // Función simple para reproducir
+            const playVideo = () => {
+                const playPromise = video.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Video reproduciéndose correctamente
+                        console.log('✅ Video playing');
+                    }).catch(error => {
+                        // Si falla, reintentar
+                        console.log('Retrying video playback...');
+                        setTimeout(() => {
+                            video.muted = true;
+                            video.play();
+                        }, 500);
+                    });
+                }
             };
             
-            // Intentar reproducir inmediatamente
-            if (heroVideo.readyState >= 2) {
-                forcePlay();
+            // Intentar reproducir cuando el video pueda hacerlo
+            video.addEventListener('loadedmetadata', playVideo);
+            video.addEventListener('canplay', playVideo);
+            
+            // Intentar cuando la página esté lista
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', playVideo);
             } else {
-                heroVideo.addEventListener('loadeddata', forcePlay, { once: true });
-                heroVideo.addEventListener('canplay', forcePlay, { once: true });
+                playVideo();
             }
             
-            // Forzar reproducción cuando la página está completamente cargada
-            window.addEventListener('load', forcePlay);
+            // Backup: intentar cuando la página esté completamente cargada
+            window.addEventListener('load', playVideo);
             
-            // Forzar reproducción al hacer scroll o touch (para Safari iOS)
-            const playOnInteraction = () => {
-                heroVideo.muted = true;
-                heroVideo.play();
-                document.removeEventListener('touchstart', playOnInteraction);
-                document.removeEventListener('scroll', playOnInteraction);
+            // Para Safari iOS - reproducir al primer toque/scroll
+            const startOnInteraction = () => {
+                video.muted = true;
+                video.play();
             };
+            document.addEventListener('touchstart', startOnInteraction, { once: true, passive: true });
+            document.addEventListener('click', startOnInteraction, { once: true, passive: true });
             
-            document.addEventListener('touchstart', playOnInteraction, { once: true, passive: true });
-            document.addEventListener('scroll', playOnInteraction, { once: true, passive: true });
-            
-            // Asegurar que el video siga en loop
-            heroVideo.addEventListener('ended', () => {
-                heroVideo.currentTime = 0;
-                heroVideo.play();
-            });
-            
-            // Pausar video cuando no está visible (optimización de batería)
+            // Observar cuando el video esté visible
             if ('IntersectionObserver' in window) {
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            heroVideo.play().catch(() => {});
+                            video.play();
                         } else {
-                            heroVideo.pause();
+                            video.pause();
                         }
                     });
-                }, { threshold: 0.25 });
+                }, { threshold: 0.1 });
                 
-                observer.observe(document.querySelector('.hero'));
+                observer.observe(video);
             }
         })();
     </script>
