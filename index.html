@@ -416,6 +416,39 @@
             background-attachment: fixed;
             padding-top: 80px;
             position: relative;
+            overflow: hidden;
+        }
+        
+        /* Video de fondo optimizado */
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.85;
+            filter: brightness(0.7);
+            /* Optimización de rendimiento */
+            will-change: auto;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+        
+        /* Mejora del overlay para mejor legibilidad */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, 
+                rgba(0, 0, 0, 0.3) 0%, 
+                rgba(0, 0, 0, 0.5) 100%);
+            z-index: 0;
+            pointer-events: none;
         }
         
         .hero::after {
@@ -426,90 +459,52 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(135deg, 
-                rgba(30, 18, 12, 0.7) 0%, 
-                rgba(43, 24, 16, 0.8) 50%,
-                rgba(30, 18, 12, 0.7) 100%);
+                rgba(30, 18, 12, 0.5) 0%, 
+                rgba(43, 24, 16, 0.6) 50%,
+                rgba(30, 18, 12, 0.5) 100%);
             z-index: 0;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 70% 50%, 
-                rgba(201, 169, 97, 0.15) 0%, 
-                transparent 50%);
-            z-index: 0;
-            pointer-events: none;
         }
         
         .hero-content {
             position: relative;
             z-index: 1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            display: flex;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero-text {
+            width: 100%;
         }
         
         .hero-text h1 {
-            font-size: 3rem;
+            font-size: 4.5rem;
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 1.5rem;
             color: var(--white);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
         }
         
         .hero-text p {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             color: var(--white);
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             line-height: 1.6;
-            opacity: 0.9;
+            opacity: 0.95;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+            letter-spacing: 2px;
         }
         
         .hero-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
-        }
-        
-        .hero-image {
-            display: flex;
             justify-content: center;
-            align-items: center;
-        }
-        
-        .hero-image-placeholder {
-            width: 100%;
-            max-width: 500px;
-            height: 400px;
-            background: linear-gradient(135deg, var(--primary-brown), var(--gold));
-            border-radius: var(--border-radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8rem;
-            color: var(--white);
-            box-shadow: var(--shadow);
-        }
-        
-        .hero-main-image {
-            width: 100%;
-            max-width: 500px;
-            height: 400px;
-            object-fit: cover;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .hero-main-image:hover {
-            transform: scale(1.05);
-            box-shadow: var(--shadow-hover);
         }
         
         /* ========================================
@@ -1379,17 +1374,33 @@
             }
             
             .hero-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: center;
+                padding: 2rem 1rem;
+            }
+            
+            /* Optimización del video en móviles */
+            .hero-video-bg {
+                object-position: center;
+                filter: brightness(0.6);
             }
             
             .hero-text h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
+            }
+            
+            .hero-text p {
+                font-size: 1.2rem;
+                letter-spacing: 1px;
             }
             
             .hero-buttons {
-                justify-content: center;
+                flex-direction: column;
+                width: 100%;
+                max-width: 350px;
+                margin: 0 auto;
+            }
+            
+            .hero-buttons .btn {
+                width: 100%;
             }
             .newsletter-form { flex-direction: column; }
             .newsletter-form button { width: 100%; }
@@ -1514,21 +1525,24 @@
             }
             
             .hero-text h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .hero-text p {
                 font-size: 1.1rem;
+                letter-spacing: 0.5px;
             }
             
             .hero-buttons {
                 flex-direction: column;
-                align-items: center;
+                width: 100%;
+                gap: 1rem;
             }
             
             .btn {
                 width: 100%;
-                max-width: 300px;
+                padding: 14px 24px;
+                font-size: 1rem;
             }
         }
         
@@ -2921,6 +2935,11 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <!-- Video de fondo optimizado -->
+        <video class="hero-video-bg" autoplay muted loop playsinline preload="none" poster="">
+            <source src="Video/background - Made with Clipchamp.mp4" type="video/mp4">
+        </video>
+        
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text fade-in-up">
@@ -2930,9 +2949,6 @@
                         <a href="productos.html" class="btn btn-primary" data-translate="hero.btn1">Tutustu Valikoimaan</a>
                         <a href="#quick-contact" class="btn btn-secondary" data-translate="hero.btn2">Tilaa Nyt</a>
                     </div>
-                </div>
-                <div class="hero-image fade-in-up">
-                    <img src="assets/images/food/amherkut_post_4_5_2025_8_37_34 PM3604204273555467807.jpg" alt="Café Amherkut" class="hero-main-image" />
                 </div>
             </div>
         </div>
@@ -3755,5 +3771,44 @@
     
     <!-- E-commerce Script (Depende de language-switcher) -->
     <script src="assets/js/ecommerce-v2.js?v=2"></script>
+    
+    <!-- Optimización del video de fondo -->
+    <script>
+        // Optimización del video hero para mejor rendimiento
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroVideo = document.querySelector('.hero-video-bg');
+            
+            if (heroVideo) {
+                // Detectar conexión lenta
+                const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+                const slowConnection = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g');
+                
+                // Si la conexión es lenta, pausar el video en dispositivos móviles
+                if (slowConnection || window.innerWidth < 768) {
+                    heroVideo.playbackRate = 0.8; // Reducir velocidad para ahorrar recursos
+                }
+                
+                // Pausar video cuando no está visible (optimización de batería)
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            heroVideo.play().catch(() => {
+                                // Ignorar errores de autoplay
+                            });
+                        } else {
+                            heroVideo.pause();
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                observer.observe(document.querySelector('.hero'));
+                
+                // Cargar el video solo cuando sea necesario
+                if ('IntersectionObserver' in window) {
+                    heroVideo.load();
+                }
+            }
+        });
+    </script>
 </body>
 </html>
