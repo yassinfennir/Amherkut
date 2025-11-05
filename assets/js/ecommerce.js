@@ -169,7 +169,9 @@ class CartManager {
         }
 
         StorageManager.saveCart(this.cart);
-        this.showToast(`${product.name} agregado al carrito`);
+        const productName = getTranslation(`product.${product.id}.name`) || product.name;
+        const addedText = getTranslation('cart.added');
+        this.showToast(`${productName} ${addedText}`);
         return true;
     }
 
@@ -224,8 +226,8 @@ class CartManager {
                         <circle cx="12" cy="12" r="10"></circle>
                         <path d="M8 12l2 2 4-4"></path>
                     </svg>
-                    <p>Tu carrito está vacío</p>
-                    <button class="btn btn-primary" onclick="cartManager.closeCart()">Continuar comprando</button>
+                    <p>${getTranslation('cart.empty')}</p>
+                    <button class="btn btn-primary" onclick="cartManager.closeCart()">${getTranslation('cart.continue')}</button>
                 </div>
             `;
             if (cartCount) cartCount.textContent = '0';
@@ -447,7 +449,11 @@ class ProductDisplay {
             categories.forEach(category => {
                 const option = document.createElement('option');
                 option.value = category;
-                option.textContent = category;
+                // Traducir categoría
+                const catKey = category.toLowerCase().replace(' ', '.');
+                const translatedCat = getTranslation(`category.${catKey}`) || category;
+                option.textContent = translatedCat;
+                option.setAttribute('data-translate', `category.${catKey}`);
                 categoryFilter.appendChild(option);
             });
 
@@ -482,7 +488,9 @@ class ProductDisplay {
         const countEl = document.getElementById('products-count');
 
         if (countEl) {
-            countEl.textContent = `${filtered.length} producto${filtered.length !== 1 ? 's' : ''}`;
+            const countText = filtered.length;
+            const productsText = getTranslation('favorites.products.count');
+            countEl.innerHTML = `${countText} <span data-translate="favorites.products.count">${productsText}</span>`;
         }
 
         if (filtered.length === 0) {
@@ -492,8 +500,8 @@ class ProductDisplay {
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="m21 21-4.35-4.35"></path>
                     </svg>
-                    <h3>No se encontraron productos</h3>
-                    <p>Intenta ajustar tus filtros de búsqueda</p>
+                    <h3>${getTranslation('product.noresults')}</h3>
+                    <p>${getTranslation('product.adjustfilters')}</p>
                 </div>
             `;
             return;
@@ -509,12 +517,14 @@ class ProductDisplay {
     renderProductCard(product) {
         const stockStatus = this.getStockStatus(product.stock);
         const isWishlisted = wishlistManager.isInWishlist(product.id);
+        const productName = getTranslation(`product.${product.id}.name`) || product.name;
+        const productDesc = getTranslation(`product.${product.id}.desc`) || product.description;
 
         return `
             <div class="product-card enhanced" data-id="${product.id}">
                 ${stockStatus.badge ? `<span class="stock-badge ${stockStatus.class}">${stockStatus.badge}</span>` : ''}
-                ${product.bestSeller ? '<span class="badge bestseller">Más vendido</span>' : ''}
-                ${product.new ? '<span class="badge new">Nuevo</span>' : ''}
+                ${product.bestSeller ? `<span class="badge bestseller">${getTranslation('badge.bestseller')}</span>` : ''}
+                ${product.new ? `<span class="badge new">${getTranslation('badge.new')}</span>` : ''}
                 
                 <button class="wishlist-btn ${isWishlisted ? 'active' : ''}" data-product-id="${product.id}" 
                         onclick="wishlistManager.toggleWishlist(${product.id}); productDisplay.renderProducts();">
@@ -524,10 +534,10 @@ class ProductDisplay {
                 </button>
 
                 <div class="product-image" onclick="productDisplay.showProductModal(${product.id})">
-                    <img src="${product.image}" alt="${product.name}" loading="lazy">
+                    <img src="${product.image}" alt="${productName}" loading="lazy">
                     <div class="product-overlay">
                         <button class="btn btn-primary" onclick="event.stopPropagation(); productDisplay.showProductModal(${product.id})">
-                            Ver detalles
+                            ${getTranslation('product.details')}
                         </button>
                     </div>
                 </div>
@@ -538,8 +548,8 @@ class ProductDisplay {
                     <span class="reviews-count">(${product.reviews})</span>
                 </div>
 
-                <h3 onclick="productDisplay.showProductModal(${product.id})">${product.name}</h3>
-                <p>${product.description}</p>
+                <h3 onclick="productDisplay.showProductModal(${product.id})">${productName}</h3>
+                <p>${productDesc}</p>
 
                 <div class="product-footer">
                     <div class="product-price">
@@ -552,7 +562,7 @@ class ProductDisplay {
                             <circle cx="20" cy="21" r="1"></circle>
                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                         </svg>
-                        ${product.stock === 0 ? 'Agotado' : 'Agregar'}
+                        ${product.stock === 0 ? getTranslation('product.outofstock') : getTranslation('product.add')}
                     </button>
                 </div>
             </div>
@@ -580,9 +590,9 @@ class ProductDisplay {
 
     getStockStatus(stock) {
         if (stock === 0) {
-            return { badge: 'Agotado', class: 'out-of-stock' };
+            return { badge: getTranslation('badge.outofstock'), class: 'out-of-stock' };
         } else if (stock < 10) {
-            return { badge: 'Pocas unidades', class: 'low-stock' };
+            return { badge: getTranslation('badge.lowstock'), class: 'low-stock' };
         }
         return { badge: null, class: 'in-stock' };
     }
@@ -600,6 +610,10 @@ class ProductDisplay {
 
         const stockStatus = this.getStockStatus(product.stock);
         const isWishlisted = wishlistManager.isInWishlist(product.id);
+        const productName = getTranslation(`product.${product.id}.name`) || product.name;
+        const productDesc = getTranslation(`product.${product.id}.desc`) || product.description;
+        const catKey = product.category.toLowerCase().replace(' ', '.');
+        const translatedCat = getTranslation(`category.${catKey}`) || product.category;
 
         modal.innerHTML = `
             <div class="modal-overlay" onclick="productDisplay.closeProductModal()"></div>
@@ -612,13 +626,13 @@ class ProductDisplay {
 
                 <div class="product-modal-grid">
                     <div class="product-modal-image">
-                        <img src="${product.image}" alt="${product.name}">
+                        <img src="${product.image}" alt="${productName}">
                         ${stockStatus.badge ? `<span class="stock-badge ${stockStatus.class}">${stockStatus.badge}</span>` : ''}
                     </div>
 
                     <div class="product-modal-info">
                         <div class="product-modal-header">
-                            <h2>${product.name}</h2>
+                            <h2>${productName}</h2>
                             <button class="wishlist-btn ${isWishlisted ? 'active' : ''}" 
                                     onclick="wishlistManager.toggleWishlist(${product.id}); productDisplay.showProductModal(${product.id});">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -630,7 +644,7 @@ class ProductDisplay {
                         <div class="product-modal-rating">
                             ${this.renderStars(product.rating)}
                             <span>${product.rating}</span>
-                            <span class="reviews-count">(${product.reviews} reseñas)</span>
+                            <span class="reviews-count">(${product.reviews} ${getTranslation('product.reviews')})</span>
                         </div>
 
                         <div class="product-modal-price">
@@ -638,21 +652,21 @@ class ProductDisplay {
                             ${product.originalPrice ? `<span class="price-original">€${product.originalPrice.toFixed(2)}</span>` : ''}
                         </div>
 
-                        <p class="product-modal-description">${product.description}</p>
+                        <p class="product-modal-description">${productDesc}</p>
 
                         <div class="product-modal-details">
                             <div class="detail-item">
-                                <strong>Categoría:</strong> ${product.category}
+                                <strong>${getTranslation('product.category')}:</strong> ${translatedCat}
                             </div>
                             <div class="detail-item">
-                                <strong>Stock:</strong> 
-                                <span class="${stockStatus.class}">${product.stock} disponibles</span>
+                                <strong>${getTranslation('product.stock')}:</strong> 
+                                <span class="${stockStatus.class}">${product.stock} ${getTranslation('product.available')}</span>
                             </div>
                         </div>
 
                         <div class="product-modal-actions">
                             <div class="quantity-selector">
-                                <label>Cantidad:</label>
+                                <label>${getTranslation('product.quantity')}:</label>
                                 <div class="qty-controls">
                                     <button class="qty-btn" onclick="productModalUpdateQty(-1)">-</button>
                                     <input type="number" id="modal-quantity" value="1" min="1" max="${product.stock}" readonly>
@@ -668,7 +682,7 @@ class ProductDisplay {
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                                 </svg>
-                                Agregar al carrito
+                                ${getTranslation('product.addtocart')}
                             </button>
                         </div>
                     </div>

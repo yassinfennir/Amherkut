@@ -179,7 +179,51 @@ class LanguageSwitcher {
                 
                 // Cart
                 'cart.title': 'Ostoskorisi',
-                'cart.checkout': 'Siirry Kassalle'
+                'cart.checkout': 'Siirry Kassalle',
+                'cart.empty': 'Ostoskorisi on tyhjä',
+                'cart.continue': 'Jatka ostoksia',
+                'cart.added': 'lisätty ostoskoriin',
+                'cart.total': 'Yhteensä',
+                'cart.items': 'tuotetta',
+                
+                // Product Badges
+                'badge.bestseller': 'Myydyin',
+                'badge.new': 'Uusi',
+                'badge.outofstock': 'Loppu',
+                'badge.lowstock': 'Vain muutama jäljellä',
+                
+                // Product Buttons
+                'product.details': 'Näytä tiedot',
+                'product.add': 'Lisää',
+                'product.outofstock': 'Loppu',
+                'product.addtocart': 'Lisää ostoskoriin',
+                'product.quantity': 'Määrä',
+                'product.category': 'Kategoria',
+                'product.stock': 'Varastossa',
+                'product.available': 'saatavilla',
+                'product.reviews': 'arvostelua',
+                'product.noresults': 'Ei tuotteita löytynyt',
+                'product.adjustfilters': 'Yritä säätää hakusuodattimia',
+                
+                // Product Data
+                'product.1.name': 'Klassinen Espresso',
+                'product.1.desc': 'Voimakas ja tasapainoinen, täydellinen aidoille kahvinystäville',
+                'product.2.name': 'Käsityö Cappuccino',
+                'product.2.desc': 'Tuore maitovaahdotus premium-suklaan kanssa, ainutlaatuinen kokemus',
+                'product.3.name': 'Cold Brew',
+                'product.3.desc': 'Pehmeä, virkistävä ja ihanteellinen kuumille päiville. Valmistettu 24 tunnin ajan',
+                'product.4.name': 'Latte Macchiato',
+                'product.4.desc': 'Kermainen ja pehmeä eleganssia joka huuraukossa. Täydellinen aamiaiselle',
+                'product.5.name': 'Americana',
+                'product.5.desc': 'Klassinen ja vankka syvällä maulla. Perinteisen kahvin ystäville',
+                'product.6.name': 'Affogato',
+                'product.6.desc': 'Vaniljajäätelöä kuuman espresso kanssa. Täydellinen jälkiruoka',
+                
+                // Categories
+                'category.cafe': 'Kahvi',
+                'category.hot': 'Kuumat Juomat',
+                'category.cold': 'Kylmät Juomat',
+                'category.desserts': 'Jälkiruoat'
             },
             en: {
                 // Navigation
@@ -279,7 +323,51 @@ class LanguageSwitcher {
                 
                 // Cart
                 'cart.title': 'Your Cart',
-                'cart.checkout': 'Proceed to Checkout'
+                'cart.checkout': 'Proceed to Checkout',
+                'cart.empty': 'Your cart is empty',
+                'cart.continue': 'Continue shopping',
+                'cart.added': 'added to cart',
+                'cart.total': 'Total',
+                'cart.items': 'items',
+                
+                // Product Badges
+                'badge.bestseller': 'Best Seller',
+                'badge.new': 'New',
+                'badge.outofstock': 'Out of Stock',
+                'badge.lowstock': 'Only few left',
+                
+                // Product Buttons
+                'product.details': 'View details',
+                'product.add': 'Add',
+                'product.outofstock': 'Out of Stock',
+                'product.addtocart': 'Add to Cart',
+                'product.quantity': 'Quantity',
+                'product.category': 'Category',
+                'product.stock': 'Stock',
+                'product.available': 'available',
+                'product.reviews': 'reviews',
+                'product.noresults': 'No products found',
+                'product.adjustfilters': 'Try adjusting your search filters',
+                
+                // Product Data
+                'product.1.name': 'Classic Espresso',
+                'product.1.desc': 'Intense and balanced, perfect for true coffee lovers',
+                'product.2.name': 'Artisan Cappuccino',
+                'product.2.desc': 'Fresh frothed milk with premium chocolate, a unique experience',
+                'product.3.name': 'Cold Brew',
+                'product.3.desc': 'Smooth, refreshing and ideal for hot days. Prepared for 24 hours',
+                'product.4.name': 'Latte Macchiato',
+                'product.4.desc': 'Creamy and smooth with elegance in every sip. Perfect for breakfast',
+                'product.5.name': 'Americana',
+                'product.5.desc': 'Classic and robust with deep flavor. For traditional coffee lovers',
+                'product.6.name': 'Affogato',
+                'product.6.desc': 'Vanilla ice cream with hot espresso. A perfect dessert',
+                
+                // Categories
+                'category.cafe': 'Coffee',
+                'category.hot': 'Hot Drinks',
+                'category.cold': 'Cold Drinks',
+                'category.desserts': 'Desserts'
             },
             sv: {
                 // Navigation
@@ -379,7 +467,51 @@ class LanguageSwitcher {
                 
                 // Cart
                 'cart.title': 'Din Varukorg',
-                'cart.checkout': 'Gå Till Kassan'
+                'cart.checkout': 'Gå Till Kassan',
+                'cart.empty': 'Din varukorg är tom',
+                'cart.continue': 'Fortsätt handla',
+                'cart.added': 'tillagd i varukorgen',
+                'cart.total': 'Totalt',
+                'cart.items': 'produkter',
+                
+                // Product Badges
+                'badge.bestseller': 'Bästsäljare',
+                'badge.new': 'Ny',
+                'badge.outofstock': 'Slut i lager',
+                'badge.lowstock': 'Endast få kvar',
+                
+                // Product Buttons
+                'product.details': 'Visa detaljer',
+                'product.add': 'Lägg till',
+                'product.outofstock': 'Slut',
+                'product.addtocart': 'Lägg till i varukorgen',
+                'product.quantity': 'Antal',
+                'product.category': 'Kategori',
+                'product.stock': 'Lager',
+                'product.available': 'tillgängliga',
+                'product.reviews': 'recensioner',
+                'product.noresults': 'Inga produkter hittades',
+                'product.adjustfilters': 'Försök justera dina sökfilter',
+                
+                // Product Data
+                'product.1.name': 'Klassisk Espresso',
+                'product.1.desc': 'Intensiv och balanserad, perfekt för sanna kaffeälskare',
+                'product.2.name': 'Hantverks Cappuccino',
+                'product.2.desc': 'Färsk skummad mjölk med premium-choklad, en unik upplevelse',
+                'product.3.name': 'Cold Brew',
+                'product.3.desc': 'Mjuk, uppfriskande och idealisk för varma dagar. Förberedd i 24 timmar',
+                'product.4.name': 'Latte Macchiato',
+                'product.4.desc': 'Krämig och mjuk med elegans i varje klunk. Perfekt för frukost',
+                'product.5.name': 'Americana',
+                'product.5.desc': 'Klassisk och robust med djup smak. För traditionella kaffeälskare',
+                'product.6.name': 'Affogato',
+                'product.6.desc': 'Vaniljglass med varm espresso. En perfekt dessert',
+                
+                // Categories
+                'category.cafe': 'Kaffe',
+                'category.hot': 'Varma Drycker',
+                'category.cold': 'Kalla Drycker',
+                'category.desserts': 'Desserter'
             }
         };
         
@@ -433,6 +565,11 @@ class LanguageSwitcher {
         this.updateContent();
         this.updateLanguageButton();
         localStorage.setItem('amherkut-language', lang);
+        
+        // Re-renderizar productos si existe el display
+        if (typeof productDisplay !== 'undefined' && productDisplay) {
+            productDisplay.renderProducts();
+        }
     }
     
     loadLanguage() {
@@ -479,7 +616,23 @@ class LanguageSwitcher {
     }
 }
 
+// Instancia global
+let languageSwitcher;
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new LanguageSwitcher();
+    languageSwitcher = new LanguageSwitcher();
 });
+
+// Función global para obtener traducciones
+function getTranslation(key) {
+    if (languageSwitcher && languageSwitcher.translations[languageSwitcher.currentLang]) {
+        return languageSwitcher.translations[languageSwitcher.currentLang][key] || key;
+    }
+    return key;
+}
+
+// Función global para obtener el idioma actual
+function getCurrentLanguage() {
+    return languageSwitcher ? languageSwitcher.currentLang : 'fi';
+}
