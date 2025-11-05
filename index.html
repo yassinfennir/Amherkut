@@ -434,6 +434,29 @@
             will-change: auto;
             transform: translateZ(0);
             backface-visibility: hidden;
+            /* Ocultar controles completamente */
+            pointer-events: none;
+        }
+        
+        /* Ocultar cualquier control nativo del video */
+        .hero-video-bg::-webkit-media-controls {
+            display: none !important;
+        }
+        
+        .hero-video-bg::-webkit-media-controls-enclosure {
+            display: none !important;
+        }
+        
+        .hero-video-bg::-webkit-media-controls-panel {
+            display: none !important;
+        }
+        
+        .hero-video-bg::-webkit-media-controls-play-button {
+            display: none !important;
+        }
+        
+        .hero-video-bg::-webkit-media-controls-start-playback-button {
+            display: none !important;
         }
         
         /* Overlay suave para mejor legibilidad del texto */
@@ -2996,7 +3019,19 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <!-- Video de fondo optimizado -->
-        <video class="hero-video-bg" autoplay muted loop playsinline preload="auto">
+        <video 
+            id="hero-video" 
+            class="hero-video-bg" 
+            autoplay 
+            muted 
+            loop 
+            playsinline 
+            preload="auto"
+            webkit-playsinline
+            x-webkit-airplay="allow"
+            disablePictureInPicture
+            controlslist="nodownload nofullscreen noremoteplayback"
+            style="pointer-events: none;">
             <source src="Video/background2.mp4" type="video/mp4">
         </video>
         
@@ -3837,41 +3872,75 @@
     
     <!-- Optimización del video de fondo -->
     <script>
-        // Optimización del video hero para mejor rendimiento
-        document.addEventListener('DOMContentLoaded', function() {
-            const heroVideo = document.querySelector('.hero-video-bg');
+        // Reproducción inmediata y automática del video en todos los navegadores
+        (function() {
+            const heroVideo = document.getElementById('hero-video');
             
-            if (heroVideo) {
-                // Detectar conexión lenta
-                const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-                const slowConnection = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g');
-                
-                // Si la conexión es lenta, pausar el video en dispositivos móviles
-                if (slowConnection || window.innerWidth < 768) {
-                    heroVideo.playbackRate = 0.8; // Reducir velocidad para ahorrar recursos
-                }
-                
-                // Pausar video cuando no está visible (optimización de batería)
+            if (!heroVideo) return;
+            
+            // Configuración para Safari iOS
+            heroVideo.setAttribute('playsinline', '');
+            heroVideo.setAttribute('webkit-playsinline', '');
+            heroVideo.muted = true;
+            heroVideo.defaultMuted = true;
+            
+            // Función para forzar reproducción
+            const forcePlay = () => {
+                heroVideo.play().then(() => {
+                    console.log('Video playing automatically');
+                }).catch((error) => {
+                    console.log('Auto-play prevented, retrying...', error);
+                    // Reintentar después de un corto delay
+                    setTimeout(() => {
+                        heroVideo.muted = true;
+                        heroVideo.play();
+                    }, 100);
+                });
+            };
+            
+            // Intentar reproducir inmediatamente
+            if (heroVideo.readyState >= 2) {
+                forcePlay();
+            } else {
+                heroVideo.addEventListener('loadeddata', forcePlay, { once: true });
+                heroVideo.addEventListener('canplay', forcePlay, { once: true });
+            }
+            
+            // Forzar reproducción cuando la página está completamente cargada
+            window.addEventListener('load', forcePlay);
+            
+            // Forzar reproducción al hacer scroll o touch (para Safari iOS)
+            const playOnInteraction = () => {
+                heroVideo.muted = true;
+                heroVideo.play();
+                document.removeEventListener('touchstart', playOnInteraction);
+                document.removeEventListener('scroll', playOnInteraction);
+            };
+            
+            document.addEventListener('touchstart', playOnInteraction, { once: true, passive: true });
+            document.addEventListener('scroll', playOnInteraction, { once: true, passive: true });
+            
+            // Asegurar que el video siga en loop
+            heroVideo.addEventListener('ended', () => {
+                heroVideo.currentTime = 0;
+                heroVideo.play();
+            });
+            
+            // Pausar video cuando no está visible (optimización de batería)
+            if ('IntersectionObserver' in window) {
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            heroVideo.play().catch(() => {
-                                // Ignorar errores de autoplay
-                            });
+                            heroVideo.play().catch(() => {});
                         } else {
                             heroVideo.pause();
                         }
                     });
-                }, { threshold: 0.5 });
+                }, { threshold: 0.25 });
                 
                 observer.observe(document.querySelector('.hero'));
-                
-                // Cargar el video solo cuando sea necesario
-                if ('IntersectionObserver' in window) {
-                    heroVideo.load();
-                }
             }
-        });
+        })();
     </script>
 </body>
 </html>
