@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Traducciones - Amherkut</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 2rem;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #D4B86A;
+            margin-bottom: 2rem;
+        }
+        .test-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f9f9f9;
+            border-left: 4px solid #D4B86A;
+        }
+        .test-result {
+            font-family: monospace;
+            background: #1a1a1a;
+            color: #0f0;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        .success { color: #4CAF50; }
+        .error { color: #f44336; }
+        .warning { color: #ff9800; }
+        button {
+            background: #D4B86A;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 0.5rem;
+        }
+        button:hover {
+            background: #6B4423;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test de Traducciones - Amherkut</h1>
+        
+        <div class="test-section">
+            <h3>Estado del Sistema:</h3>
+            <div id="system-status" class="test-result">Cargando...</div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Pruebas de Traducción:</h3>
+            <div id="translation-tests" class="test-result"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Acciones:</h3>
+            <button onclick="clearAllCache()">🗑️ Limpiar TODO el Cache</button>
+            <button onclick="testTranslations()">🔄 Re-test Traducciones</button>
+            <button onclick="goToIndex()">🏠 Ir a Index</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>Instrucciones:</h3>
+            <ol>
+                <li>Haz clic en "Limpiar TODO el Cache"</li>
+                <li>Presiona <kbd>Ctrl + Shift + R</kbd> (Windows) o <kbd>Cmd + Shift + R</kbd> (Mac)</li>
+                <li>Ve a la página principal</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Load language-switcher FIRST -->
+    <script src="assets/js/language-switcher.js"></script>
+    
+    <script>
+        function testTranslations() {
+            const results = [];
+            
+            // Test 1: Verificar si existe getTranslation
+            if (typeof getTranslation === 'function') {
+                results.push('✅ getTranslation() existe');
+            } else {
+                results.push('❌ ERROR: getTranslation() NO existe');
+            }
+            
+            // Test 2: Verificar languageSwitcher
+            if (typeof languageSwitcher !== 'undefined' && languageSwitcher) {
+                results.push('✅ languageSwitcher inicializado');
+                results.push(`   Idioma actual: ${languageSwitcher.currentLang}`);
+            } else {
+                results.push('❌ ERROR: languageSwitcher NO inicializado');
+            }
+            
+            // Test 3: Probar traducciones
+            const testKeys = [
+                'badge.bestseller',
+                'product.1.name',
+                'product.add',
+                'cart.title'
+            ];
+            
+            results.push('\n📝 Pruebas de traducción:');
+            testKeys.forEach(key => {
+                const translation = getTranslation(key);
+                const isSpanish = translation.match(/español|vendido|agregar/i);
+                if (isSpanish) {
+                    results.push(`❌ ${key}: "${translation}" (AÚN EN ESPAÑOL!)`);
+                } else {
+                    results.push(`✅ ${key}: "${translation}"`);
+                }
+            });
+            
+            document.getElementById('translation-tests').textContent = results.join('\n');
+        }
+        
+        function checkSystemStatus() {
+            const status = [];
+            
+            status.push('🌐 Idioma del navegador: ' + navigator.language);
+            status.push('💾 localStorage items: ' + Object.keys(localStorage).length);
+            status.push('🔧 languageSwitcher ready: ' + (languageSwitcher ? 'SÍ' : 'NO'));
+            status.push('📜 getTranslation ready: ' + (typeof getTranslation === 'function' ? 'SÍ' : 'NO'));
+            
+            if (languageSwitcher) {
+                status.push('🎯 Idioma actual: ' + languageSwitcher.currentLang.toUpperCase());
+                status.push('📚 Traducciones cargadas: ' + Object.keys(languageSwitcher.translations).join(', '));
+            }
+            
+            document.getElementById('system-status').textContent = status.join('\n');
+        }
+        
+        function clearAllCache() {
+            // Limpiar localStorage
+            localStorage.clear();
+            sessionStorage.clear();
+            
+            // Limpiar cookies
+            document.cookie.split(";").forEach(function(c) { 
+                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+            });
+            
+            // Service Workers
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                    for(let registration of registrations) {
+                        registration.unregister();
+                    }
+                });
+            }
+            
+            // Caches
+            if ('caches' in window) {
+                caches.keys().then(function(names) {
+                    for (let name of names) {
+                        caches.delete(name);
+                    }
+                });
+            }
+            
+            alert('✅ Cache limpiado!\n\nAhora presiona:\nCtrl + Shift + R (Windows)\no\nCmd + Shift + R (Mac)');
+        }
+        
+        function goToIndex() {
+            window.location.href = 'index.html?nocache=' + Date.now();
+        }
+        
+        // Ejecutar pruebas automáticamente
+        setTimeout(() => {
+            checkSystemStatus();
+            testTranslations();
+        }, 500);
+    </script>
+</body>
+</html>
+
