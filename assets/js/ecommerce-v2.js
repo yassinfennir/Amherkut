@@ -449,9 +449,11 @@ class ProductDisplay {
             categories.forEach(category => {
                 const option = document.createElement('option');
                 option.value = category;
-                // Traducir categoría
+                // Traducir categoría sin el prefijo "category."
                 const catKey = category.toLowerCase().replace(' ', '.');
-                const translatedCat = getTranslation(`category.${catKey}`) || category;
+                let translatedCat = getTranslation(`category.${catKey}`) || category;
+                // Eliminar el prefijo "category." si existe en el texto
+                translatedCat = translatedCat.replace(/^category\./i, '');
                 option.textContent = translatedCat;
                 option.setAttribute('data-translate', `category.${catKey}`);
                 categoryFilter.appendChild(option);
@@ -623,7 +625,9 @@ class ProductDisplay {
         const productName = getTranslation(`product.${product.id}.name`) || product.name;
         const productDesc = getTranslation(`product.${product.id}.desc`) || product.description;
         const catKey = product.category.toLowerCase().replace(' ', '.');
-        const translatedCat = getTranslation(`category.${catKey}`) || product.category;
+        let translatedCat = getTranslation(`category.${catKey}`) || product.category;
+        // Eliminar el prefijo "category." si existe
+        translatedCat = translatedCat.replace(/^category\./i, '');
 
         modal.innerHTML = `
             <div class="modal-overlay" onclick="productDisplay.closeProductModal()"></div>
