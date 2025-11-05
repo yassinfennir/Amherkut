@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Productos Traducidos - Amherkut</title>
+    <style>
+        :root {
+            --gold: #C9A961;
+            --dark-brown: #4A2C1A;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #2B1810;
+            color: white;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .product-card {
+            background: #1a1a1a;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+        .badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            z-index: 2;
+        }
+        .badge.bestseller {
+            background: linear-gradient(135deg, #C9A961, #D4B86A);
+            color: #1a1a1a;
+        }
+        .badge.new {
+            background: linear-gradient(135deg, #a8d5ff, #ffb3e6);
+            color: #1a1a1a;
+        }
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .product-content {
+            padding: 1.5rem;
+        }
+        .product-rating {
+            color: #ffc107;
+            margin-bottom: 0.5rem;
+        }
+        h3 {
+            font-size: 1.5rem;
+            margin: 0.5rem 0;
+        }
+        .description {
+            opacity: 0.8;
+            margin: 1rem 0;
+            line-height: 1.6;
+        }
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .btn {
+            background: var(--gold);
+            color: #1a1a1a;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #D4B86A;
+        }
+        .language-selector {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .language-selector button {
+            margin: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(201, 169, 97, 0.2);
+            border: 2px solid var(--gold);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .language-selector button.active {
+            background: var(--gold);
+            color: #1a1a1a;
+        }
+        .lang-section {
+            display: none;
+        }
+        .lang-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-selector">
+            <h2 style="color: var(--gold); margin-bottom: 1rem;">Selecciona Idioma / Choose Language / Valitse Kieli</h2>
+            <button onclick="showLanguage('fi')" id="btn-fi" class="active">🇫🇮 Suomi (Finlandés)</button>
+            <button onclick="showLanguage('en')" id="btn-en">🇬🇧 English (Inglés)</button>
+            <button onclick="showLanguage('sv')" id="btn-sv">🇸🇪 Svenska (Sueco)</button>
+        </div>
+
+        <!-- VERSIÓN FINLANDÉS -->
+        <div id="lang-fi" class="lang-section active">
+            <h2 class="section-title">Suosikkimme</h2>
+            <p class="section-subtitle">Jokainen juoma on taideteos, valmistettu intohimolla ja parhaista raaka-aineista</p>
+            
+            <div class="products-grid">
+                <!-- Producto 1 -->
+                <div class="product-card">
+                    <span class="badge bestseller">Myydyin</span>
+                    <img src="assets/images/food/20230506_085815.png" alt="Klassinen Espresso" class="product-image">
+                    <div class="product-content">
+                        <div class="product-rating">★★★★½ 4.8 (124)</div>
+                        <h3>Klassinen Espresso</h3>
+                        <p class="description">Voimakas ja tasapainoinen, täydellinen aidoille kahvinystäville</p>
+                        <div class="product-footer">
+                            <div class="price">€3.50</div>
+                            <button class="btn">Lisää</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="product-card">
+                    <span class="badge bestseller">Myydyin</span>
+                    <img src="Fotos/Drinks/unnamed (1).jpg" alt="Käsityö Cappuccino" class="product-image">
+                    <div class="product-content">
+                        <div class="product-rating">★★★★★ 4.9 (89)</div>
+                        <h3>Käsityö Cappuccino</h3>
+                        <p class="description">Tuore maitovaahdotus premium-suklaan kanssa, ainutlaatuinen kokemus</p>
+                        <div class="product-footer">
+                            <div class="price">€4.50</div>
+                            <button class="btn">Lisää</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="product-card">
+                    <span class="badge bestseller">Myydyin</span>
+                    <img src="assets/images/food/2025-10-11.png" alt="Americana" class="product-image">
+                    <div class="product-content">
+                        <div class="product-rating">★★★★½ 4.5 (156)</div>
+                        <h3>Americana</h3>
+                        <p class="description">Klassinen ja vankka syvällä maulla. Perinteisen kahvin ystäville</p>
+                        <div class="product-footer">
+                            <div class="price">€3.00</div>
+                            <button class="btn">Lisää</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VERSIÓN INGLÉS -->
+        <div id="lang-en" class="lang-section">
+            <h2 class="section-title">Our Favorites</h2>
+            <p class="section-subtitle">Each drink is a work of art, prepared with passion and the finest ingredients</p>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <span class="badge bestseller">Best Seller</span>
+                    <img src="assets/images/food/20230506_085815.png" alt="Classic Espresso" class="product-image">
+                    <div class="product-content">
+                        <div class="product-rating">★★★★½ 4.8 (124)</div>
+                        <h3>Classic Espresso</h3>
+                        <p class="description">Intense and balanced, perfect for true coffee lovers</p>
+                        <div class="product-footer">
+                            <div class="price">€3.50</div>
+                            <button class="btn">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <span class="badge bestseller">Best Seller</span>
+                    <img src="Fotos/Drinks/unnamed (1).jpg" alt="Artisan Cappuccino" class="product-image">
+                    <div class="product-content">
+                        <div class="product-rating">★★★★★ 4.9 (89)</div>
+                        <h3>Artisan Cappuccino</h3>
+                        <p class="description">Fresh frothed milk with premium chocolate, a unique experience</p>
+                        <div class="product-footer">
+                            <div class="price">€4.50</div>
+                            <button class="btn">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <span class="badge bestseller">Best Seller</span>
+                    <img src="assets/images/food/2025-10-11.png" alt="Americana" class="product-image">
+                    <div class="product-content">
+                        <div class="product-rating">★★★★½ 4.5 (156)</div>
+                        <h3>Americana</h3>
+                        <p class="description">Classic and robust with deep flavor. For traditional coffee lovers</p>
+                        <div class="product-footer">
+                            <div class="price">€3.00</div>
+                            <button class="btn">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VERSIÓN SUECO -->
+        <div id="lang-sv" class="lang-section">
+            <h2 class="section-title">Våra Favoriter</h2>
+            <p class="section-subtitle">Varje dryck är ett konstverk, förberett med passion och de bästa ingredienserna</p>
+            
+            <div class="products-grid">
+                <!-- Produkt 1 -->
+                <div class="product-card">
+                    <span class="badge bestseller">Bästsäljare</span>
+                    <img src="assets/images/food/20230506_085815.png" alt="Klassisk Espresso" class="product-image">
+                    <div class="product-content">
+                        <div class="product-rating">★★★★½ 4.8 (124)</div>
+                        <h3>Klassisk Espresso</h3>
+                        <p class="description">Intensiv och balanserad, perfekt för sanna kaffeälskare</p>
+                        <div class="product-footer">
+                            <div class="price">€3.50</div>
+                            <button class="btn">Lägg till</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produkt 2 -->
+                <div class="product-card">
+                    <span class="badge bestseller">Bästsäljare</span>
+                    <img src="Fotos/Drinks/unnamed (1).jpg" alt="Hantverks Cappuccino" class="product-image">
+                    <div class="product-content">
+                        <div class="product-rating">★★★★★ 4.9 (89)</div>
+                        <h3>Hantverks Cappuccino</h3>
+                        <p class="description">Färsk skummad mjölk med premium-choklad, en unik upplevelse</p>
+                        <div class="product-footer">
+                            <div class="price">€4.50</div>
+                            <button class="btn">Lägg till</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produkt 3 -->
+                <div class="product-card">
+                    <span class="badge bestseller">Bästsäljare</span>
+                    <img src="assets/images/food/2025-10-11.png" alt="Americana" class="product-image">
+                    <div class="product-content">
+                        <div class="product-rating">★★★★½ 4.5 (156)</div>
+                        <h3>Americana</h3>
+                        <p class="description">Klassisk och robust med djup smak. För traditionella kaffeälskare</p>
+                        <div class="product-footer">
+                            <div class="price">€3.00</div>
+                            <button class="btn">Lägg till</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showLanguage(lang) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.lang-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Mostrar la seleccionada
+            document.getElementById('lang-' + lang).classList.add('active');
+            
+            // Actualizar botones
+            document.querySelectorAll('.language-selector button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('btn-' + lang).classList.add('active');
+        }
+    </script>
+</body>
+</html>
+

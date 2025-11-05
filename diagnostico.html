@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <title>Diagnóstico Traducciones</title>
+    <style>
+        body { font-family: monospace; padding: 2rem; background: #1a1a1a; color: #0f0; }
+        .error { color: #f00; }
+        .success { color: #0f0; }
+        .warning { color: #ff0; }
+        pre { background: #000; padding: 1rem; border-radius: 8px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Diagnóstico del Sistema de Traducciones</h1>
+    <div id="output"></div>
+
+    <!-- CARGAR SCRIPTS EN ORDEN -->
+    <script src="assets/js/language-switcher.js"></script>
+    <script src="assets/js/ecommerce.js"></script>
+    
+    <script>
+        const output = document.getElementById('output');
+        const logs = [];
+        
+        function log(msg, type = 'info') {
+            const className = type === 'error' ? 'error' : type === 'success' ? 'success' : 'warning';
+            logs.push(`<p class="${className}">${msg}</p>`);
+            output.innerHTML = logs.join('');
+        }
+        
+        log('=== INICIANDO DIAGNÓSTICO ===', 'warning');
+        log('');
+        
+        // Test 1: Verificar carga de languageSwitcher
+        log('1. Verificando languageSwitcher...', 'warning');
+        if (typeof languageSwitcher !== 'undefined') {
+            log('   ✅ languageSwitcher existe', 'success');
+            log('   📍 Tipo: ' + typeof languageSwitcher);
+            log('   🌐 Idioma actual: ' + languageSwitcher.currentLang, 'success');
+            log('   📚 Idiomas disponibles: ' + Object.keys(languageSwitcher.translations).join(', '));
+        } else {
+            log('   ❌ ERROR: languageSwitcher NO definido', 'error');
+        }
+        log('');
+        
+        // Test 2: Verificar función getTranslation
+        log('2. Verificando getTranslation()...', 'warning');
+        if (typeof getTranslation === 'function') {
+            log('   ✅ getTranslation() es una función', 'success');
+            
+            // Probar traducciones
+            const tests = {
+                'badge.bestseller': 'Myydyin',
+                'product.1.name': 'Klassinen Espresso',
+                'product.2.name': 'Käsityö Cappuccino',
+                'product.add': 'Lisää',
+                'product.details': 'Näytä tiedot'
+            };
+            
+            log('   🧪 Probando traducciones:', 'warning');
+            let allCorrect = true;
+            for (const [key, expected] of Object.entries(tests)) {
+                const result = getTranslation(key);
+                const isCorrect = result === expected;
+                if (!isCorrect) allCorrect = false;
+                
+                log(`      ${key}:`, isCorrect ? 'success' : 'error');
+                log(`         Esperado: "${expected}"`, isCorrect ? 'success' : 'warning');
+                log(`         Obtenido: "${result}"`, isCorrect ? 'success' : 'error');
+                
+                if (!isCorrect && result.match(/vendido|agregar|ver detalles/i)) {
+                    log('         ⚠️ ¡TODAVÍA EN ESPAÑOL!', 'error');
+                }
+            }
+            
+            if (allCorrect) {
+                log('   🎉 TODAS LAS TRADUCCIONES FUNCIONAN', 'success');
+            } else {
+                log('   ❌ ALGUNAS TRADUCCIONES FALLAN', 'error');
+            }
+        } else {
+            log('   ❌ ERROR: getTranslation() NO existe', 'error');
+        }
+        log('');
+        
+        // Test 3: Verificar productos
+        log('3. Verificando PRODUCTS_DATA...', 'warning');
+        if (typeof PRODUCTS_DATA !== 'undefined') {
+            log('   ✅ PRODUCTS_DATA existe', 'success');
+            log('   📦 Productos cargados: ' + PRODUCTS_DATA.length);
+            log('   📝 Primer producto: ' + PRODUCTS_DATA[0].name);
+        } else {
+            log('   ⚠️ PRODUCTS_DATA no cargado aún (es normal)', 'warning');
+        }
+        log('');
+        
+        // Test 4: localStorage
+        log('4. Verificando localStorage...', 'warning');
+        const savedLang = localStorage.getItem('amherkut-language');
+        if (savedLang) {
+            log('   📌 Idioma guardado: ' + savedLang, savedLang === 'fi' ? 'success' : 'warning');
+        } else {
+            log('   ⚠️ No hay idioma guardado en localStorage', 'warning');
+        }
+        log('');
+        
+        // Test 5: Resumen
+        log('=== RESUMEN ===', 'warning');
+        if (typeof getTranslation === 'function' && typeof languageSwitcher !== 'undefined') {
+            log('✅ El sistema está FUNCIONANDO correctamente', 'success');
+            log('');
+            log('Si ves productos en español:', 'warning');
+            log('1. El problema es el CACHE del navegador', 'warning');
+            log('2. Presiona Ctrl+Shift+R para recarga forzada', 'warning');
+            log('3. O ve a F12 > Application > Clear site data', 'warning');
+        } else {
+            log('❌ HAY PROBLEMAS con el sistema', 'error');
+            log('   Verifica que language-switcher.js se carga correctamente', 'error');
+        }
+        
+        // Mostrar objeto completo
+        log('');
+        log('=== OBJETO languageSwitcher ===', 'warning');
+        if (languageSwitcher) {
+            log('<pre>' + JSON.stringify({
+                currentLang: languageSwitcher.currentLang,
+                hasTranslations: !!languageSwitcher.translations,
+                translationKeys: languageSwitcher.translations ? Object.keys(languageSwitcher.translations) : []
+            }, null, 2) + '</pre>');
+        }
+    </script>
+</body>
+</html>
+
