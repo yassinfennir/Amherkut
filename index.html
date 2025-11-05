@@ -409,7 +409,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(rgba(30, 18, 12, 0.85), rgba(43, 24, 16, 0.75));
+            background: #1a1a1a;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -428,15 +428,15 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
-            opacity: 0.85;
-            filter: brightness(0.7);
+            opacity: 1;
+            filter: brightness(1.1);
             /* Optimización de rendimiento */
             will-change: auto;
             transform: translateZ(0);
             backface-visibility: hidden;
         }
         
-        /* Mejora del overlay para mejor legibilidad */
+        /* Overlay suave para mejor legibilidad del texto */
         .hero::before {
             content: '';
             position: absolute;
@@ -445,8 +445,8 @@
             right: 0;
             bottom: 0;
             background: radial-gradient(circle at center, 
-                rgba(0, 0, 0, 0.3) 0%, 
-                rgba(0, 0, 0, 0.5) 100%);
+                rgba(0, 0, 0, 0.1) 0%, 
+                rgba(0, 0, 0, 0.25) 100%);
             z-index: 0;
             pointer-events: none;
         }
@@ -459,9 +459,9 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(135deg, 
-                rgba(30, 18, 12, 0.5) 0%, 
-                rgba(43, 24, 16, 0.6) 50%,
-                rgba(30, 18, 12, 0.5) 100%);
+                rgba(30, 18, 12, 0.2) 0%, 
+                rgba(43, 24, 16, 0.3) 50%,
+                rgba(30, 18, 12, 0.2) 100%);
             z-index: 0;
         }
         
@@ -487,7 +487,8 @@
             line-height: 1.2;
             margin-bottom: 1.5rem;
             color: var(--white);
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.8),
+                         1px 1px 3px rgba(0, 0, 0, 0.9);
         }
         
         .hero-text p {
@@ -495,8 +496,9 @@
             color: var(--white);
             margin-bottom: 2.5rem;
             line-height: 1.6;
-            opacity: 0.95;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+            opacity: 1;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8),
+                         1px 1px 2px rgba(0, 0, 0, 0.9);
             letter-spacing: 2px;
         }
         
@@ -1380,7 +1382,7 @@
             /* Optimización del video en móviles */
             .hero-video-bg {
                 object-position: center;
-                filter: brightness(0.6);
+                filter: brightness(1.05);
             }
             
             .hero-text h1 {
