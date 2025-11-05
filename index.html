@@ -427,7 +427,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: -1;
+            z-index: 1;
             opacity: 1;
             filter: brightness(1.1);
             /* Optimización de rendimiento */
@@ -447,7 +447,7 @@
             background: radial-gradient(circle at center, 
                 rgba(0, 0, 0, 0.1) 0%, 
                 rgba(0, 0, 0, 0.25) 100%);
-            z-index: 0;
+            z-index: 2;
             pointer-events: none;
         }
         
@@ -462,12 +462,13 @@
                 rgba(30, 18, 12, 0.2) 0%, 
                 rgba(43, 24, 16, 0.3) 50%,
                 rgba(30, 18, 12, 0.2) 100%);
-            z-index: 0;
+            z-index: 2;
+            pointer-events: none;
         }
         
         .hero-content {
             position: relative;
-            z-index: 1;
+            z-index: 10;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -2938,7 +2939,7 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <!-- Video de fondo optimizado -->
-        <video class="hero-video-bg" autoplay muted loop playsinline preload="none" poster="">
+        <video class="hero-video-bg" autoplay muted loop playsinline preload="auto">
             <source src="Video/background - Made with Clipchamp.mp4" type="video/mp4">
         </video>
         
