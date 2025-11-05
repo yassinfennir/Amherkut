@@ -616,18 +616,17 @@ class LanguageSwitcher {
     }
 }
 
-// Instancia global
-let languageSwitcher;
+// Instancia global - INICIALIZAR INMEDIATAMENTE
+let languageSwitcher = new LanguageSwitcher();
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    languageSwitcher = new LanguageSwitcher();
-});
-
-// Función global para obtener traducciones
+// Función global para obtener traducciones - DISPONIBLE INMEDIATAMENTE
 function getTranslation(key) {
-    if (languageSwitcher && languageSwitcher.translations[languageSwitcher.currentLang]) {
+    if (languageSwitcher && languageSwitcher.translations && languageSwitcher.translations[languageSwitcher.currentLang]) {
         return languageSwitcher.translations[languageSwitcher.currentLang][key] || key;
+    }
+    // Fallback a finlandés si no está inicializado
+    if (languageSwitcher && languageSwitcher.translations && languageSwitcher.translations['fi']) {
+        return languageSwitcher.translations['fi'][key] || key;
     }
     return key;
 }
