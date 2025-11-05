@@ -436,46 +436,32 @@
             will-change: transform;
             transform: translateZ(0);
             backface-visibility: hidden;
+            /* Bloquear interacción con el video */
+            pointer-events: none;
         }
         
-        /* Ocultar TODOS los controles del video incluyendo el botón de play */
-        .hero-video-bg::-webkit-media-controls {
+        /* ELIMINAR TODOS los controles del video - MÁXIMA PRIORIDAD */
+        .hero-video-bg::-webkit-media-controls,
+        .hero-video-bg::-webkit-media-controls-enclosure,
+        .hero-video-bg::-webkit-media-controls-panel,
+        .hero-video-bg::-webkit-media-controls-play-button,
+        .hero-video-bg::-webkit-media-controls-start-playback-button,
+        .hero-video-bg::-webkit-media-controls-overlay-play-button,
+        .hero-video-bg::-webkit-media-controls-overlay-enclosure {
             display: none !important;
             opacity: 0 !important;
             visibility: hidden !important;
+            pointer-events: none !important;
+            width: 0 !important;
+            height: 0 !important;
         }
         
-        .hero-video-bg::-webkit-media-controls-enclosure {
-            display: none !important;
-        }
-        
-        .hero-video-bg::-webkit-media-controls-panel {
-            display: none !important;
-        }
-        
-        .hero-video-bg::-webkit-media-controls-play-button {
-            display: none !important;
-            opacity: 0 !important;
-        }
-        
-        .hero-video-bg::-webkit-media-controls-start-playback-button {
-            display: none !important;
-            opacity: 0 !important;
-            visibility: hidden !important;
-        }
-        
-        .hero-video-bg::-webkit-media-controls-overlay-play-button {
-            display: none !important;
-            opacity: 0 !important;
-            visibility: hidden !important;
-        }
-        
-        /* Para Firefox */
+        /* Firefox */
         .hero-video-bg::-moz-media-controls {
             display: none !important;
         }
         
-        /* Para Edge */
+        /* Edge/IE */
         .hero-video-bg::-ms-media-controls {
             display: none !important;
         }
@@ -3039,7 +3025,7 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <!-- Video de fondo optimizado profesionalmente para iOS -->
+        <!-- Video de fondo optimizado MÁXIMO NIVEL para iOS -->
         <video 
             id="hero-video" 
             class="hero-video-bg" 
@@ -3050,11 +3036,25 @@
             webkit-playsinline
             x5-playsinline
             preload="auto"
-            poster=""
             disablePictureInPicture
-            x-webkit-airplay="deny">
+            x-webkit-airplay="deny"
+            style="background: transparent;">
             <source src="Video/background2.mp4" type="video/mp4">
         </video>
+        
+        <!-- Script INLINE para máxima velocidad de inicio -->
+        <script>
+            (function() {
+                const v = document.getElementById('hero-video');
+                if (v) {
+                    v.muted = true;
+                    v.volume = 0;
+                    v.play().catch(() => {
+                        setTimeout(() => { v.play(); }, 100);
+                    });
+                }
+            })();
+        </script>
         
         <div class="container">
             <div class="hero-content">
@@ -3891,193 +3891,77 @@
     <!-- E-commerce Script (Depende de language-switcher) -->
     <script src="assets/js/ecommerce-v2.js?v=2"></script>
     
-    <!-- Optimización PROFESIONAL del video para iPhone/iOS -->
+    <!-- Sistema ULTRA PROFESIONAL de autoplay para iPhone/iOS -->
     <script>
         (function() {
-            'use strict';
+            const v = document.getElementById('hero-video');
+            if (!v) return;
             
-            const video = document.getElementById('hero-video');
-            if (!video) return;
+            // Configuración MÁXIMA para iOS
+            v.muted = true;
+            v.defaultMuted = true;
+            v.volume = 0;
+            v.autoplay = true;
+            v.playsInline = true;
+            v.controls = false;
+            v.removeAttribute('controls');
             
-            // Detección de iOS/Safari
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-            const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+            // Función ULTRA AGRESIVA de reproducción
+            const forcePlay = () => {
+                v.muted = true;
+                v.volume = 0;
+                const p = v.play();
+                if (p) p.catch(() => setTimeout(forcePlay, 50));
+            };
             
-            // Configuración CRÍTICA para iOS - Ejecutar INMEDIATAMENTE
-            video.muted = true;
-            video.defaultMuted = true;
-            video.volume = 0;
-            video.autoplay = true;
-            video.playsInline = true;
-            video.setAttribute('playsinline', '');
-            video.setAttribute('webkit-playsinline', '');
-            video.setAttribute('muted', '');
+            // INMEDIATO: Reproducir ahora mismo
+            forcePlay();
             
-            // Remover cualquier control que iOS pueda mostrar
-            video.removeAttribute('controls');
-            video.controls = false;
+            // Al cargar metadata
+            v.onloadedmetadata = forcePlay;
+            v.oncanplay = forcePlay;
+            v.oncanplaythrough = forcePlay;
             
-            let playAttempts = 0;
-            const maxAttempts = 10;
+            // Cuando el video esté listo
+            if (v.readyState >= 2) forcePlay();
             
-            // Función PROFESIONAL de reproducción con reintentos
-            const attemptPlay = () => {
-                if (playAttempts >= maxAttempts) return;
-                playAttempts++;
-                
-                // Asegurar que esté muted antes de cada intento
-                video.muted = true;
-                video.volume = 0;
-                
-                const playPromise = video.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        console.log('✅ Video reproduciéndose - Intento', playAttempts);
-                        playAttempts = maxAttempts; // Detener reintentos
-                    }).catch(err => {
-                        console.log('⚠️ Intento', playAttempts, 'falló, reintentando...');
-                        
-                        // Estrategia de reintentos con delays incrementales
-                        const delay = playAttempts * 100;
-                        setTimeout(() => {
-                            attemptPlay();
-                        }, delay);
-                    });
+            // Auto-reproducción continua
+            const autoPlay = setInterval(() => {
+                if (v.paused && !document.hidden) {
+                    forcePlay();
                 }
-            };
+            }, 500);
             
-            // Estrategia 1: Intentar reproducir INMEDIATAMENTE (funciona en mayoría de casos)
-            attemptPlay();
-            
-            // Estrategia 2: Eventos de carga del video
-            const videoEvents = ['loadstart', 'loadeddata', 'loadedmetadata', 'canplay', 'canplaythrough'];
-            videoEvents.forEach(event => {
-                video.addEventListener(event, () => {
-                    if (video.paused) {
-                        attemptPlay();
-                    }
-                }, { once: true });
-            });
-            
-            // Estrategia 3: Cuando el DOM esté completamente listo
-            const onDOMReady = () => {
-                setTimeout(() => {
-                    if (video.paused) attemptPlay();
-                }, 50);
-            };
-            
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', onDOMReady);
-            } else {
-                onDOMReady();
-            }
-            
-            // Estrategia 4: Cuando la página esté 100% cargada
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    if (video.paused) attemptPlay();
-                }, 100);
-            });
-            
-            // Estrategia 5: CRÍTICA para iOS - Capturar primera interacción invisible
-            let hasPlayed = false;
-            const playOnFirstTouch = (e) => {
-                if (hasPlayed) return;
-                
-                video.muted = true;
-                video.play().then(() => {
-                    hasPlayed = true;
-                    console.log('✅ Video iniciado por interacción del usuario');
-                }).catch(() => {
-                    // Reintentar si falla
-                    setTimeout(() => {
-                        video.muted = true;
-                        video.play();
-                    }, 100);
+            // CRÍTICO iPhone: Primera interacción INVISIBLE
+            const startVideo = () => {
+                v.muted = true;
+                v.play().then(() => {
+                    clearInterval(autoPlay);
                 });
             };
             
-            // Lista completa de eventos de interacción
-            const interactionEvents = [
-                'touchstart', 'touchmove', 'touchend',
-                'mousedown', 'mouseup', 'click',
-                'scroll', 'wheel', 'keydown'
-            ];
-            
-            interactionEvents.forEach(eventName => {
-                document.addEventListener(eventName, playOnFirstTouch, {
-                    once: true,
-                    passive: true,
-                    capture: true
-                });
+            // Captura CUALQUIER evento INMEDIATAMENTE
+            const events = ['touchstart', 'touchmove', 'touchend', 'click', 'scroll', 'mousemove'];
+            events.forEach(e => {
+                document.addEventListener(e, startVideo, { once: true, passive: true, capture: true });
+                window.addEventListener(e, startVideo, { once: true, passive: true, capture: true });
             });
             
-            // Estrategia 6: IntersectionObserver para reproducir cuando esté visible
-            if ('IntersectionObserver' in window) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting && video.paused) {
-                            video.play().catch(() => {});
-                        }
-                    });
-                }, { 
-                    threshold: 0.01,
-                    rootMargin: '0px'
-                });
-                
-                observer.observe(video);
-            }
+            // Prevenir pausa
+            v.onpause = () => {
+                if (!document.hidden) setTimeout(forcePlay, 10);
+            };
             
-            // Estrategia 7: Monitoreo activo - Asegurar reproducción continua
-            const monitorVideo = setInterval(() => {
-                // Solo monitorear si la página está visible
-                if (document.hidden || document.visibilityState === 'hidden') return;
-                
-                // Si el video está pausado, intentar reproducir
-                if (video.paused && !hasPlayed) {
-                    video.muted = true;
-                    video.play().then(() => {
-                        hasPlayed = true;
-                    }).catch(() => {});
-                }
-                
-                // Detener monitoreo después de que el video se reproduce exitosamente
-                if (hasPlayed && !video.paused) {
-                    clearInterval(monitorVideo);
-                }
-            }, 1000);
+            // Loop infinito
+            v.onended = () => {
+                v.currentTime = 0;
+                forcePlay();
+            };
             
-            // Estrategia 8: Cuando la página vuelve a estar visible
-            document.addEventListener('visibilitychange', () => {
-                if (!document.hidden && video.paused) {
-                    video.play().catch(() => {});
-                }
-            });
-            
-            // Estrategia 9: Prevenir que se pause accidentalmente
-            video.addEventListener('pause', () => {
-                if (!document.hidden) {
-                    setTimeout(() => {
-                        video.play().catch(() => {});
-                    }, 50);
-                }
-            });
-            
-            // Estrategia 10: Asegurar que el video haga loop
-            video.addEventListener('ended', () => {
-                video.currentTime = 0;
-                video.play().catch(() => {});
-            });
-            
-            // Logging para debugging (solo en development)
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                console.log('🎥 Video Background Manager Initialized');
-                console.log('📱 Is iOS:', isIOS);
-                console.log('🦁 Is Safari:', isSafari);
-                console.log('🔇 Muted:', video.muted);
-                console.log('▶️ Autoplay:', video.autoplay);
-            }
+            // Cuando vuelve a la página
+            document.onvisibilitychange = () => {
+                if (!document.hidden && v.paused) forcePlay();
+            };
         })();
     </script>
 </body>
