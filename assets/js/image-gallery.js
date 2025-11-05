@@ -73,15 +73,30 @@ class ImageGalleryManager {
                 <video 
                     src="${video}" 
                     class="video-thumbnail"
-                    style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer;"
+                    style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; background: #000;"
                     muted
                     loop
+                    playsinline
+                    preload="metadata"
+                    onloadedmetadata="this.currentTime = 0.1"
                     onmouseover="this.play()" 
-                    onmouseout="this.pause(); this.currentTime=0;"
+                    onmouseout="this.pause(); this.currentTime=0.1;"
+                    ontouchstart="this.play()"
                     onclick="window.open('${video}', '_blank')">
+                    Tu navegador no soporta videos
                 </video>
             </div>
         `).join('');
+        
+        // Cargar primer frame en iOS después de renderizar
+        setTimeout(() => {
+            const videoElements = container.querySelectorAll('video');
+            videoElements.forEach(video => {
+                video.load();
+                // Intentar mostrar el primer frame
+                video.currentTime = 0.1;
+            });
+        }, 100);
     }
 
     // Renderizar galería de Food
