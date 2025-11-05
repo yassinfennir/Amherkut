@@ -478,6 +478,30 @@
             margin: 0 auto;
         }
         
+        /* Logo circular en el hero */
+        .hero-logo-container {
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .hero-logo-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5),
+                        0 0 0 10px rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+        }
+        
+        .hero-logo-circle:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 60px rgba(0, 0, 0, 0.7),
+                        0 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+        
         .hero-text {
             width: 100%;
         }
@@ -1386,6 +1410,17 @@
                 filter: brightness(1.05);
             }
             
+            /* Logo responsivo en móviles */
+            .hero-logo-circle {
+                width: 150px;
+                height: 150px;
+                border-width: 4px;
+            }
+            
+            .hero-logo-container {
+                margin-bottom: 1.5rem;
+            }
+            
             .hero-text h1 {
                 font-size: 2.8rem;
             }
@@ -1527,6 +1562,17 @@
                 padding: 0 1rem;
             }
             
+            /* Logo más pequeño en móviles pequeños */
+            .hero-logo-circle {
+                width: 120px;
+                height: 120px;
+                border-width: 3px;
+            }
+            
+            .hero-logo-container {
+                margin-bottom: 1rem;
+            }
+            
             .hero-text h1 {
                 font-size: 2.2rem;
             }
@@ -1561,6 +1607,17 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
             }
         }
 
@@ -2945,6 +3002,9 @@
         
         <div class="container">
             <div class="hero-content">
+                <div class="hero-logo-container fade-in-up">
+                    <img src="assets/icons/amherkut-logo-original.jpg" alt="AM HERKUT Logo" class="hero-logo-circle">
+                </div>
                 <div class="hero-text fade-in-up">
                     <h1 data-translate="hero.title">Amherkut</h1>
                     <p data-translate="hero.subtitle">MAKUJA, JOTKA KERTOVAT TARINAA</p>
