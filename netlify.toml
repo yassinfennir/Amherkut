@@ -8,6 +8,23 @@
   # Sin funciones ni plugins necesarios
 
 # Configuración de redirecciones
+# Permitir acceso directo a archivos HTML de productos
+[[redirects]]
+  from = "/productos.html"
+  to = "/productos.html"
+  status = 200
+
+[[redirects]]
+  from = "/productos-simple.html"
+  to = "/productos-simple.html"
+  status = 200
+
+[[redirects]]
+  from = "/productos-galeria.html"
+  to = "/productos-galeria.html"
+  status = 200
+
+# Redirigir todo lo demás a index.html para SPA
 [[redirects]]
   from = "/*"
   to = "/index.html"

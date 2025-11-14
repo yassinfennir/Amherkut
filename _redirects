@@ -1,4 +1,11 @@
 # Redirecciones para Netlify
-# Todas las rutas van a index.html para SPA
+# Servir archivos HTML reales primero, luego redirigir a index.html para SPA
+
+# Permitir acceso directo a archivos HTML
+/productos.html     /productos.html    200
+/productos-simple.html     /productos-simple.html    200
+/productos-galeria.html     /productos-galeria.html    200
+
+# Redirigir todo lo demás a index.html para SPA
 /*    /index.html   200
 
