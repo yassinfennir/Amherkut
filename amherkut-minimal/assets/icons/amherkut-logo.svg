@@ -1,0 +1,17 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="30" cy="30" r="28" fill="#8B4513" stroke="#DAA520" stroke-width="4"/>
+  
+  <!-- Inner circle -->
+  <circle cx="30" cy="30" r="20" fill="#A0522D" stroke="#D2691E" stroke-width="2"/>
+  
+  <!-- Bread icon -->
+  <path d="M20 25 Q30 15 40 25 Q30 35 20 25" fill="#F5F5DC" stroke="#DAA520" stroke-width="1"/>
+  
+  <!-- Wheat stalks -->
+  <path d="M25 35 Q27 30 29 35 Q31 30 33 35 Q35 30 37 35" stroke="#DAA520" stroke-width="2" fill="none"/>
+  
+  <!-- Text -->
+  <text x="30" y="48" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#F5F5DC" text-anchor="middle">AM</text>
+  <text x="30" y="55" font-family="Arial, sans-serif" font-size="6" fill="#DAA520" text-anchor="middle">HERKUT</text>
+</svg>

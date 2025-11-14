@@ -1,44 +1,85 @@
-# Carpeta de fotos originales (no necesaria en GitHub, solo assets/images/)
-Fotos/
-
-# Node modules (si usas npm)
+# Dependencias
 node_modules/
+package-lock.json
 
-# Archivos de sistema
+# Archivos temporales
+*.log
+*.tmp
 .DS_Store
 Thumbs.db
-desktop.ini
 
-# Archivos de editor
+# Archivos de desarrollo
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Archivos de IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# Logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Variables de entorno
-.env
-.env.local
-.env.production
-
-# Archivos temporales
-*.tmp
-*.temp
-~*
-
-# Cache
-.cache/
+# Archivos de build
 dist/
 build/
+.next/
+out/
 
-# Videos muy grandes (opcional, descomenta si los videos son muy pesados)
-# *.mp4
-# *.mov
-# *.avi
+# Archivos de backup
+*.bak
+*.backup
+*.old
 
+# Archivos comprimidos grandes
+*.zip
+*.tar.gz
+*.rar
+
+# Archivos de video grandes (necesario para Netlify)
+*.mp4
+*.mov
+*.avi
+*.mkv
+
+# Carpetas grandes innecesarias para producción
+Extras/
+Localisation/
+Video/
+Multiple/
+Moha/
+nora 2/
+Prozess/
+About Us/
+background/
+Logo/
+src/
+galeria/
+public/
+
+# Archivos de desarrollo y prueba
+test-*.html
+temp_*.html
+refresh.html
+force-reload.html
+diagnostico.html
+generate-*.html
+demo-*.html
+blog-post-*.html
+blog.html
+productos-galeria.html
+productos-react.html
+sweets.html
+
+# Archivos de documentación
+*.md
+*.txt
+AM  herkut.txt
+
+# Archivos de datos temporales
+organizacion-reporte*.json
+products-grouped.json
+products.json
+sweets-data.json

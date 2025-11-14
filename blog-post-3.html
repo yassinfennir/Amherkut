@@ -11,6 +11,360 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ========================================
+           CSS CUSTOM PROPERTIES
+           ======================================== */
+        
+        :root {
+            --primary-brown: #6B4423;
+            --dark-brown: #4A2C1A;
+            --beige: #E8DCC8;
+            --gold: #C9A961;
+            --text-dark: #2B1810;
+            --white: #FFFFFF;
+            --shadow: 0 8px 24px rgba(107, 68, 35, 0.15);
+            --shadow-hover: 0 12px 32px rgba(107, 68, 35, 0.25);
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --container-max-width: 1200px;
+        }
+        
+        /* ========================================
+           HEADER STYLES
+           ======================================== */
+        
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            z-index: 10000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(107, 68, 35, 0.1);
+            transition: var(--transition);
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            display: block;
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
+        }
+        
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+            padding: 0 2rem;
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            text-decoration: none;
+            color: var(--primary-brown);
+            padding: 0;
+            background: none;
+            border: none;
+            transition: var(--transition);
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo img {
+            height: 70px;
+            width: auto;
+            display: block;
+            max-width: none;
+            object-fit: contain;
+            border-radius: 50%;
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(107, 68, 35, 0.2);
+        }
+        
+        .logo img:hover {
+            box-shadow: 0 4px 12px rgba(107, 68, 35, 0.4);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-brown);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-brown);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .btn-order-now {
+            background: linear-gradient(135deg, var(--gold) 0%, #D4B86A 100%);
+            color: var(--text-dark);
+            padding: 0.75rem 1.75rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(201, 169, 97, 0.4),
+                        0 2px 8px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-order-now:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(201, 169, 97, 0.5),
+                        0 4px 12px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #D4B86A 0%, var(--gold) 100%);
+        }
+        
+        .header-social-links {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        
+        .header-social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(107, 68, 35, 0.1);
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: var(--transition);
+            border: 2px solid rgba(107, 68, 35, 0.2);
+        }
+        
+        .header-social-link:hover {
+            background: var(--gold);
+            color: var(--text-dark);
+            border-color: var(--gold);
+            transform: translateY(-2px) scale(1.1);
+            box-shadow: 0 4px 12px rgba(201, 169, 97, 0.3);
+        }
+        
+        .header-social-link svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .language-selector {
+            position: relative;
+        }
+        
+        .language-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(107, 68, 35, 0.2);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            position: relative;
+        }
+        
+        .language-toggle:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(107, 68, 35, 0.15);
+        }
+        
+        .language-current {
+            font-weight: 700;
+            color: var(--text-dark);
+            min-width: 28px;
+            text-align: center;
+        }
+        
+        .language-arrow {
+            transition: transform 0.3s ease;
+            color: var(--text-dark);
+        }
+        
+        .language-toggle[aria-expanded="true"] .language-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .language-dropdown {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(107, 68, 35, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(107, 68, 35, 0.2);
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10001;
+            overflow: hidden;
+            padding: 0.5rem;
+        }
+        
+        .language-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .language-option {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: transparent;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: left;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+        
+        .language-option:hover {
+            background: linear-gradient(90deg, rgba(168, 213, 255, 0.1), rgba(255, 179, 230, 0.1));
+            transform: translateX(4px);
+        }
+        
+        .language-option.active {
+            background: linear-gradient(90deg, rgba(168, 213, 255, 0.2), rgba(255, 179, 230, 0.2));
+            font-weight: 600;
+        }
+        
+        .language-flag {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        
+        .language-name {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-brown);
+            transition: var(--transition);
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        
+        .blog-post-content {
+            padding: 140px 0 60px;
+            margin-top: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 2rem 0;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .language-dropdown {
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%) translateY(-10px);
+                min-width: 160px;
+            }
+            
+            .language-dropdown.active {
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+    </style>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -30,54 +384,75 @@
     </script>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="assets/icons/amherkut-logo-original.jpg" alt="AM Herkut Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="logo-fallback" style="display: none;">
-                    <div class="logo-icon">🥖</div>
-                </div>
-                <div class="logo-text">
-                    <h2>AM Herkut</h2>
-                    <span>Leipomo</span>
-                </div>
-            </div>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <a href="index.html#home" class="logo">
+                <img src="assets/icons/amherkut-logo-original.jpg" alt="Amherkut logo" />
+            </a>
+            
             <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item">
-                    <a href="index.html#home" class="nav-link">Koti</a>
+                <li><a href="index.html#home" class="nav-link" data-translate="nav.home">Koti</a></li>
+                <li><a href="productos.html" class="nav-link" data-translate="nav.products">Tuotteet</a></li>
+                <li><a href="index.html#about" class="nav-link" data-translate="nav.about">Tietoa meistä</a></li>
+                <li><a href="index.html#quick-contact" class="nav-link" data-translate="nav.contact">Yhteystiedot</a></li>
+                <li>
+                    <div class="language-selector">
+                        <button class="language-toggle" id="language-toggle" aria-label="Vaihda kieltä" data-translate-aria="nav.language" aria-expanded="false">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                            <span class="language-current" id="language-current">🇫🇮 FI</span>
+                            <svg class="language-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="language-dropdown" id="language-dropdown">
+                            <button class="language-option" data-lang="es" data-code="ES">
+                                <span class="language-flag">🇪🇸</span>
+                                <span class="language-name">Español</span>
+                            </button>
+                            <button class="language-option" data-lang="en" data-code="EN">
+                                <span class="language-flag">🇬🇧</span>
+                                <span class="language-name">English</span>
+                            </button>
+                            <button class="language-option" data-lang="fi" data-code="FI">
+                                <span class="language-flag">🇫🇮</span>
+                                <span class="language-name">Suomi</span>
+                            </button>
+                            <button class="language-option" data-lang="sv" data-code="SV">
+                                <span class="language-flag">🇸🇪</span>
+                                <span class="language-name">Svenska</span>
+                            </button>
+                        </div>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a href="index.html#about" class="nav-link">Tietoa meistä</a>
+                <li>
+                    <div class="header-social-links">
+                        <a href="https://www.facebook.com/people/Amherkut/61570069226598/" class="header-social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/amherkut/?hl=en" class="header-social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a href="index.html#products" class="nav-link">Tuotteet</a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.html#menu" class="nav-link">Menu</a>
-                </li>
-                <li class="nav-item">
-                    <a href="blog.html" class="nav-link">Blogi</a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.html#contact" class="nav-link">Yhteystiedot</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://www.instagram.com/amherkut" target="_blank" class="nav-link instagram-link">
-                        <i class="fab fa-instagram"></i> Instagram
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.html#order" class="nav-link order-btn">Tilaa nyt</a>
-                </li>
+                <li><a href="index.html#quick-contact" class="btn btn-order-now" data-translate="nav.order">Tilaa Nyt</a></li>
             </ul>
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
+            
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
 
     <!-- Blog Post Content -->
     <section class="blog-post-content">
@@ -184,8 +559,64 @@
         <i class="fas fa-comments"></i>
     </button>
 
-    <script src="assets/js/script.js"></script>
-    <script src="assets/js/chatbot-ai.js"></script>
+    <!-- Language Switcher Script -->
+    <script src="assets/js/language-switcher-v2.js?v=2"></script>
+    
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    
+                    // Prevent body scroll when menu is open
+                    if (navMenu.classList.contains('active')) {
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+            
+            // Close mobile menu when clicking on a link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (navMenu.classList.contains('active')) {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (hamburger && navMenu && !hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+    
+    <script src="assets/js/script.js"></script> 
+    <script src="assets/js/chatbot-ai.js"></script> 
     <script src="assets/js/seo-optimizer.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="assets/js/lightbox.js"></script>

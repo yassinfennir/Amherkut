@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - AM-Herkut</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: #4a9eff;
+            text-shadow: 0 2px 10px rgba(74, 158, 255, 0.3);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: #2a2a2a;
+            border-radius: 16px;
+            padding: 0;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #333333;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+            border-color: #4a9eff;
+        }
+
+        .product-image-wrapper {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background: #1a1a1a;
+            position: relative;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        .product-content {
+            padding: 2rem;
+        }
+
+        .product-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            border-bottom: 2px solid #4a9eff;
+            padding-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #4a9eff;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .ingredientes-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .ingredientes-list li {
+            padding: 0.5rem 0;
+            color: #cccccc;
+            border-bottom: 1px solid #333333;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .ingredientes-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #4a9eff;
+            font-weight: bold;
+        }
+
+        .ingredientes-list li:last-child {
+            border-bottom: none;
+        }
+
+        .keywords-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .keyword-badge {
+            background: #333333;
+            color: #4a9eff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid #4a9eff;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .keyword-badge:hover {
+            background: #4a9eff;
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+
+        /* Filtros Section */
+        .filters-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #2a2a2a;
+            border-radius: 12px;
+            border: 1px solid #333333;
+        }
+
+        .filters-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #4a9eff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .filters-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .filter-badge {
+            background: #333333;
+            color: #ffffff;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 2px solid #4a9eff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .filter-badge:hover {
+            background: #4a9eff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 158, 255, 0.4);
+        }
+
+        .filter-badge.active {
+            background: #4a9eff;
+            color: #ffffff;
+            border-color: #4a9eff;
+            box-shadow: 0 0 15px rgba(74, 158, 255, 0.5);
+        }
+
+        .clear-filters {
+            background: #ff6b6b;
+            color: #ffffff;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .clear-filters:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .filters-container {
+                gap: 0.5rem;
+            }
+
+            .filter-badge {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nuestros Productos</h1>
+        
+        <!-- Barra de búsqueda -->
+        <div style="margin-bottom: 2rem; position: relative;">
+            <input 
+                type="text" 
+                id="search-input" 
+                placeholder="Buscar por keyword, ingrediente o nombre (ej: Almendra, Pistacho, Baklava...)" 
+                style="width: 100%; padding: 1rem; font-size: 1rem; border-radius: 8px; border: 2px solid #333333; background: #2a2a2a; color: #ffffff; outline: none;"
+            >
+            <div id="search-suggestions" style="position: absolute; top: 100%; left: 0; right: 0; background: #2a2a2a; border: 1px solid #333333; border-radius: 8px; margin-top: 0.5rem; max-height: 200px; overflow-y: auto; z-index: 1000; display: none;"></div>
+        </div>
+        
+        <!-- Sección de Filtros por Keywords -->
+        <div class="filters-section">
+            <div class="filters-title">Filtrar por Keywords</div>
+            <div class="filters-container" id="filters-container">
+                <!-- Los filtros se cargarán aquí dinámicamente -->
+            </div>
+            <button class="clear-filters" id="clear-filters" onclick="clearAllFilters()">Limpiar Filtros</button>
+        </div>
+        
+        <!-- Contador de resultados -->
+        <div id="results-count" style="margin-bottom: 1rem; color: #4a9eff; font-weight: 500;"></div>
+        
+        <div class="products-grid" id="products-grid">
+            <!-- Los productos se cargarán aquí -->
+        </div>
+    </div>
+
+    <!-- Sistema de búsqueda con traducciones -->
+    <script src="assets/js/keywords-search.js"></script>
+    <script>
+        // Inicializar sistema de búsqueda
+        let keywordsSearch;
+        let allProducts = [];
+        let currentLang = localStorage.getItem('currentLanguage') || 'es'; // Español por defecto
+        let activeFilters = new Set(); // Filtros activos
+        
+        // Cargar datos
+        async function init() {
+            keywordsSearch = new KeywordsSearch();
+            await keywordsSearch.loadTranslations();
+            keywordsSearch.setLanguage(currentLang);
+            
+            // Cargar productos
+            try {
+                const response = await fetch('productos.json');
+                const data = await response.json();
+                allProducts = data.productos || [];
+                
+                // Renderizar filtros
+                renderFilters();
+                
+                // Renderizar productos
+                renderProducts(allProducts);
+                updateResultsCount(allProducts.length);
+            } catch (error) {
+                console.error('Error cargando productos:', error);
+                document.getElementById('products-grid').innerHTML = 
+                    '<div style="color: #ff6b6b; text-align: center; padding: 3rem;">Error al cargar productos</div>';
+            }
+        }
+        
+        // Renderizar filtros de keywords
+        function renderFilters() {
+            const filtersContainer = document.getElementById('filters-container');
+            if (!filtersContainer || !keywordsSearch) return;
+            
+            const allKeywords = keywordsSearch.getAllKeywordsTranslated(currentLang);
+            
+            filtersContainer.innerHTML = allKeywords.map(kw => {
+                const isActive = activeFilters.has(kw.original);
+                return `
+                    <span 
+                        class="filter-badge ${isActive ? 'active' : ''}" 
+                        onclick="toggleFilter('${kw.original}', '${kw.translated.replace(/'/g, "\\'")}')"
+                        data-keyword="${kw.original}"
+                    >
+                        ${kw.translated}
+                    </span>
+                `;
+            }).join('');
+        }
+        
+        // Toggle de filtro
+        window.toggleFilter = function(keywordOriginal, keywordTranslated) {
+            if (activeFilters.has(keywordOriginal)) {
+                activeFilters.delete(keywordOriginal);
+            } else {
+                activeFilters.add(keywordOriginal);
+            }
+            
+            // Actualizar visual de filtros
+            renderFilters();
+            
+            // Aplicar filtros
+            applyFilters();
+        };
+        
+        // Limpiar todos los filtros
+        window.clearAllFilters = function() {
+            activeFilters.clear();
+            renderFilters();
+            applyFilters();
+            
+            // Limpiar búsqueda también
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.value = '';
+            }
+        };
+        
+        // Aplicar filtros
+        function applyFilters() {
+            let filtered = [...allProducts];
+            
+            // Aplicar filtros de keywords
+            if (activeFilters.size > 0) {
+                filtered = filtered.filter(product => {
+                    if (!product.keywords || !Array.isArray(product.keywords)) return false;
+                    
+                    // El producto debe tener al menos uno de los keywords activos
+                    return product.keywords.some(kw => activeFilters.has(kw));
+                });
+            }
+            
+            // Aplicar búsqueda de texto si existe
+            const searchInput = document.getElementById('search-input');
+            if (searchInput && searchInput.value.trim() !== '') {
+                filtered = keywordsSearch.searchProductsByKeyword(filtered, searchInput.value);
+            }
+            
+            renderProducts(filtered);
+            updateResultsCount(filtered.length);
+        }
+        
+        // Función para renderizar productos
+        function renderProducts(products) {
+            const grid = document.getElementById('products-grid');
+            
+            if (products.length === 0) {
+                grid.innerHTML = '<div style="color: #cccccc; text-align: center; padding: 3rem; grid-column: 1 / -1;">No se encontraron productos</div>';
+                return;
+            }
+            
+            grid.innerHTML = products.map(producto => {
+                // Traducir keywords
+                const keywordsTranslated = producto.keywords.map(k => 
+                    keywordsSearch.translateKeyword(k, currentLang)
+                ).join(', ');
+                
+                // Imagen del producto o placeholder
+                const imagenSrc = producto.imagen || 'assets/images/placeholder.jpg';
+                
+                return `
+                    <div class="product-card">
+                        <div class="product-image-wrapper">
+                            <img 
+                                src="${imagenSrc}" 
+                                alt="${producto.nombre}" 
+                                class="product-image"
+                                loading="lazy"
+                                onerror="this.src='assets/images/placeholder.jpg'; this.onerror=null;"
+                            >
+                        </div>
+                        
+                        <div class="product-content">
+                            <h2 class="product-name">${producto.nombre}</h2>
+                            
+                            <div>
+                                <div class="section-title">Ingredientes</div>
+                                <ul class="ingredientes-list">
+                                    ${producto.ingredientes.map(ing => `<li>${ing}</li>`).join('')}
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <div class="section-title">Keywords</div>
+                                <div class="keywords-container">
+                                    ${producto.keywords.map(keyword => {
+                                        const translated = keywordsSearch.translateKeyword(keyword, currentLang);
+                                        return `<span class="keyword-badge" onclick="searchByKeyword('${translated}')">${translated}</span>`;
+                                    }).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Función para actualizar contador
+        function updateResultsCount(count) {
+            const countEl = document.getElementById('results-count');
+            if (countEl) {
+                countEl.textContent = `${count} producto(s) encontrado(s)`;
+            }
+        }
+        
+        // Función para buscar por keyword
+        window.searchByKeyword = function(keyword) {
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.value = keyword;
+                performSearch(keyword);
+            }
+        };
+        
+        // Función de búsqueda
+        function performSearch(searchTerm) {
+            // Aplicar filtros y búsqueda juntos
+            applyFilters();
+        }
+        
+        // Mostrar sugerencias
+        function showSuggestions(searchTerm) {
+            const suggestionsContainer = document.getElementById('search-suggestions');
+            if (!suggestionsContainer) return;
+            
+            if (!searchTerm || searchTerm.length < 2) {
+                suggestionsContainer.style.display = 'none';
+                suggestionsContainer.innerHTML = '';
+                return;
+            }
+            
+            const suggestions = keywordsSearch.getSearchSuggestions(searchTerm, currentLang);
+            
+            if (suggestions.length > 0) {
+                suggestionsContainer.innerHTML = suggestions.map(s => `
+                    <div onclick="selectSuggestion('${s.translated}')" 
+                         style="padding: 0.75rem 1rem; cursor: pointer; border-bottom: 1px solid #333333; transition: background 0.2s;"
+                         onmouseover="this.style.background='#333333'" 
+                         onmouseout="this.style.background='transparent'">
+                        ${s.translated}
+                    </div>
+                `).join('');
+                suggestionsContainer.style.display = 'block';
+            } else {
+                suggestionsContainer.style.display = 'none';
+                suggestionsContainer.innerHTML = '';
+            }
+        }
+        
+        // Seleccionar sugerencia
+        window.selectSuggestion = function(term) {
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.value = term;
+                performSearch(term);
+                document.getElementById('search-suggestions').style.display = 'none';
+            }
+        };
+        
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            init();
+            
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    const searchTerm = e.target.value;
+                    performSearch(searchTerm);
+                    showSuggestions(searchTerm);
+                });
+                
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        performSearch(e.target.value);
+                        document.getElementById('search-suggestions').style.display = 'none';
+                    }
+                });
+                
+                // Cerrar sugerencias al hacer clic fuera
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('#search-input') && !e.target.closest('#search-suggestions')) {
+                        document.getElementById('search-suggestions').style.display = 'none';
+                    }
+                });
+            }
+        });
+        
+        // Escuchar cambios de idioma
+        document.addEventListener('languageChanged', (e) => {
+            currentLang = e.detail.language || 'es';
+            if (keywordsSearch) {
+                keywordsSearch.setLanguage(currentLang);
+                // Re-renderizar filtros con nuevo idioma
+                renderFilters();
+                // Aplicar filtros y búsqueda
+                applyFilters();
+            }
+        });
+    </script>
+</body>
+</html>
+

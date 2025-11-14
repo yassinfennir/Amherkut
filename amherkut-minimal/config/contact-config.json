@@ -1,0 +1,43 @@
+{
+  "email": {
+    "to": "larakimo@hotmail.com",
+    "from": "noreply@amherkut.fi",
+    "subject": "Uusi viesti AM Herkut leipomosta"
+  },
+  "emailjs": {
+    "service_id": "service_amherkut",
+    "template_id": "template_contact",
+    "public_key": "YOUR_EMAILJS_PUBLIC_KEY"
+  },
+  "formspree": {
+    "endpoint": "https://formspree.io/f/YOUR_FORM_ID"
+  },
+  "subjects": {
+    "tilaus": "Tilaus",
+    "kysymys": "Kysymys tuotteista",
+    "yhteistyö": "Yhteistyö",
+    "valitus": "Valitus",
+    "muu": "Muu"
+  },
+  "validation": {
+    "min_name_length": 2,
+    "min_message_length": 10,
+    "phone_pattern": "^[\\+]?[0-9\\s\\-\\(\\)]{10,}$",
+    "email_pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+  },
+  "messages": {
+    "success": "Kiitos! Viestisi on lähetetty onnistuneesti. Vastaamme sinulle 24 tunnin kuluessa.",
+    "error": "Viestin lähettäminen epäonnistui. Yritä uudelleen tai soita meille.",
+    "validation_error": "Täytä kaikki pakolliset kentät oikein",
+    "required_field": "Tämä kenttä on pakollinen",
+    "invalid_email": "Anna kelvollinen sähköpostiosoite",
+    "invalid_phone": "Anna kelvollinen puhelinnumero",
+    "name_too_short": "Nimen tulee olla vähintään 2 merkkiä",
+    "message_too_short": "Viestin tulee olla vähintään 10 merkkiä"
+  },
+  "analytics": {
+    "track_submissions": true,
+    "event_category": "Contact",
+    "event_label": "Contact Form"
+  }
+}

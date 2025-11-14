@@ -1,0 +1,183 @@
+{
+  "productos": [
+    {
+      "nombre": "Pistaasi Baklava",
+      "imagen": "photos/SWEET/Pistaasi Baklava.png",
+      "ingredientes": ["Tuore pistaasi", "filotaikina", "siirappi"],
+      "keywords": ["baklava", "filotaikina", "Pistaasi", "siirappi", "Tuore"]
+    },
+    {
+      "nombre": "Pähkinä Baklava",
+      "imagen": "photos/SWEET/Pistaasi Baklava.png",
+      "ingredientes": ["Filotaikina", "manteli", "saksanpähkinä", "siirappi"],
+      "keywords": ["filotaikina", "L", "Manteli", "Saksanpähkinä", "V"]
+    },
+    {
+      "nombre": "Marrakech Leipä",
+      "imagen": "photos/Bread/Les pains beige.jpg",
+      "ingredientes": ["Taikinajuuri", "luomu grahamjauho", "tattarijauho", "luomu oliiviöljy"],
+      "keywords": ["grahamjauho", "luomu", "oliiviöljy", "Taikinajuuri", "tattarijauho"]
+    },
+    {
+      "nombre": "Gasellin sarvet",
+      "imagen": "photos/SWEET/Chocolats beiger.jpg",
+      "ingredientes": ["Manteli", "manteli-fille", "valkomunan"],
+      "keywords": ["Gasellin", "Manteli", "sarvet", "valkomunan"]
+    }
+  ],
+  "keywords_globales": [
+    "Manteli",
+    "Medjool",
+    "Taateli",
+    "Gluteeniton",
+    "Saksanpähkinä",
+    "Pistaasi",
+    "filotaikina",
+    "Gluten-free",
+    "kananmuna",
+    "sokeri",
+    "Taikinajuuri",
+    "luomu",
+    "grahamjauho",
+    "tattarijauho",
+    "oliiviöljy",
+    "maapähkinä",
+    "seesami",
+    "tummakaako",
+    "Gasellin",
+    "baklava",
+    "siirappi",
+    "Tuore",
+    "L",
+    "V",
+    "valkomunan"
+  ],
+  "keywords_translations": {
+    "Manteli": {
+      "fi": "Manteli",
+      "es": "Almendra",
+      "en": "Almond"
+    },
+    "Medjool": {
+      "fi": "Medjool",
+      "es": "Medjool",
+      "en": "Medjool"
+    },
+    "Taateli": {
+      "fi": "Taateli",
+      "es": "Dátil",
+      "en": "Date"
+    },
+    "Gluteeniton": {
+      "fi": "Gluteeniton",
+      "es": "Sin gluten",
+      "en": "Gluten-free"
+    },
+    "Saksanpähkinä": {
+      "fi": "Saksanpähkinä",
+      "es": "Nuez",
+      "en": "Walnut"
+    },
+    "Pistaasi": {
+      "fi": "Pistaasi",
+      "es": "Pistacho",
+      "en": "Pistachio"
+    },
+    "filotaikina": {
+      "fi": "filotaikina",
+      "es": "Masa filo",
+      "en": "Filo pastry"
+    },
+    "Gluten-free": {
+      "fi": "Gluteeniton",
+      "es": "Sin gluten",
+      "en": "Gluten-free"
+    },
+    "kananmuna": {
+      "fi": "kananmuna",
+      "es": "Huevo",
+      "en": "Egg"
+    },
+    "sokeri": {
+      "fi": "sokeri",
+      "es": "Azúcar",
+      "en": "Sugar"
+    },
+    "Taikinajuuri": {
+      "fi": "Taikinajuuri",
+      "es": "Levadura madre",
+      "en": "Sourdough starter"
+    },
+    "luomu": {
+      "fi": "luomu",
+      "es": "Orgánico",
+      "en": "Organic"
+    },
+    "grahamjauho": {
+      "fi": "grahamjauho",
+      "es": "Harina integral",
+      "en": "Whole wheat flour"
+    },
+    "tattarijauho": {
+      "fi": "tattarijauho",
+      "es": "Harina de trigo sarraceno",
+      "en": "Buckwheat flour"
+    },
+    "oliiviöljy": {
+      "fi": "oliiviöljy",
+      "es": "Aceite de oliva",
+      "en": "Olive oil"
+    },
+    "maapähkinä": {
+      "fi": "maapähkinä",
+      "es": "Cacahuete",
+      "en": "Peanut"
+    },
+    "seesami": {
+      "fi": "seesami",
+      "es": "Sésamo",
+      "en": "Sesame"
+    },
+    "tummakaako": {
+      "fi": "tummakaako",
+      "es": "Cacao oscuro",
+      "en": "Dark cocoa"
+    },
+    "Gasellin": {
+      "fi": "Gasellin",
+      "es": "Cuernos de gacela",
+      "en": "Gazelle horns"
+    },
+    "baklava": {
+      "fi": "baklava",
+      "es": "Baklava",
+      "en": "Baklava"
+    },
+    "siirappi": {
+      "fi": "siirappi",
+      "es": "Jarabe",
+      "en": "Syrup"
+    },
+    "Tuore": {
+      "fi": "Tuore",
+      "es": "Fresco",
+      "en": "Fresh"
+    },
+    "L": {
+      "fi": "L",
+      "es": "L",
+      "en": "L"
+    },
+    "V": {
+      "fi": "V",
+      "es": "V",
+      "en": "V"
+    },
+    "valkomunan": {
+      "fi": "valkomunan",
+      "es": "Clara de huevo",
+      "en": "Egg white"
+    }
+  }
+}
+
