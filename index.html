@@ -901,29 +901,50 @@
         }
         
         .category-card {
-            position: relative;
             text-decoration: none;
             border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 8px 24px rgba(107, 68, 35, 0.15);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            background: var(--white);
-            height: 400px;
+            background: #fafafa;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            min-height: 350px;
+            overflow: hidden;
         }
         
         .category-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 16px 48px rgba(107, 68, 35, 0.3);
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .category-title {
+            margin: 0 0 1.5rem 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            transition: color 0.3s ease;
+        }
+        
+        .category-card:hover .category-title {
+            color: var(--primary-brown);
         }
         
         .category-image-wrapper {
-            position: relative;
             width: 100%;
-            height: 85%;
+            flex: 1;
+            border-radius: 16px;
             overflow: hidden;
             background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .category-image {
@@ -931,86 +952,12 @@
             height: 100%;
             object-fit: cover;
             object-position: center center;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease, opacity 0.3s ease;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-            image-rendering: high-quality;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            transform: translateZ(0) scale(1.15);
-            filter: brightness(1.05) contrast(1.1) saturate(1.15);
-            opacity: 0;
-            animation: fadeInImage 0.5s ease forwards;
-            will-change: transform, filter;
-        }
-        
-        .category-image-bottom {
-            object-position: center bottom;
-        }
-        
-        @keyframes fadeInImage {
-            to {
-                opacity: 1;
-            }
-        }
-        
-        .category-image[src]:not([src=""]) {
-            opacity: 1;
+            transition: transform 0.3s ease;
+            display: block;
         }
         
         .category-card:hover .category-image {
-            transform: scale(1.25);
-            filter: brightness(1.1) contrast(1.15) saturate(1.2);
-        }
-        
-        .category-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: transparent;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-        }
-        
-        .category-card:hover .category-overlay {
-            background: transparent;
-        }
-        
-        .category-title {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem 2rem;
-            margin: 0;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--white);
-            text-align: center;
-            text-shadow: 2px 2px 12px rgba(0, 0, 0, 1), 0 0 20px rgba(0, 0, 0, 0.8);
-            letter-spacing: 2px;
-            z-index: 2;
-            background: linear-gradient(
-                to top,
-                rgba(43, 24, 16, 0.95) 0%,
-                rgba(43, 24, 16, 0.85) 30%,
-                rgba(43, 24, 16, 0.5) 60%,
-                transparent 100%
-            );
-            transition: all 0.4s ease;
-        }
-        
-        .category-card:hover .category-title {
-            padding: 2rem;
-            font-size: 2.2rem;
-            background: linear-gradient(
-                to top,
-                rgba(107, 68, 35, 0.95) 0%,
-                rgba(107, 68, 35, 0.85) 50%,
-                transparent 100%
-            );
+            transform: scale(1.02);
         }
         
         /* Responsive Categories */
@@ -1021,7 +968,13 @@
             }
             
             .category-card {
-                height: 350px;
+                min-height: 320px;
+                padding: 1.5rem 1.25rem;
+            }
+            
+            .category-title {
+                font-size: 1.3rem;
+                margin-bottom: 1.25rem;
             }
         }
         
@@ -1029,6 +982,22 @@
             .categories-section {
                 padding: 4rem 0;
             }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+            
+            .category-card {
+                min-height: 300px;
+                padding: 1.5rem 1rem;
+            }
+            
+            .category-title {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+        }
             
             .categories-grid {
                 grid-template-columns: 1fr;
@@ -3682,38 +3651,34 @@
             <div class="categories-grid">
                 <!-- Comida -->
                 <a href="productos.html#food" class="category-card">
-                    <div class="category-image-wrapper">
-                        <img src="photos/FOOD/Karjalapiirakka beige.jpg" alt="Comida - Karjalapiirakka tradicional" class="category-image category-image-bottom" loading="lazy" decoding="async" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
-                        <div class="category-overlay"></div>
-                    </div>
                     <h3 class="category-title">COMIDA</h3>
+                    <div class="category-image-wrapper">
+                        <img src="photos/FOOD/Karjalapiirakka beige.jpg" alt="Comida - Karjalapiirakka tradicional" class="category-image" loading="lazy" decoding="async" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
+                    </div>
                 </a>
                 
                 <!-- Drinks -->
                 <a href="productos.html#drinks" class="category-card">
+                    <h3 class="category-title">DRINKS</h3>
                     <div class="category-image-wrapper">
                         <img src="photos/DRINKS/u3829884585_Making_coffee_with_latte_art_shaped_like_a_heart__f9fc4b4c-3bd6-44a1-97a1-007769d252e8_1.png" alt="Drinks - Bebidas artesanales" class="category-image" loading="lazy" decoding="async" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
-                        <div class="category-overlay"></div>
                     </div>
-                    <h3 class="category-title">DRINKS</h3>
                 </a>
                 
                 <!-- Sweets -->
                 <a href="productos.html#sweets" class="category-card">
-                    <div class="category-image-wrapper">
-                        <img src="photos/SWEET/Leivoset 1 beige.jpg" alt="Sweets - Chocolates artesanales" class="category-image category-image-bottom" loading="lazy" decoding="async" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
-                        <div class="category-overlay"></div>
-                    </div>
                     <h3 class="category-title">SWEETS</h3>
+                    <div class="category-image-wrapper">
+                        <img src="photos/SWEET/Leivoset 1 beige.jpg" alt="Sweets - Chocolates artesanales" class="category-image" loading="lazy" decoding="async" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
+                    </div>
                 </a>
                 
                 <!-- Bread -->
                 <a href="productos.html#bread" class="category-card">
+                    <h3 class="category-title">BREAD</h3>
                     <div class="category-image-wrapper">
                         <img src="photos/Bread/Tous les pains beige.jpg" alt="Bread - Variedad de panes artesanales" class="category-image" loading="lazy" decoding="async" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
-                        <div class="category-overlay"></div>
                     </div>
-                    <h3 class="category-title">BREAD</h3>
                 </a>
             </div>
         </div>
