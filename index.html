@@ -1995,10 +1995,10 @@
                 padding: 2rem 1rem;
             }
             
-            /* Optimización del video en móviles */
-            .hero-video-bg {
+            /* Optimización de la imagen de fondo en móviles */
+            .hero-bg-img {
                 object-position: center;
-                filter: brightness(1.05);
+                filter: brightness(0.5) contrast(1.2) saturate(1.1);
             }
             
             /* Logo responsivo en móviles */
@@ -4639,74 +4639,19 @@
     <!-- Sistema ULTRA PROFESIONAL de autoplay para iPhone/iOS -->
     <script>
         (function() {
-            const v = document.getElementById('hero-video');
-            if (!v) return;
-            
-            // Configuración MÁXIMA para iOS
-            v.muted = true;
-            v.defaultMuted = true;
-            v.volume = 0;
-            v.autoplay = true;
-            v.playsInline = true;
-            v.controls = false;
-            v.removeAttribute('controls');
-            
-            // Función ULTRA AGRESIVA de reproducción
-            const forcePlay = () => {
-                v.muted = true;
-                v.volume = 0;
-                const p = v.play();
-                if (p) p.catch(() => setTimeout(forcePlay, 50));
-            };
-            
-            // INMEDIATO: Reproducir ahora mismo
-            forcePlay();
-            
-            // Al cargar metadata
-            v.onloadedmetadata = forcePlay;
-            v.oncanplay = forcePlay;
-            v.oncanplaythrough = forcePlay;
-            
-            // Cuando el video esté listo
-            if (v.readyState >= 2) forcePlay();
-            
-            // Auto-reproducción continua
-            const autoPlay = setInterval(() => {
-                if (v.paused && !document.hidden) {
-                    forcePlay();
-                }
-            }, 500);
-            
-            // CRÍTICO iPhone: Primera interacción INVISIBLE
-            const startVideo = () => {
-                v.muted = true;
-                v.play().then(() => {
-                    clearInterval(autoPlay);
+            // Código para imagen de fondo de panadería - optimizado para carga rápida
+            const heroBgImg = document.querySelector('.hero-bg-img');
+            if (heroBgImg) {
+                // Asegurar que la imagen se carga correctamente y muestra con fade-in
+                heroBgImg.addEventListener('load', function() {
+                    this.style.opacity = '1';
                 });
-            };
-            
-            // Captura CUALQUIER evento INMEDIATAMENTE
-            const events = ['touchstart', 'touchmove', 'touchend', 'click', 'scroll', 'mousemove'];
-            events.forEach(e => {
-                document.addEventListener(e, startVideo, { once: true, passive: true, capture: true });
-                window.addEventListener(e, startVideo, { once: true, passive: true, capture: true });
-            });
-            
-            // Prevenir pausa
-            v.onpause = () => {
-                if (!document.hidden) setTimeout(forcePlay, 10);
-            };
-            
-            // Loop infinito
-            v.onended = () => {
-                v.currentTime = 0;
-                forcePlay();
-            };
-            
-            // Cuando vuelve a la página
-            document.onvisibilitychange = () => {
-                if (!document.hidden && v.paused) forcePlay();
-            };
+                
+                // Si la imagen ya está cargada (cached), mostrar inmediatamente
+                if (heroBgImg.complete && heroBgImg.naturalHeight !== 0) {
+                    heroBgImg.style.opacity = '1';
+                }
+            }
         })();
     </script>
     
