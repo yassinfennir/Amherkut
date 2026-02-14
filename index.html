@@ -43,6 +43,9 @@
     <link rel="icon" type="image/x-icon" href="assets/icons/amherkut-logo-original.jpg">
     <link rel="apple-touch-icon" href="assets/icons/amherkut-logo-original.jpg">
     
+    <!-- Preload crítico para logos -->
+    <link rel="preload" as="image" href="assets/icons/amherkut-logo-original.jpg" fetchpriority="high">
+    
     <!-- Schema.org Structured Data for Local Business -->
     <script type="application/ld+json">
     {
@@ -127,6 +130,10 @@
             color: var(--text-dark);
             background-color: var(--white);
             background-image: url('assets/images/food/amherkut_post_4_5_2025_8_37_34 PM3604204273555467807.jpg');
+            background-image: -webkit-image-set(
+                url('assets/images/food/amherkut_post_4_5_2025_8_37_34 PM3604204273555467807.jpg') 1x,
+                url('assets/images/food/amherkut_post_4_5_2025_8_37_34 PM3604204273555467807.jpg') 2x
+            );
             background-size: cover;
             background-position: center center;
             background-attachment: fixed;
@@ -1683,6 +1690,9 @@
             z-index: 2;
             background: white;
             padding: 8px;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            will-change: transform;
         }
         
         .footer-logo-img:hover {
@@ -3728,7 +3738,7 @@
     <header class="header" id="header">
         <nav class="nav">
             <a href="#home" class="logo">
-                <img src="assets/icons/amherkut-logo-original.jpg" alt="Amherkut logo" />
+                <img src="assets/icons/amherkut-logo-original.jpg" alt="Amherkut logo" loading="eager" decoding="sync" onerror="handleImageError(this, 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzZCNEQyMyIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QU0gSEVSS1VUPC90ZXh0Pjwvc3ZnPg==')" />
             </a>
             
             <ul class="nav-menu" id="nav-menu">
@@ -3802,7 +3812,7 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-logo-container fade-in-up">
-                    <img src="assets/icons/amherkut-logo-original.jpg" alt="AM HERKUT Logo" class="hero-logo-circle">
+                    <img src="assets/icons/amherkut-logo-original.jpg" alt="AM HERKUT Logo" class="hero-logo-circle" loading="eager" decoding="sync" onerror="handleImageError(this, 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjEwMCIgZmlsbD0iIzZCNEQyMyIvPjx0ZXh0IHg9IjEwMCIgeT0iMTEwIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXdlaWdodD0iYm9sZCI+QU0gSEVSS1VUPC90ZXh0Pjwvc3ZnPg==')">
                 </div>
                 <div class="hero-text fade-in-up">
                     <h1>Amherkut</h1>
@@ -3823,7 +3833,7 @@
                 <!-- Comida -->
                 <a href="productos.html#food" class="category-card">
                     <div class="category-image-wrapper">
-                        <img src="photos/FOOD/Ronds beiges.jpg" alt="Comida - Karjalapiirakka tradicional" class="category-image" loading="lazy" onerror="this.src='assets/images/placeholder.jpg'; this.onerror=null;">
+                        <img src="photos/FOOD/Ronds beiges.jpg" alt="Comida - Karjalapiirakka tradicional" class="category-image" loading="lazy" decoding="async" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
                         <div class="category-overlay"></div>
                     </div>
                     <h3 class="category-title">COMIDA</h3>
@@ -3832,7 +3842,7 @@
                 <!-- Drinks -->
                 <a href="productos.html#drinks" class="category-card">
                     <div class="category-image-wrapper">
-                        <img src="photos/DRINKS/u3829884585_Making_coffee_with_latte_art_shaped_like_a_heart__f9fc4b4c-3bd6-44a1-97a1-007769d252e8_1.png" alt="Drinks - Bebidas artesanales" class="category-image" loading="lazy" onerror="this.src='assets/images/placeholder.jpg'; this.onerror=null;">
+                        <img src="photos/DRINKS/u3829884585_Making_coffee_with_latte_art_shaped_like_a_heart__f9fc4b4c-3bd6-44a1-97a1-007769d252e8_1.png" alt="Drinks - Bebidas artesanales" class="category-image" loading="lazy" decoding="async" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
                         <div class="category-overlay"></div>
                     </div>
                     <h3 class="category-title">DRINKS</h3>
@@ -3841,7 +3851,7 @@
                 <!-- Sweets -->
                 <a href="productos.html#sweets" class="category-card">
                     <div class="category-image-wrapper">
-                        <img src="photos/SWEET/Les roses beige.jpg" alt="Sweets - Chocolates artesanales" class="category-image" loading="lazy" onerror="this.src='assets/images/placeholder.jpg'; this.onerror=null;">
+                        <img src="photos/SWEET/Les roses beige.jpg" alt="Sweets - Chocolates artesanales" class="category-image" loading="lazy" decoding="async" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
                         <div class="category-overlay"></div>
                     </div>
                     <h3 class="category-title">SWEETS</h3>
@@ -3850,7 +3860,7 @@
                 <!-- Bread -->
                 <a href="productos.html#bread" class="category-card">
                     <div class="category-image-wrapper">
-                        <img src="photos/Bread/Les pains beige.jpg" alt="Bread - Variedad de panes artesanales" class="category-image" loading="lazy" onerror="this.src='assets/images/placeholder.jpg'; this.onerror=null;">
+                        <img src="photos/Bread/Les pains beige.jpg" alt="Bread - Variedad de panes artesanales" class="category-image" loading="lazy" decoding="async" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
                         <div class="category-overlay"></div>
                     </div>
                     <h3 class="category-title">BREAD</h3>
@@ -3864,7 +3874,7 @@
         <div class="container">
             <div class="about-content">
                 <div class="about-image">
-                    <img src="assets/images/hakaniemet/amherkut_post_12_24_2023_11_30_13 PM3265096146870456722.jpg" alt="AM Herkut Leipomo" class="about-main-image" />
+                    <img src="assets/images/hakaniemet/amherkut_post_12_24_2023_11_30_13 PM3265096146870456722.jpg" alt="AM Herkut Leipomo" class="about-main-image" loading="lazy" decoding="async" onerror="handleImageError(this, 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iI0U4RERDOCIvPjx0ZXh0IHg9IjQwMCIgeT0iMzAwIiBmb250LXNpemU9IjMyIiBmaWxsPSIjNkI0RDIzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiPkFtaGVya3V0IExlaXBvbW88L3RleHQ+PC9zdmc+')" />
                 </div>
                 <div class="about-text">
                     <h2>TARINAMME: KAKSI KULTTUURIA, YKSI INTOHIMO</h2>
@@ -4155,7 +4165,7 @@
             <div class="footer-content">
                 <!-- Logo y descripción centrados -->
                 <div class="footer-brand">
-                    <img src="assets/icons/amherkut-logo-original.jpg" alt="Amherkut logo" class="footer-logo-img" />
+                    <img src="assets/icons/amherkut-logo-original.jpg" alt="Amherkut logo" class="footer-logo-img" loading="eager" decoding="sync" onerror="handleImageError(this, 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSI2MCIgY3k9IjYwIiByPSI2MCIgZmlsbD0iIzZCNEQyMyIvPjx0ZXh0IHg9IjYwIiB5PSI3MCIgZm9udC1zaXplPSIxOCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC13ZWlnaHQ9ImJvbGQiPkFNIEhFUktVVDwvdGV4dD48L3N2Zz4=')" />
                     <p class="footer-tagline"footer.tagline">Premium Käsityökahvi Helsingissä</p>
                 </div>
                 
@@ -4227,6 +4237,99 @@
 
 
     <script>
+        // ========================================
+        // IMAGE ERROR HANDLING & OPTIMIZATION
+        // ========================================
+        
+        // Función mejorada para manejar errores de imágenes
+        function handleImageError(img, fallback) {
+            if (img.src !== fallback && img.src !== img.dataset.fallback) {
+                img.dataset.fallback = fallback;
+                img.src = fallback;
+                img.style.opacity = '0.8';
+                img.style.filter = 'grayscale(20%)';
+            }
+        }
+        
+        // Preload de logos críticos
+        function preloadCriticalImages() {
+            const criticalImages = [
+                'assets/icons/amherkut-logo-original.jpg'
+            ];
+            
+            criticalImages.forEach(src => {
+                const link = document.createElement('link');
+                link.rel = 'preload';
+                link.as = 'image';
+                link.href = src;
+                document.head.appendChild(link);
+            });
+        }
+        
+        // Optimizar todas las imágenes al cargar
+        function optimizeImages() {
+            const images = document.querySelectorAll('img');
+            const placeholderSVG = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI0U4RERDOCIvPjx0ZXh0IHg9IjIwMCIgeT0iMTUwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjNkI0RDIzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiPkFtaGVya3V0PC90ZXh0Pjwvc3ZnPg==';
+            
+            images.forEach(img => {
+                // Agregar atributos de optimización si no los tiene
+                if (!img.hasAttribute('loading')) {
+                    if (img.classList.contains('hero-logo-circle') || img.classList.contains('footer-logo-img') || img.classList.contains('logo')) {
+                        img.loading = 'eager';
+                        img.decoding = 'sync';
+                        img.fetchPriority = 'high';
+                    } else {
+                        img.loading = 'lazy';
+                        img.decoding = 'async';
+                    }
+                }
+                
+                // Mejorar el manejo de errores con múltiples fallbacks
+                if (!img.dataset.errorHandled) {
+                    img.dataset.errorHandled = 'true';
+                    const originalSrc = img.src;
+                    const fallbackSVG = placeholderSVG;
+                    
+                    img.onerror = function() {
+                        if (this.src !== fallbackSVG && this.src !== this.dataset.fallback) {
+                            // Intentar primero con placeholder local
+                            if (this.src.indexOf('placeholder.svg') === -1) {
+                                this.dataset.fallback = this.src;
+                                this.src = 'assets/images/placeholder.svg';
+                            } else {
+                                // Si el placeholder local falla, usar SVG inline
+                                this.src = fallbackSVG;
+                            }
+                            this.style.opacity = '0.9';
+                            this.style.filter = 'grayscale(10%)';
+                        }
+                    };
+                    
+                    // Verificar si la imagen carga correctamente
+                    img.onload = function() {
+                        this.style.opacity = '1';
+                        this.style.filter = 'none';
+                    };
+                }
+                
+                // Codificar URLs con espacios
+                if (img.src && img.src.indexOf(' ') !== -1 && img.src.indexOf('%20') === -1) {
+                    img.src = img.src.replace(/ /g, '%20');
+                }
+            });
+        }
+        
+        // Ejecutar optimizaciones al cargar
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                preloadCriticalImages();
+                optimizeImages();
+            });
+        } else {
+            preloadCriticalImages();
+            optimizeImages();
+        }
+        
         // ========================================
         // JAVASCRIPT FUNCTIONALITY
         // ========================================
