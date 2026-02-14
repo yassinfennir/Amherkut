@@ -43,8 +43,9 @@
     <link rel="icon" type="image/x-icon" href="assets/icons/amherkut-logo-original.jpg">
     <link rel="apple-touch-icon" href="assets/icons/amherkut-logo-original.jpg">
     
-    <!-- Preload crítico para logos -->
+    <!-- Preload crítico para logos y fondo hero -->
     <link rel="preload" as="image" href="assets/icons/amherkut-logo-original.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="photos/Bread/Les pains beige.jpg" fetchpriority="high" imagesrcset="photos/Bread/Les pains beige.jpg">
     
     <!-- Schema.org Structured Data for Local Business -->
     <script type="application/ld+json">
@@ -520,8 +521,9 @@
             display: flex;
             align-items: center;
             background: #1a1a1a;
+            background-image: url('photos/Bread/Les pains beige.jpg');
             background-size: cover;
-            background-position: center;
+            background-position: center center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             padding-top: 80px;
@@ -529,25 +531,55 @@
             overflow: hidden;
         }
         
-        /* Video de fondo optimizado */
-        .hero-video-bg {
+        /* Imagen de fondo de alta calidad con soporte para diferentes resoluciones */
+        @media (min-width: 1920px) {
+            .hero {
+                background-image: url('photos/Bread/Les pains beige.jpg');
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .hero {
+                background-image: url('photos/Bread/Les pains beige.jpg');
+            }
+        }
+        
+        /* Imagen de fondo de panadería optimizada */
+        .hero-background-image {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            min-width: 100%;
-            min-height: 100%;
-            object-fit: cover;
             z-index: 1;
-            opacity: 1;
-            filter: brightness(1.1);
-            /* Optimización de rendimiento */
-            will-change: transform;
+            pointer-events: none;
+        }
+        
+        .hero-bg-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeInHeroBg 1s ease forwards;
+            filter: brightness(0.7) contrast(1.1);
+            will-change: opacity, transform;
             transform: translateZ(0);
             backface-visibility: hidden;
-            /* Bloquear interacción con el video */
-            pointer-events: none;
+        }
+        
+        @keyframes fadeInHeroBg {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .hero-bg-img[src] {
+            opacity: 1;
         }
         
         /* Ocultar controles del video */
@@ -576,7 +608,7 @@
             display: none !important;
         }
         
-        /* Overlay suave para mejor legibilidad del texto */
+        /* Overlay oscuro para mejor legibilidad del texto sobre imagen de panadería */
         .hero::before {
             content: '';
             position: absolute;
@@ -584,9 +616,10 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at center, 
-                rgba(0, 0, 0, 0.1) 0%, 
-                rgba(0, 0, 0, 0.25) 100%);
+            background: radial-gradient(ellipse at center, 
+                rgba(0, 0, 0, 0.3) 0%, 
+                rgba(0, 0, 0, 0.6) 50%,
+                rgba(0, 0, 0, 0.8) 100%);
             z-index: 2;
             pointer-events: none;
         }
@@ -598,10 +631,12 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, 
-                rgba(30, 18, 12, 0.2) 0%, 
-                rgba(43, 24, 16, 0.3) 50%,
-                rgba(30, 18, 12, 0.2) 100%);
+            background: linear-gradient(180deg, 
+                rgba(30, 18, 12, 0.5) 0%, 
+                rgba(43, 24, 16, 0.65) 30%,
+                rgba(43, 24, 16, 0.7) 50%,
+                rgba(43, 24, 16, 0.65) 70%,
+                rgba(30, 18, 12, 0.5) 100%);
             z-index: 2;
             pointer-events: none;
         }
@@ -3796,36 +3831,10 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <!-- Video de fondo optimizado MÁXIMO NIVEL para iOS -->
-        <video 
-            id="hero-video" 
-            class="hero-video-bg" 
-            autoplay 
-            muted 
-            loop 
-            playsinline 
-            webkit-playsinline
-            x5-playsinline
-            preload="auto"
-            disablePictureInPicture
-            x-webkit-airplay="deny"
-            style="background: transparent;">
-            <source src="Video/background2.mp4" type="video/mp4">
-        </video>
-        
-        <!-- Script INLINE para máxima velocidad de inicio -->
-        <script>
-            (function() {
-                const v = document.getElementById('hero-video');
-                if (v) {
-                    v.muted = true;
-                    v.volume = 0;
-                    v.play().catch(() => {
-                        setTimeout(() => { v.play(); }, 100);
-                    });
-                }
-            })();
-        </script>
+        <!-- Imagen de fondo de panadería en 4K - Optimizada para carga rápida -->
+        <div class="hero-background-image">
+            <img src="photos/Bread/Les pains beige.jpg" alt="" class="hero-bg-img" loading="eager" decoding="async" aria-hidden="true" onerror="handleImageError(this, 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzg0MCIgaGVpZ2h0PSIyMTYwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIzODQwIiBoZWlnaHQ9IjIxNjAiIGZpbGw9IiMxYTFhMWEiLz48dGV4dCB4PSIxOTIwIiB5PSIxMDgwIiBmb250LXNpemU9IjQ4IiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiPkFtaGVya3V0PC90ZXh0Pjwvc3ZnPg==')">
+        </div>
         
         <div class="container">
             <div class="hero-content">
