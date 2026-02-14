@@ -2,6 +2,10 @@
 node_modules/
 package-lock.json
 
+# Archivos de React (no se usan en este proyecto estático)
+build/
+dist/
+
 # Archivos temporales
 *.log
 *.tmp

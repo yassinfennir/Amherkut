@@ -1,36 +1,9 @@
 {
-  "name": "amherkut-products",
+  "name": "amherkut",
   "version": "1.0.0",
-  "description": "Modern product gallery with React",
+  "description": "Amherkut - Premium Käsityöleipomo Helsingissä - Static HTML Website",
   "private": true,
-  "dependencies": {
-    "cheerio": "^1.1.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "react-router-dom": "^6.17.0"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "start": "echo 'This is a static HTML site. Open index.html in a browser or use a local server.'"
   }
 }
