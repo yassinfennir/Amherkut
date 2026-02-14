@@ -566,10 +566,12 @@
             z-index: 1;
             opacity: 0;
             animation: fadeInHeroBg 1s ease forwards;
-            filter: brightness(0.7) contrast(1.1);
+            filter: brightness(0.5) contrast(1.2) saturate(1.1);
             will-change: opacity, transform;
             transform: translateZ(0);
             backface-visibility: hidden;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
         }
         
         @keyframes fadeInHeroBg {
@@ -582,31 +584,6 @@
             opacity: 1;
         }
         
-        /* Ocultar controles del video */
-        .hero-video-bg::-webkit-media-controls,
-        .hero-video-bg::-webkit-media-controls-enclosure,
-        .hero-video-bg::-webkit-media-controls-panel,
-        .hero-video-bg::-webkit-media-controls-play-button,
-        .hero-video-bg::-webkit-media-controls-start-playback-button,
-        .hero-video-bg::-webkit-media-controls-overlay-play-button,
-        .hero-video-bg::-webkit-media-controls-overlay-enclosure {
-            display: none !important;
-            opacity: 0 !important;
-            visibility: hidden !important;
-            pointer-events: none !important;
-            width: 0 !important;
-            height: 0 !important;
-        }
-        
-        /* Firefox */
-        .hero-video-bg::-moz-media-controls {
-            display: none !important;
-        }
-        
-        /* Edge/IE */
-        .hero-video-bg::-ms-media-controls {
-            display: none !important;
-        }
         
         /* Overlay oscuro para mejor legibilidad del texto sobre imagen de panadería */
         .hero::before {
