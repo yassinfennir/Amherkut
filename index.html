@@ -929,17 +929,18 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
+            object-position: center center;
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease, opacity 0.3s ease;
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
             image-rendering: high-quality;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
-            transform: translateZ(0) scale(1.2);
-            filter: brightness(1) contrast(1.05) saturate(1.1);
+            transform: translateZ(0) scale(1.15);
+            filter: brightness(1.05) contrast(1.1) saturate(1.15);
             opacity: 0;
             animation: fadeInImage 0.5s ease forwards;
+            will-change: transform, filter;
         }
         
         @keyframes fadeInImage {
@@ -953,8 +954,8 @@
         }
         
         .category-card:hover .category-image {
-            transform: scale(1.35);
-            filter: brightness(1.05) contrast(1.1) saturate(1.15);
+            transform: scale(1.25);
+            filter: brightness(1.1) contrast(1.15) saturate(1.2);
         }
         
         .category-overlay {
@@ -3695,7 +3696,7 @@
                 <!-- Sweets -->
                 <a href="productos.html#sweets" class="category-card">
                     <div class="category-image-wrapper">
-                        <img src="photos/SWEET/Les roses beige.jpg" alt="Sweets - Chocolates artesanales" class="category-image" loading="lazy" decoding="async" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
+                        <img src="photos/SWEET/Kakku sarja 1 beige.jpg" alt="Sweets - Chocolates artesanales" class="category-image" loading="lazy" decoding="async" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
                         <div class="category-overlay"></div>
                     </div>
                     <h3 class="category-title">SWEETS</h3>
@@ -3704,7 +3705,7 @@
                 <!-- Bread -->
                 <a href="productos.html#bread" class="category-card">
                     <div class="category-image-wrapper">
-                        <img src="photos/Bread/Les pains beige.jpg" alt="Bread - Variedad de panes artesanales" class="category-image" loading="lazy" decoding="async" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
+                        <img src="photos/Bread/Tous les pains beige.jpg" alt="Bread - Variedad de panes artesanales" class="category-image" loading="lazy" decoding="async" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
                         <div class="category-overlay"></div>
                     </div>
                     <h3 class="category-title">BREAD</h3>
