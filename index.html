@@ -45,7 +45,7 @@
     
     <!-- Preload crítico para logos y fondo hero -->
     <link rel="preload" as="image" href="assets/icons/amherkut-logo-original.jpg" fetchpriority="high">
-    <link rel="preload" as="image" href="photos/Bread/Les pains beige.jpg" fetchpriority="high" imagesrcset="photos/Bread/Les pains beige.jpg">
+    <link rel="preload" as="image" href="assets/images/hero-bakery-background.png" fetchpriority="high">
     
     <!-- Schema.org Structured Data for Local Business -->
     <script type="application/ld+json">
@@ -548,7 +548,7 @@
             z-index: 1;
             opacity: 0;
             animation: fadeInHeroBg 1s ease forwards;
-            filter: brightness(0.5) contrast(1.2) saturate(1.1);
+            filter: brightness(0.4) contrast(1.3) saturate(1.2);
             will-change: opacity, transform;
             transform: translateZ(0);
             backface-visibility: hidden;
@@ -567,7 +567,7 @@
         }
         
         
-        /* Overlay oscuro para mejor legibilidad del texto sobre imagen de panadería */
+        /* Overlay oscuro para mejor legibilidad del texto sobre imagen detallada de panadería */
         .hero::before {
             content: '';
             position: absolute;
@@ -576,9 +576,9 @@
             right: 0;
             bottom: 0;
             background: radial-gradient(ellipse at center, 
-                rgba(0, 0, 0, 0.3) 0%, 
-                rgba(0, 0, 0, 0.6) 50%,
-                rgba(0, 0, 0, 0.8) 100%);
+                rgba(0, 0, 0, 0.4) 0%, 
+                rgba(0, 0, 0, 0.65) 40%,
+                rgba(0, 0, 0, 0.85) 100%);
             z-index: 2;
             pointer-events: none;
         }
@@ -591,11 +591,11 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(180deg, 
-                rgba(30, 18, 12, 0.5) 0%, 
-                rgba(43, 24, 16, 0.65) 30%,
-                rgba(43, 24, 16, 0.7) 50%,
-                rgba(43, 24, 16, 0.65) 70%,
-                rgba(30, 18, 12, 0.5) 100%);
+                rgba(30, 18, 12, 0.6) 0%, 
+                rgba(43, 24, 16, 0.7) 25%,
+                rgba(43, 24, 16, 0.75) 50%,
+                rgba(43, 24, 16, 0.7) 75%,
+                rgba(30, 18, 12, 0.6) 100%);
             z-index: 2;
             pointer-events: none;
         }
@@ -1998,7 +1998,7 @@
             /* Optimización de la imagen de fondo en móviles */
             .hero-bg-img {
                 object-position: center;
-                filter: brightness(0.5) contrast(1.2) saturate(1.1);
+                filter: brightness(0.4) contrast(1.3) saturate(1.2);
             }
             
             /* Logo responsivo en móviles */
@@ -3790,9 +3790,9 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <!-- Imagen de fondo de panadería en 4K - Optimizada para carga rápida -->
+        <!-- Imagen de fondo de panadería en 4K - Muy detallada pero oscura para legibilidad -->
         <div class="hero-background-image">
-            <img src="photos/Bread/Les pains beige.jpg" alt="" class="hero-bg-img" loading="eager" decoding="async" aria-hidden="true" onerror="handleImageError(this, 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzg0MCIgaGVpZ2h0PSIyMTYwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIzODQwIiBoZWlnaHQ9IjIxNjAiIGZpbGw9IiMxYTFhMWEiLz48dGV4dCB4PSIxOTIwIiB5PSIxMDgwIiBmb250LXNpemU9IjQ4IiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiPkFtaGVya3V0PC90ZXh0Pjwvc3ZnPg==')">
+            <img src="assets/images/hero-bakery-background.png" alt="" class="hero-bg-img" loading="eager" decoding="async" aria-hidden="true" onerror="handleImageError(this, 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzg0MCIgaGVpZ2h0PSIyMTYwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIzODQwIiBoZWlnaHQ9IjIxNjAiIGZpbGw9IiMxYTFhMWEiLz48dGV4dCB4PSIxOTIwIiB5PSIxMDgwIiBmb250LXNpemU9IjQ4IiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiPkFtaGVya3V0PC90ZXh0Pjwvc3ZnPg==')">
         </div>
         
         <div class="container">
