@@ -73,13 +73,34 @@ productos-galeria.html
 productos-react.html
 sweets.html
 
-# Archivos de documentación
+# Archivos de documentación (excepto README principal)
 *.md
+!README.md
 *.txt
 AM  herkut.txt
+
+# Carpetas de desarrollo y despliegue
+amherkut-deploy/
+amherkut-minimal/
+amherkut-netlify/
+amherkut-platform/
+amherkut-production/
+amherkut-tiny/
+amherkut-ultra-minimal/
+
+# Scripts de desarrollo
+*.ps1
+*.bat
+*.sh
+
+# Archivos de configuración de despliegue temporal
+vercel.json
+.vercelignore
+netlify-ignore.txt
 
 # Archivos de datos temporales
 organizacion-reporte*.json
 products-grouped.json
 products.json
 sweets-data.json
+.vercel

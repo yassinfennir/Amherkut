@@ -59,7 +59,7 @@
             line-height: 1.6;
             color: var(--text-dark);
             background-color: var(--white);
-            background-image: url('assets/images/food/amherkut_post_4_5_2025_8_37_34 PM3604204273555467807.jpg');
+            background-image: url('photos/Bread/Les pains beige.jpg');
             background-size: cover;
             background-position: center center;
             background-attachment: fixed;
@@ -445,7 +445,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: #1a1a1a;
+            background: transparent;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -453,6 +453,19 @@
             padding-top: 80px;
             position: relative;
             overflow: hidden;
+        }
+        
+        .hero-image-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
         }
         
         /* Video de fondo optimizado */
@@ -3663,7 +3676,7 @@
             
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#home" class="nav-link" data-translate="nav.home">Koti</a></li>
-                <li><a href="productos-galeria.html" class="nav-link" data-translate="nav.products">Tuotteet</a></li>
+                <li><a href="productos.html" class="nav-link" data-translate="nav.products">Tuotteet</a></li>
                 <li><a href="#about" class="nav-link" data-translate="nav.about">Tietoa meistä</a></li>
                 <li><a href="#quick-contact" class="nav-link" data-translate="nav.contact">Yhteystiedot</a></li>
                 <li>
@@ -3726,36 +3739,8 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <!-- Video de fondo optimizado MÁXIMO NIVEL para iOS -->
-        <video 
-            id="hero-video" 
-            class="hero-video-bg" 
-            autoplay 
-            muted 
-            loop 
-            playsinline 
-            webkit-playsinline
-            x5-playsinline
-            preload="auto"
-            disablePictureInPicture
-            x-webkit-airplay="deny"
-            style="background: transparent;">
-            <source src="Video/background2.mp4" type="video/mp4">
-        </video>
-        
-        <!-- Script INLINE para máxima velocidad de inicio -->
-        <script>
-            (function() {
-                const v = document.getElementById('hero-video');
-                if (v) {
-                    v.muted = true;
-                    v.volume = 0;
-                    v.play().catch(() => {
-                        setTimeout(() => { v.play(); }, 100);
-                    });
-                }
-            })();
-        </script>
+        <!-- Imagen de fondo -->
+        <div class="hero-image-bg" style="background-image: url('photos/Bread/Les pains beige.jpg'); background-size: cover; background-position: center; background-attachment: fixed; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
         
         <div class="container">
             <div class="hero-content">
@@ -3766,7 +3751,7 @@
                     <h1 data-translate="hero.title">Amherkut</h1>
                     <p data-translate="hero.subtitle">MAKUJA, JOTKA KERTOVAT TARINAA</p>
                     <div class="hero-buttons">
-                        <a href="productos-galeria.html" class="btn btn-primary" data-translate="hero.btn1">Tutustu Valikoimaan</a>
+                        <a href="productos.html" class="btn btn-primary" data-translate="hero.btn1">Tutustu Valikoimaan</a>
                         <a href="#quick-contact" class="btn btn-secondary" data-translate="hero.btn2">Tilaa Nyt</a>
                     </div>
                 </div>
@@ -3775,13 +3760,13 @@
     </section>
 
     <!-- Categories Section -->
-    <section id="categories" class="categories-section section">
+    <section id="products" class="categories-section section">
         <div class="container">
             <div class="categories-grid">
                 <!-- Comida -->
                 <a href="productos.html#food" class="category-card">
                     <div class="category-image-wrapper">
-                        <img src="photos/FOOD/Ronds beiges.jpg" alt="Comida - Karjalapiirakka tradicional" class="category-image" loading="lazy" onerror="this.src='assets/images/placeholder.jpg'; this.onerror=null;">
+                        <img src="photos/FOOD/Karjalapiirakka beige.jpg" alt="Comida - Karjalapiirakka tradicional" class="category-image" loading="lazy" onerror="this.src='assets/icons/amherkut-logo-original.jpg'; this.onerror=null;">
                         <div class="category-overlay"></div>
                     </div>
                     <h3 class="category-title">COMIDA</h3>
@@ -3790,7 +3775,7 @@
                 <!-- Drinks -->
                 <a href="productos.html#drinks" class="category-card">
                     <div class="category-image-wrapper">
-                        <img src="photos/DRINKS/u3829884585_Making_coffee_with_latte_art_shaped_like_a_heart__f9fc4b4c-3bd6-44a1-97a1-007769d252e8_1.png" alt="Drinks - Bebidas artesanales" class="category-image" loading="lazy" onerror="this.src='assets/images/placeholder.jpg'; this.onerror=null;">
+                        <img src="photos/DRINKS/u3829884585_Making_coffee_with_latte_art_shaped_like_a_heart__f9fc4b4c-3bd6-44a1-97a1-007769d252e8_1.png" alt="Drinks - Bebidas artesanales" class="category-image" loading="lazy" onerror="this.src='assets/icons/amherkut-logo-original.jpg'; this.onerror=null;">
                         <div class="category-overlay"></div>
                     </div>
                     <h3 class="category-title">DRINKS</h3>
@@ -3799,7 +3784,7 @@
                 <!-- Sweets -->
                 <a href="productos.html#sweets" class="category-card">
                     <div class="category-image-wrapper">
-                        <img src="photos/SWEET/Les roses beige.jpg" alt="Sweets - Chocolates artesanales" class="category-image" loading="lazy" onerror="this.src='assets/images/placeholder.jpg'; this.onerror=null;">
+                        <img src="photos/SWEET/Korvapuusti beige.jpg" alt="Sweets - Chocolates artesanales" class="category-image" loading="lazy" onerror="this.src='assets/icons/amherkut-logo-original.jpg'; this.onerror=null;">
                         <div class="category-overlay"></div>
                     </div>
                     <h3 class="category-title">SWEETS</h3>
@@ -3808,7 +3793,7 @@
                 <!-- Bread -->
                 <a href="productos.html#bread" class="category-card">
                     <div class="category-image-wrapper">
-                        <img src="photos/Bread/Les pains beige.jpg" alt="Bread - Variedad de panes artesanales" class="category-image" loading="lazy" onerror="this.src='assets/images/placeholder.jpg'; this.onerror=null;">
+                        <img src="photos/Bread/Croissant beige.jpg" alt="Bread - Variedad de panes artesanales" class="category-image" loading="lazy" onerror="this.src='assets/icons/amherkut-logo-original.jpg'; this.onerror=null;">
                         <div class="category-overlay"></div>
                     </div>
                     <h3 class="category-title">BREAD</h3>
@@ -3822,7 +3807,7 @@
         <div class="container">
             <div class="about-content">
                 <div class="about-image">
-                    <img src="assets/images/hakaniemet/amherkut_post_12_24_2023_11_30_13 PM3265096146870456722.jpg" alt="AM Herkut Leipomo" class="about-main-image" />
+                    <img src="photos/SWEET/20250702111137-836f783a.jpg" alt="AM Herkut Leipomo - Chef trabajando en la cocina" class="about-main-image" onerror="this.src='photos/SWEET/20250702111137-836f783a.png'; this.onerror=function(){this.src='assets/images/food/amherkut_post_9_17_2025_9_58_32 PM3723833029992223845.jpg'; this.onerror=function(){this.src='photos/FOOD/Triangle beige.jpg';}}" />
                 </div>
                 <div class="about-text">
                     <h2 data-translate="about.title">TARINAMME: KAKSI KULTTUURIA, YKSI INTOHIMO</h2>
