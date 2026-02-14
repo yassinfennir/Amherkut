@@ -2,10 +2,8 @@
   # Directorio de publicación (donde está index.html)
   publish = "."
   
-  # Comando de build (vacío para sitio estático)
-  command = ""
-  
-  # Sin funciones ni plugins necesarios
+  # Sin comando de build - sitio estático HTML puro
+  # No necesita npm install ni build process
 
 # Configuración de redirecciones
 # Permitir acceso directo a archivos HTML de productos
