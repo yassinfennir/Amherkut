@@ -634,6 +634,9 @@
                         0 0 0 10px rgba(255, 255, 255, 0.1);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             background: white;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            will-change: transform;
         }
         
         .hero-logo-circle:hover {
@@ -1238,6 +1241,9 @@
         .about-main-image {
             width: 100%;
             max-width: 500px;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            transition: opacity 0.3s ease;
             height: 400px;
             object-fit: cover;
             border-radius: var(--border-radius);
