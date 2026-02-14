@@ -2298,150 +2298,8 @@
         }
 
         /* ========================================
-           LANGUAGE SELECTOR
+           LANGUAGE SELECTOR - REMOVED (Site is Finnish only)
            ======================================== */
-
-        .language-selector {
-            position: relative;
-        }
-
-        .language-toggle {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(107, 68, 35, 0.2);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            position: relative;
-        }
-
-        .language-toggle:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: var(--gold);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(107, 68, 35, 0.15);
-        }
-
-        .language-toggle svg:first-child {
-            color: var(--primary-brown);
-            transition: var(--transition);
-        }
-
-        .language-toggle:hover svg:first-child {
-            color: var(--gold);
-        }
-
-        .language-current {
-            font-weight: 700;
-            color: var(--text-dark);
-            min-width: 28px;
-            text-align: center;
-        }
-
-        .language-arrow {
-            transition: transform 0.3s ease;
-            color: var(--text-dark);
-        }
-
-        .language-toggle[aria-expanded="true"] .language-arrow {
-            transform: rotate(180deg);
-        }
-
-        .language-dropdown {
-            position: absolute;
-            top: calc(100% + 0.5rem);
-            right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(107, 68, 35, 0.1);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(107, 68, 35, 0.2);
-            min-width: 180px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 10001;
-            overflow: hidden;
-            padding: 0.5rem;
-        }
-
-        .language-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .language-option {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 1rem;
-            background: transparent;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: var(--transition);
-            text-align: left;
-            font-size: 0.95rem;
-            color: var(--text-dark);
-        }
-
-        .language-option:hover {
-            background: linear-gradient(90deg, rgba(168, 213, 255, 0.1), rgba(255, 179, 230, 0.1));
-            transform: translateX(4px);
-        }
-
-        .language-option.active {
-            background: linear-gradient(90deg, rgba(168, 213, 255, 0.2), rgba(255, 179, 230, 0.2));
-            font-weight: 600;
-        }
-
-        .language-flag {
-            font-size: 1.5rem;
-            line-height: 1;
-        }
-
-        .language-name {
-            flex: 1;
-            font-weight: 500;
-        }
-
-        /* Responsive Language Selector */
-        @media (max-width: 768px) {
-            .language-toggle {
-                padding: 0.5rem 0.75rem;
-                font-size: 0.85rem;
-            }
-
-            .language-current {
-                min-width: 24px;
-                font-size: 0.85rem;
-            }
-
-            .language-dropdown {
-                right: auto;
-                left: 50%;
-                transform: translateX(-50%) translateY(-10px);
-                min-width: 160px;
-            }
-
-            .language-dropdown.active {
-                transform: translateX(-50%) translateY(0);
-            }
-
-            .nav-menu .language-selector {
-                margin: 1rem 0;
-            }
-        }
 
         /* Products Controls - Search & Filters */
         .products-controls {
@@ -4625,8 +4483,8 @@
     <!-- Product Modal -->
     <div id="product-modal" class="product-modal"></div>
 
-    <!-- Language Switcher (DEBE CARGARSE PRIMERO) -->
-    <script src="assets/js/language-switcher-v2.js?v=2"></script>
+    <!-- Language Switcher - REMOVED (site is Finnish only) -->
+    <!-- <script src="assets/js/language-switcher-v2.js?v=2"></script> -->
     
     <!-- Image Gallery Scripts -->
     <script src="assets/js/gallery-config.js"></script>
