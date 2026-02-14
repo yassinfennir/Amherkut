@@ -35,7 +35,16 @@ class ImageGalleryManager {
         // Usar configuración global GALLERY_IMAGES
         if (typeof GALLERY_IMAGES !== 'undefined') {
             this.images.hakaniemet = this.generateImagePaths('assets/images/hakaniemet', GALLERY_IMAGES.hakaniemet);
-            this.images.leipomo = this.generateImagePaths('assets/images/leipomo', GALLERY_IMAGES.leipomo);
+            // Leipomo puede tener imágenes en la carpeta principal o en leipomo
+            const leipomoImages = GALLERY_IMAGES.leipomo.filter(f => {
+                const lower = f.toLowerCase();
+                return lower.endsWith('.jpg') || lower.endsWith('.jpeg') || lower.endsWith('.png') || lower.endsWith('.webp');
+            });
+            const leipomoVideos = GALLERY_IMAGES.leipomo.filter(f => f.toLowerCase().endsWith('.mp4'));
+            this.images.leipomo = [
+                ...this.generateImagePaths('assets/images', leipomoImages),
+                ...this.generateImagePaths('assets/images/leipomo', leipomoVideos)
+            ];
             this.images.food = this.generateImagePaths('PHOTOS/Food', GALLERY_IMAGES.food);
             this.images.bread = this.generateImagePaths('PHOTOS/Bread', GALLERY_IMAGES.bread);
             this.images.drinks = this.generateImagePaths('PHOTOS/Drinks', GALLERY_IMAGES.drinks);
@@ -74,44 +83,74 @@ class ImageGalleryManager {
         `).join('');
     }
 
-    // Renderizar galería de Leipomo (videos)
+    // Renderizar galería de Leipomo (videos e imágenes)
     renderLeipomoGallery(container) {
         if (!container) return;
         
         this.currentGallery = 'leipomo';
-        const videos = this.images.leipomo;
+        const mediaFiles = this.images.leipomo || [];
         
-        if (videos.length === 0) {
-            container.innerHTML = '<p style="text-align: center; padding: 2rem; color: #666;">No hay videos disponibles</p>';
+        // Separar videos e imágenes
+        const videos = mediaFiles.filter(file => file.toLowerCase().endsWith('.mp4'));
+        const images = mediaFiles.filter(file => {
+            const lower = file.toLowerCase();
+            return lower.endsWith('.jpg') || lower.endsWith('.jpeg') || lower.endsWith('.png') || lower.endsWith('.webp');
+        });
+        
+        // Si no hay contenido, mostrar mensaje
+        if (videos.length === 0 && images.length === 0) {
+            container.innerHTML = '<p style="text-align: center; padding: 2rem; color: #666;">No hay contenido disponible</p>';
             return;
         }
         
-        container.innerHTML = videos.map((video, index) => `
-            <div class="gallery-thumbnail fade-in" style="animation-delay: ${index * 0.05}s">
-                <video 
-                    src="${video}" 
-                    class="video-thumbnail"
-                    style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; background: #000;"
-                    muted
-                    loop
-                    playsinline
-                    preload="metadata"
-                    onloadedmetadata="this.currentTime = 0.1"
-                    onmouseover="this.play()" 
-                    onmouseout="this.pause(); this.currentTime=0.1;"
-                    ontouchstart="this.play()"
-                    onclick="window.open('${video}', '_blank')">
-                    Tu navegador no soporta videos
-                </video>
-            </div>
-        `).join('');
+        let html = '';
+        let index = 0;
         
-        // Cargar primer frame en iOS después de renderizar
+        // Renderizar imágenes primero
+        images.forEach((img) => {
+            html += `
+                <div class="gallery-thumbnail fade-in" style="animation-delay: ${index * 0.05}s">
+                    <img src="${img}" 
+                         alt="Leipomo & Kahvilla - Imagen ${index + 1}" 
+                         loading="lazy"
+                         onerror="handleImageError(this, 'assets/images/placeholder.svg')"
+                         onclick="imageGallery.openLightbox('leipomo', ${index})">
+                </div>
+            `;
+            index++;
+        });
+        
+        // Renderizar videos después
+        videos.forEach((video) => {
+            html += `
+                <div class="gallery-thumbnail fade-in" style="animation-delay: ${index * 0.05}s">
+                    <video 
+                        src="${video}" 
+                        class="video-thumbnail"
+                        style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; background: #000;"
+                        muted
+                        loop
+                        playsinline
+                        preload="metadata"
+                        onloadedmetadata="this.currentTime = 0.1"
+                        onmouseover="this.play()" 
+                        onmouseout="this.pause(); this.currentTime=0.1;"
+                        ontouchstart="this.play()"
+                        onclick="window.open('${video}', '_blank')">
+                        Tu navegador no soporta videos
+                    </video>
+                </div>
+            `;
+            index++;
+        });
+        
+        container.innerHTML = html;
+        
+        // Cargar primer frame de videos en iOS después de renderizar
         setTimeout(() => {
             const videoElements = container.querySelectorAll('video');
             videoElements.forEach(video => {
                 video.load();
-                // Intentar mostrar el primer frame
                 video.currentTime = 0.1;
             });
         }, 100);

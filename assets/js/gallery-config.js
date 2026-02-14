@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GALLERY CONFIGURATION
  * Lista de imágenes para cada galería
  */
@@ -27,6 +27,15 @@ const GALLERY_IMAGES = {
     ],
 
     leipomo: [
+        // Imágenes de la tienda
+        '20230428_130831.png',
+        '20230429_092109.png',
+        '20230513_175657.png',
+        '20230506_085815.png',
+        '20230519_150338.png',
+        '20230610_110553.jpg',
+        '147475295_121462209868776_6016216982672861972_n.jpg',
+        // Videos
         'amherkut_reel_1_27_2025_6_17_13 PM3554848386214889185.mp4',
         'amherkut_reel_1_27_2025_6_20_50 PM3554850618045899443.mp4',
         'amherkut_reel_2_8_2025_2_35_08 AM3563071468113069807.mp4',
