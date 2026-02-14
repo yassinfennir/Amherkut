@@ -933,7 +933,7 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease, opacity 0.3s ease;
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
             image-rendering: high-quality;
@@ -941,6 +941,18 @@
             backface-visibility: hidden;
             transform: translateZ(0) scale(1.2);
             filter: brightness(1) contrast(1.05) saturate(1.1);
+            opacity: 0;
+            animation: fadeInImage 0.5s ease forwards;
+        }
+        
+        @keyframes fadeInImage {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .category-image[src]:not([src=""]) {
+            opacity: 1;
         }
         
         .category-card:hover .category-image {
