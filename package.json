@@ -4,6 +4,7 @@
   "description": "Amherkut - Premium Käsityöleipomo Helsingissä - Static HTML Website",
   "private": true,
   "scripts": {
-    "start": "echo 'This is a static HTML site. Open index.html in a browser or use a local server.'"
+    "start": "echo 'This is a static HTML site. No build needed. Open index.html in a browser.'",
+    "build": "echo 'No build needed - this is a static HTML site. Netlify should use empty build command.'"
   }
 }
