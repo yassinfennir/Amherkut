@@ -6,11 +6,11 @@
   # No necesita npm install ni build process
 
 # Configuración de redirecciones
-# Permitir acceso directo a archivos HTML de productos
+# productos.html eliminado: redirigir a galería
 [[redirects]]
   from = "/productos.html"
-  to = "/productos.html"
-  status = 200
+  to = "/productos-galeria.html"
+  status = 301
 
 [[redirects]]
   from = "/productos-simple.html"

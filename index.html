@@ -42,10 +42,16 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/icons/amherkut-logo-original.jpg">
     <link rel="apple-touch-icon" href="assets/icons/amherkut-logo-original.jpg">
+    <link rel="stylesheet" href="assets/css/footer.css">
     
     <!-- Preload crítico para logos y fondo hero -->
     <link rel="preload" as="image" href="assets/icons/amherkut-logo-original.jpg" fetchpriority="high">
     <link rel="preload" as="image" href="assets/images/hero-tea-service.png" fetchpriority="high">
+    <!-- Preload categorías (Sweets, Bread y resto) para carga inmediata y siempre visible -->
+    <link rel="preload" as="image" href="photos/SWEET/Leivoset 1 beige.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="photos/Bread/Tous les pains beige.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="photos/FOOD/Karjalapiirakka beige.jpg" fetchpriority="low">
+    <link rel="preload" as="image" href="photos/DRINKS/u3829884585_Making_coffee_with_latte_art_shaped_like_a_heart__f9fc4b4c-3bd6-44a1-97a1-007769d252e8_1.png" fetchpriority="low">
     
     <!-- Schema.org Structured Data for Local Business -->
     <script type="application/ld+json">
@@ -894,7 +900,8 @@
             background: linear-gradient(145deg, #FFFFFF 0%, #FDF5F7 100%);
             box-shadow: 0 6px 24px rgba(196, 30, 58, 0.15),
                         inset 0 1px 0 rgba(255, 255, 255, 0.9);
-            transition: all 0.35s ease;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.3s ease, border-color 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -903,10 +910,11 @@
             height: 100%;
             overflow: hidden;
             border: 2px solid rgba(196, 30, 58, 0.12);
+            contain: layout paint;
         }
         
         .category-card:hover {
-            transform: scale(1.05) translateY(-4px);
+            transform: scale(1.04) translateY(-4px);
             box-shadow: 0 12px 40px rgba(196, 30, 58, 0.25),
                         0 0 0 2px var(--primary-red);
             border-color: var(--primary-red);
@@ -965,6 +973,8 @@
         .category-image-wrapper {
             width: 100%;
             flex: 1;
+            min-height: 180px;
+            aspect-ratio: 4 / 3;
             border-radius: 16px;
             overflow: hidden;
             background: linear-gradient(135deg, #FDF5F7 0%, #F8E8EC 100%);
@@ -972,19 +982,24 @@
             align-items: center;
             justify-content: center;
             border: 1px solid rgba(196, 30, 58, 0.08);
+            position: relative;
         }
         
         .category-image {
             width: 100%;
             height: 100%;
+            min-height: 180px;
             object-fit: cover;
             object-position: center center;
-            transition: transform 0.4s ease;
+            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             display: block;
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
         
         .category-card:hover .category-image {
-            transform: scale(1.05);
+            will-change: transform;
+            transform: scale(1.05) translateZ(0);
         }
         
         /* Responsive Categories */
@@ -1014,8 +1029,42 @@
         @media (max-width: 768px) {
             .categories-section {
                 padding: 4rem 0;
+                background: linear-gradient(180deg, #FFF 0%, #FDF5F7 100%);
+                backdrop-filter: none;
             }
             
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .category-card {
+                min-height: 280px;
+                padding: 1.25rem 0.75rem;
+            }
+            
+            .category-image-wrapper {
+                min-height: 200px;
+                flex: 1 1 auto;
+            }
+            
+            .category-image {
+                min-height: 200px;
+            }
+            
+            .category-tag {
+                font-size: 0.65rem;
+                padding: 0.3rem 0.55rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            .category-tag .category-tag-icon {
+                width: 10px;
+                height: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
             .categories-grid {
                 grid-template-columns: 1fr;
                 gap: 1.25rem;
@@ -1023,18 +1072,11 @@
             
             .category-card {
                 min-height: 300px;
-                padding: 1.5rem 1rem;
             }
             
-            .category-tag {
-                font-size: 0.65rem;
-                padding: 0.3rem 0.55rem;
-                margin-bottom: 0.9rem;
-            }
-            
-            .category-tag .category-tag-icon {
-                width: 10px;
-                height: 10px;
+            .category-image-wrapper,
+            .category-image {
+                min-height: 220px;
             }
         }
         
@@ -1635,309 +1677,7 @@
             transform: scale(1.1);
         }
         
-        /* ========================================
-           FOOTER - 2D LAYERED DESIGN
-           ======================================== */
-        
-        .footer {
-            position: relative;
-            color: var(--white);
-            padding: 5rem 0 0;
-            overflow-x: hidden;
-            overflow-y: hidden;
-            width: 100%;
-            margin: 0;
-        }
-        
-        /* Footer - Base Solid Color */
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, #8B0000 0%, #5C0000 100%);
-            z-index: 0;
-        }
-        
-        .footer::after {
-            display: none;
-        }
-        
-        /* Footer Content - New Layout */
-        .footer-content {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3rem;
-            padding: 4rem 2rem 3rem;
-            z-index: 1;
-        }
-        
-        /* Footer Brand - Logo Centered */
-        .footer-brand {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-            text-align: center;
-        }
-        
-        .footer-logo-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid rgba(255, 255, 255, 0.35);
-            transition: var(--transition);
-            position: relative;
-            z-index: 2;
-            background: white;
-            padding: 8px;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-            will-change: transform;
-        }
-        
-        .footer-logo-img:hover {
-            transform: scale(1.05);
-            border-color: rgba(255, 255, 255, 0.6);
-            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
-        }
-        
-        .footer-tagline {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
-            letter-spacing: 0.3px;
-            max-width: 400px;
-        }
-        
-        /* Footer Columns - Three Columns */
-        .footer-nav {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 4rem;
-            width: 100%;
-            max-width: 900px;
-        }
-        
-        .footer-nav-section {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        
-        .footer-nav-title {
-            font-size: 0.9rem;
-            font-weight: 800;
-            color: #E8A0B0;
-            margin-bottom: 1rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            position: relative;
-            padding-bottom: 0.75rem;
-        }
-        
-        /* Accent line under title */
-        .footer-nav-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background: linear-gradient(90deg, #D4AF37, transparent);
-            border-radius: 2px;
-        }
-        
-        .footer-contact-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-            margin-bottom: 0.75rem;
-        }
-        
-        .footer-contact-label {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 600;
-            letter-spacing: 0.3px;
-        }
-        
-        .footer-contact-value {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-        }
-        
-        .footer-contact-value a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-contact-value a:hover {
-            color: var(--white) !important;
-            -webkit-text-fill-color: var(--white);
-        }
-        
-        .footer-contact-link {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-        
-        .footer-contact-link:hover {
-            color: var(--white) !important;
-            -webkit-text-fill-color: var(--white);
-            transform: translateX(4px);
-        }
-        
-        /* Social Icons */
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-            margin-top: 0.5rem;
-        }
-        
-        .footer-social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid rgba(212, 175, 55, 0.3);
-            background: rgba(212, 175, 55, 0.1);
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .footer-social-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, #a8d5ff, #ffb3e6);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .footer-social-link:hover::before {
-            opacity: 1;
-        }
-        
-        .footer-social-link svg {
-            position: relative;
-            z-index: 1;
-            transition: transform 0.3s ease;
-            width: 24px;
-            height: 24px;
-        }
-        
-        .footer-social-link:hover {
-            border-color: transparent;
-            transform: translateY(-4px) scale(1.1);
-            box-shadow: 0 8px 20px rgba(232, 160, 176, 0.5);
-        }
-        
-        .footer-social-link:hover svg {
-            transform: scale(1.15);
-            color: var(--text-dark);
-            filter: brightness(0);
-        }
-        
-        /* Divider with Gradient */
-        .footer-divider {
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--rose), #E8A0B0, transparent);
-            margin: 2rem 0;
-            border-radius: 2px;
-        }
-        
-        /* Layer 5: Bottom Bar - Modern Full Width Footer */
-        .footer-bottom {
-            position: relative;
-            width: 100%;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            background: #3D0000;
-            backdrop-filter: blur(10px);
-            padding: 0;
-            z-index: 2;
-            box-sizing: border-box;
-            margin-top: 2rem;
-        }
-        
-        .footer-bottom-content {
-            max-width: var(--container-max-width);
-            margin: 0 auto;
-            padding: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-        
-        .footer-copyright {
-            font-size: 0.85rem;
-            color: #888;
-            letter-spacing: 0.3px;
-            margin: 0;
-        }
-        
-        .footer-legal {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .footer-legal-link {
-            font-size: 0.85rem;
-            color: #666;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            padding: 0.25rem 0;
-        }
-        
-        .footer-legal-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #a8d5ff, #ffb3e6);
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 1px;
-        }
-        
-        .footer-legal-link:hover {
-            color: #E8A0B0;
-            transform: translateY(-1px);
-        }
-        
-        .footer-legal-link:hover::after {
-            width: 100%;
-        }
-        
-        .footer-legal-separator {
-            color: #666;
-            font-size: 0.75rem;
-            opacity: 0.5;
-        }
+        /* Footer: mismo que productos-galeria. Estilos en assets/css/footer.css */
         
         /* ========================================
            RESPONSIVE DESIGN
@@ -2063,36 +1803,6 @@
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .footer-nav {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-            
-            .footer-bottom-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
-                padding: 1.5rem 1rem;
-            }
-            
-            .footer-copyright {
-                font-size: 0.8rem;
-            }
-            
-            .footer-legal {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .footer-legal-link {
-                font-size: 0.8rem;
-            }
         }
         
         @media (max-width: 480px) {
@@ -2110,31 +1820,6 @@
             
             .cta-title {
                 font-size: 1.5rem;
-            }
-            
-            .footer-content {
-                padding: 3rem 1.5rem 2rem;
-                gap: 2rem;
-            }
-
-            .footer-nav {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-                max-width: 100%;
-            }
-
-            .footer-logo-img {
-                width: 100px;
-                height: 100px;
-            }
-
-            .footer-divider {
-                margin: 1.5rem 0;
-            }
-            
-            .footer-legal {
-                flex-direction: column;
-                gap: 0.5rem;
             }
         }
         
@@ -3629,7 +3314,7 @@
                         </a>
                     </div>
                 </li>
-                <li><a href="#quick-contact" class="btn btn-order-now">Tilaa Nyt</a></li>
+                <li><a href="mailto:amherkut.hakis@gmail.com" class="btn btn-order-now">Tilaa Nyt</a></li>
             </ul>
             
             <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -3657,7 +3342,7 @@
                     <p>MAKUJA, JOTKA KERTOVAT TARINAA</p>
                     <div class="hero-buttons">
                         <a href="productos-galeria.html" class="btn btn-primary">Tutustu Valikoimaan</a>
-                        <a href="#quick-contact" class="btn btn-secondary">Tilaa Nyt</a>
+                        <a href="mailto:amherkut.hakis@gmail.com" class="btn btn-secondary">Tilaa Nyt</a>
                     </div>
                 </div>
             </div>
@@ -3674,7 +3359,7 @@
                         <span class="category-title">COMIDA</span>
                     </span>
                     <div class="category-image-wrapper">
-                        <img src="photos/FOOD/Karjalapiirakka beige.jpg" alt="Comida - Karjalapiirakka tradicional" class="category-image" loading="lazy" decoding="async" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
+                        <img src="photos/FOOD/Karjalapiirakka beige.jpg" alt="Comida - Karjalapiirakka tradicional" class="category-image" loading="eager" decoding="async" fetchpriority="low" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
                     </div>
                 </a>
                 
@@ -3684,7 +3369,7 @@
                         <span class="category-title">DRINKS</span>
                     </span>
                     <div class="category-image-wrapper">
-                        <img src="photos/DRINKS/u3829884585_Making_coffee_with_latte_art_shaped_like_a_heart__f9fc4b4c-3bd6-44a1-97a1-007769d252e8_1.png" alt="Drinks - Bebidas artesanales" class="category-image" loading="lazy" decoding="async" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
+                        <img src="photos/DRINKS/u3829884585_Making_coffee_with_latte_art_shaped_like_a_heart__f9fc4b4c-3bd6-44a1-97a1-007769d252e8_1.png" alt="Drinks - Bebidas artesanales" class="category-image" loading="eager" decoding="async" fetchpriority="low" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
                     </div>
                 </a>
                 
@@ -3694,7 +3379,7 @@
                         <span class="category-title">SWEETS</span>
                     </span>
                     <div class="category-image-wrapper">
-                        <img src="photos/SWEET/Leivoset 1 beige.jpg" alt="Sweets - Chocolates artesanales" class="category-image" loading="lazy" decoding="async" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
+                        <img src="photos/SWEET/Leivoset 1 beige.jpg" alt="Sweets - Chocolates artesanales" class="category-image" loading="eager" decoding="async" fetchpriority="high" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
                     </div>
                 </a>
                 
@@ -3704,7 +3389,7 @@
                         <span class="category-title">BREAD</span>
                     </span>
                     <div class="category-image-wrapper">
-                        <img src="photos/Bread/Tous les pains beige.jpg" alt="Bread - Variedad de panes artesanales" class="category-image" loading="lazy" decoding="async" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
+                        <img src="photos/Bread/Tous les pains beige.jpg" alt="Bread - Variedad de panes artesanales" class="category-image" loading="eager" decoding="async" fetchpriority="high" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
                     </div>
                 </a>
             </div>
@@ -4001,77 +3686,59 @@
         <div class="lightbox-counter" id="lightbox-counter"></div>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer único: mismo en todas las páginas. Estilos en assets/css/footer.css -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <!-- Logo y descripción centrados -->
-                <div class="footer-brand">
-                    <img src="assets/icons/amherkut-logo-original.jpg" alt="Amherkut logo" class="footer-logo-img" loading="eager" decoding="sync" onerror="handleImageError(this, 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSI2MCIgY3k9IjYwIiByPSI2MCIgZmlsbD0iIzZCNEQyMyIvPjx0ZXh0IHg9IjYwIiB5PSI3MCIgZm9udC1zaXplPSIxOCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC13ZWlnaHQ9ImJvbGQiPkFNIEhFUktVVDwvdGV4dD48L3N2Zz4=')" />
-                    <p class="footer-tagline"footer.tagline">Premium Käsityökahvi Helsingissä</p>
-                </div>
-                
-                <!-- Línea divisora con gradiente -->
-                <div class="footer-divider"></div>
-                
-                <!-- Tres columnas -->
-                <div class="footer-nav">
-                    <div class="footer-nav-section">
-                        <h5 class="footer-nav-title">Toimipisteet</h5>
-                        <div class="footer-contact-item">
-                            <span class="footer-contact-label">Hakaniemen Myymälä</span>
-                            <span class="footer-contact-value">Hämeentie 1a, 00530 Helsinki</span>
-                        </div>
-                        <div class="footer-contact-item">
-                            <span class="footer-contact-label">Leipomo & Kahvilla</span>
-                            <span class="footer-contact-value">Niittylänpolku 7, 00620 Helsinki</span>
-                        </div>
-                    </div>
-                    
-                    <div class="footer-nav-section">
-                        <h5 class="footer-nav-title">Yhteystiedot</h5>
-                        <div class="footer-contact-item">
-                            <a href="tel:+358504059862" class="footer-contact-link">+358 50 405 9862</a>
-                        </div>
-                        <div class="footer-contact-item">
-                            <a href="mailto:amherkut.hakis@gmail.com" class="footer-contact-link">amherkut.hakis@gmail.com</a>
-                        </div>
-                    </div>
-                    
-                    <div class="footer-nav-section">
-                        <h5 class="footer-nav-title">Seuraa Meitä</h5>
-                        <div class="footer-social">
-                            <a href="https://www.facebook.com/people/Amherkut/61570069226598/" class="footer-social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                                </svg>
-                            </a>
-                            <a href="https://www.instagram.com/amherkut/?hl=en" class="footer-social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                                </svg>
-                            </a>
-                            <a href="https://www.tiktok.com/@amherkut" class="footer-social-link" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="index.html"><img src="assets/icons/amherkut-logo-original.jpg" alt="Amherkut" class="footer-logo-img" loading="lazy" /></a>
+                <p class="footer-tagline">Premium Käsityökahvi Helsingissä</p>
             </div>
-        </div>
-        
-        <!-- Footer Bottom - Full Width Bar -->
-        <div class="footer-bottom">
-            <div class="footer-bottom-content">
+            <nav class="footer-nav">
+                <div class="footer-nav-section">
+                    <h5 class="footer-nav-title">Toimipisteet</h5>
+                    <div class="footer-contact-item">
+                        <span class="footer-contact-label">Hakaniemen Myymälä</span>
+                        <span class="footer-contact-value">Hämeentie 1a, 00530 Helsinki</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <span class="footer-contact-label">Leipomo & Kahvilla</span>
+                        <span class="footer-contact-value">Niittylänpolku 7, 00620 Helsinki</span>
+                    </div>
+                </div>
+                <div class="footer-nav-section">
+                    <h5 class="footer-nav-title">Yhteystiedot</h5>
+                    <div class="footer-contact-item">
+                        <a href="tel:+358504059862" class="footer-contact-link">+358 50 405 9862</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <a href="mailto:amherkut.hakis@gmail.com" class="footer-contact-link">amherkut.hakis@gmail.com</a>
+                    </div>
+                </div>
+                <div class="footer-nav-section">
+                    <h5 class="footer-nav-title">Seuraa Meitä</h5>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/people/Amherkut/61570069226598/" class="footer-social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/amherkut/?hl=en" class="footer-social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@amherkut" class="footer-social-link" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
                     <p class="footer-copyright">&copy; 2025 Amherkut. Kaikki oikeudet pidätetään.</p>
-                <div class="footer-legal">
-                    <a href="#" class="footer-legal-link">Tietosuoja</a>
-                    <span class="footer-legal-separator">•</span>
-                    <a href="#" class="footer-legal-link">Ehdot</a>
-                    <span class="footer-legal-separator">•</span>
-                    <a href="#" class="footer-legal-link">Evästekäytäntö</a>
+                    <div class="footer-legal">
+                        <a href="#" class="footer-legal-link">Tietosuoja</a>
+                        <span class="footer-legal-separator">•</span>
+                        <a href="#" class="footer-legal-link">Ehdot</a>
+                        <span class="footer-legal-separator">•</span>
+                        <a href="#" class="footer-legal-link">Evästekäytäntö</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -4096,7 +3763,9 @@
         // Preload de logos críticos
         function preloadCriticalImages() {
             const criticalImages = [
-                'assets/icons/amherkut-logo-original.jpg'
+                'assets/icons/amherkut-logo-original.jpg',
+                'photos/SWEET/Leivoset 1 beige.jpg',
+                'photos/Bread/Tous les pains beige.jpg'
             ];
             
             criticalImages.forEach(src => {
@@ -4105,6 +3774,14 @@
                 link.as = 'image';
                 link.href = src;
                 document.head.appendChild(link);
+            });
+        }
+        
+        function decodeCategoryImages() {
+            document.querySelectorAll('.category-image').forEach(function(img) {
+                if (img.complete && img.naturalWidth) {
+                    img.decode && img.decode().catch(function() {});
+                }
             });
         }
         
@@ -4166,10 +3843,12 @@
             document.addEventListener('DOMContentLoaded', function() {
                 preloadCriticalImages();
                 optimizeImages();
+                decodeCategoryImages();
             });
         } else {
             preloadCriticalImages();
             optimizeImages();
+            decodeCategoryImages();
         }
         
         // ========================================
