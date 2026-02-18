@@ -34,17 +34,12 @@ class ImageGalleryManager {
     async loadImageArrays() {
         // Usar configuración global GALLERY_IMAGES
         if (typeof GALLERY_IMAGES !== 'undefined') {
-            this.images.hakaniemet = this.generateImagePaths('assets/images/hakaniemet', GALLERY_IMAGES.hakaniemet);
-            // Leipomo puede tener imágenes en la carpeta principal o en leipomo
-            const leipomoImages = GALLERY_IMAGES.leipomo.filter(f => {
-                const lower = f.toLowerCase();
-                return lower.endsWith('.jpg') || lower.endsWith('.jpeg') || lower.endsWith('.png') || lower.endsWith('.webp');
-            });
-            const leipomoVideos = GALLERY_IMAGES.leipomo.filter(f => f.toLowerCase().endsWith('.mp4'));
-            this.images.leipomo = [
-                ...this.generateImagePaths('assets/images', leipomoImages),
-                ...this.generateImagePaths('assets/images/leipomo', leipomoVideos)
-            ];
+            // Hakaniemet (tienda de Mohamed, izquierda): imágenes + videos desde la misma carpeta
+            const hakaniemetFiles = GALLERY_IMAGES.hakaniemet || [];
+            this.images.hakaniemet = this.generateImagePaths('assets/images/hakaniemet', hakaniemetFiles);
+            // Leipomo (tienda de Nora, derecha): solo fotos y videos de la carpeta "nora 2" en la raíz del proyecto
+            const leipomoFiles = GALLERY_IMAGES.leipomo || [];
+            this.images.leipomo = this.generateImagePaths('nora 2', leipomoFiles, true);
             this.images.food = this.generateImagePaths('PHOTOS/Food', GALLERY_IMAGES.food);
             this.images.bread = this.generateImagePaths('PHOTOS/Bread', GALLERY_IMAGES.bread);
             this.images.drinks = this.generateImagePaths('PHOTOS/Drinks', GALLERY_IMAGES.drinks);
@@ -52,80 +47,51 @@ class ImageGalleryManager {
         }
     }
 
-    generateImagePaths(folder, imageFiles = []) {
-        // Detectar si estamos en GitHub Pages
+    generateImagePaths(folder, imageFiles = [], allowExternalUrls = false) {
         const basePath = window.location.hostname.includes('github.io') ? '/Amherkut/' : './';
+        const encodedFolder = (folder || '').replace(/ /g, '%20');
         return imageFiles.map(img => {
-            // Codificar espacios y caracteres especiales en la URL
-            const encodedImg = img.replace(/ /g, '%20');
-            // Si la imagen ya tiene una ruta con subcarpetas (ej: "1/1.jpg"), no agregar folder
-            if (img.includes('/')) {
-                return `${basePath}${folder}/${encodedImg}`;
+            // URLs externas (https?) se usan tal cual para galería Leipomo
+            if (allowExternalUrls && (img.startsWith('http://') || img.startsWith('https://'))) {
+                return img;
             }
-            return `${basePath}${folder}/${encodedImg}`;
+            const encodedImg = img.replace(/ /g, '%20');
+            if (img.includes('/')) {
+                return `${basePath}${encodedFolder}/${encodedImg}`;
+            }
+            return `${basePath}${encodedFolder}/${encodedImg}`;
         });
     }
 
-    // Renderizar galería de Hakaniemet
+    shuffleArray(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    }
+
+    // Renderizar galería de Hakaniemet (tienda de Mohamed, izquierda): fotos y videos
     renderHakaniemetGallery(container) {
         if (!container) return;
         
         this.currentGallery = 'hakaniemet';
-        const images = this.images.hakaniemet;
+        const mediaFiles = this.images.hakaniemet || [];
         
-        container.innerHTML = images.map((img, index) => `
-            <div class="gallery-thumbnail fade-in" style="animation-delay: ${index * 0.05}s">
-                <img src="${img}" 
-                     alt="Hakaniemet Myymalá - Imagen ${index + 1}" 
-                     loading="lazy"
-                     onclick="imageGallery.openLightbox('hakaniemet', ${index})">
-            </div>
-        `).join('');
-    }
-
-    // Renderizar galería de Leipomo (videos e imágenes)
-    renderLeipomoGallery(container) {
-        if (!container) return;
-        
-        this.currentGallery = 'leipomo';
-        const mediaFiles = this.images.leipomo || [];
-        
-        // Separar videos e imágenes
-        const videos = mediaFiles.filter(file => file.toLowerCase().endsWith('.mp4'));
-        const images = mediaFiles.filter(file => {
-            const lower = file.toLowerCase();
-            return lower.endsWith('.jpg') || lower.endsWith('.jpeg') || lower.endsWith('.png') || lower.endsWith('.webp');
-        });
-        
-        // Si no hay contenido, mostrar mensaje
-        if (videos.length === 0 && images.length === 0) {
+        if (mediaFiles.length === 0) {
             container.innerHTML = '<p style="text-align: center; padding: 2rem; color: #666;">No hay contenido disponible</p>';
             return;
         }
         
-        let html = '';
-        let index = 0;
+        const isVideo = (file) => (file || '').toLowerCase().endsWith('.mp4');
         
-        // Renderizar imágenes primero
-        images.forEach((img) => {
-            html += `
-                <div class="gallery-thumbnail fade-in" style="animation-delay: ${index * 0.05}s">
-                    <img src="${img}" 
-                         alt="Leipomo & Kahvilla - Imagen ${index + 1}" 
-                         loading="lazy"
-                         onerror="handleImageError(this, 'assets/images/placeholder.svg')"
-                         onclick="imageGallery.openLightbox('leipomo', ${index})">
-                </div>
-            `;
-            index++;
-        });
-        
-        // Renderizar videos después
-        videos.forEach((video) => {
-            html += `
+        const html = mediaFiles.map((file, index) => {
+            if (isVideo(file)) {
+                return `
                 <div class="gallery-thumbnail fade-in" style="animation-delay: ${index * 0.05}s">
                     <video 
-                        src="${video}" 
+                        src="${file}" 
                         class="video-thumbnail"
                         style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; background: #000;"
                         muted
@@ -136,20 +102,83 @@ class ImageGalleryManager {
                         onmouseover="this.play()" 
                         onmouseout="this.pause(); this.currentTime=0.1;"
                         ontouchstart="this.play()"
-                        onclick="window.open('${video}', '_blank')">
+                        onclick="window.open('${file.replace(/'/g, "\\'")}', '_blank')">
                         Tu navegador no soporta videos
                     </video>
                 </div>
+                `;
+            }
+            return `
+            <div class="gallery-thumbnail fade-in" style="animation-delay: ${index * 0.05}s">
+                <img src="${file}" 
+                     alt="Hakaniemet Myymalá - Imagen ${index + 1}" 
+                     loading="lazy"
+                     onclick="imageGallery.openLightbox('hakaniemet', ${index})">
+            </div>
             `;
-            index++;
-        });
+        }).join('');
         
         container.innerHTML = html;
         
-        // Cargar primer frame de videos en iOS después de renderizar
         setTimeout(() => {
-            const videoElements = container.querySelectorAll('video');
-            videoElements.forEach(video => {
+            container.querySelectorAll('video').forEach(video => {
+                video.load();
+                video.currentTime = 0.1;
+            });
+        }, 100);
+    }
+
+    // Renderizar galería de Leipomo (tienda de Nora): mix de 20 fotos y videos en el orden mezclado
+    renderLeipomoGallery(container) {
+        if (!container) return;
+        
+        this.currentGallery = 'leipomo';
+        const mediaFiles = this.images.leipomo || [];
+        
+        if (mediaFiles.length === 0) {
+            container.innerHTML = '<p style="text-align: center; padding: 2rem; color: #666;">No hay contenido disponible</p>';
+            return;
+        }
+        
+        const isVideo = (file) => (file || '').toLowerCase().endsWith('.mp4');
+        
+        let html = mediaFiles.map((file, index) => {
+            if (isVideo(file)) {
+                return `
+                <div class="gallery-thumbnail fade-in" style="animation-delay: ${index * 0.05}s">
+                    <video 
+                        src="${file}" 
+                        class="video-thumbnail"
+                        style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; background: #000;"
+                        muted
+                        loop
+                        playsinline
+                        preload="metadata"
+                        onloadedmetadata="this.currentTime = 0.1"
+                        onmouseover="this.play()" 
+                        onmouseout="this.pause(); this.currentTime=0.1;"
+                        ontouchstart="this.play()"
+                        onclick="window.open('${file.replace(/'/g, "\\'")}', '_blank')">
+                        Tu navegador no soporta videos
+                    </video>
+                </div>
+                `;
+            }
+            return `
+                <div class="gallery-thumbnail fade-in" style="animation-delay: ${index * 0.05}s">
+                    <img src="${file}" 
+                         alt="Leipomo & Kahvilla - Imagen ${index + 1}" 
+                         loading="lazy"
+                         onerror="handleImageError(this, 'assets/images/placeholder.svg')"
+                         onclick="imageGallery.openLightbox('leipomo', ${index})">
+                </div>
+            `;
+        }).join('');
+        
+        container.innerHTML = html;
+        
+        setTimeout(() => {
+            container.querySelectorAll('video').forEach(video => {
                 video.load();
                 video.currentTime = 0.1;
             });

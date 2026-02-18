@@ -22,6 +22,11 @@
   to = "/productos-galeria.html"
   status = 200
 
+[[redirects]]
+  from = "/admin-fotos.html"
+  to = "/admin-fotos.html"
+  status = 200
+
 # Redirigir todo lo demás a index.html para SPA
 [[redirects]]
   from = "/*"

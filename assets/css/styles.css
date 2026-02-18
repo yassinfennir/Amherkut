@@ -2888,10 +2888,14 @@ a.nav-link::after { opacity: 0.8; }
 
 /* Focus styles for keyboard navigation */
 .btn:focus,
-.nav-link:focus,
 .hamburger:focus {
     outline: 2px solid var(--primary);
     outline-offset: 2px;
+}
+/* Sin rectángulo/outline en enlaces del header al hover o focus */
+.nav-link:focus,
+.header-social-link:focus {
+    outline: none;
 }
 
 /* ========================================

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📸 Administrar Fotos - Amherkut</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fff8e7 0%, #ffe4c4 50%, #ffd9a8 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #6B4423;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            text-align: center;
+            color: #8B6914;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 32px rgba(107, 68, 35, 0.15);
+            border: 2px solid rgba(201, 169, 97, 0.4);
+        }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .step:last-child { margin-bottom: 0; }
+        .step-num {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #C9A961, #D4B86A);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+        .step-text h3 {
+            color: #6B4423;
+            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+        }
+        .step-text p {
+            color: #555;
+            line-height: 1.6;
+        }
+        .folder-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin: 1rem 0;
+        }
+        @media (max-width: 480px) {
+            .folder-grid { grid-template-columns: 1fr; }
+        }
+        .folder-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.25rem;
+            background: linear-gradient(135deg, #f5efe6, #ebe0d0);
+            border: 2px dashed #C9A961;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1rem;
+            text-decoration: none;
+            color: #4A2C1A;
+        }
+        .folder-btn:hover {
+            background: linear-gradient(135deg, #ebe0d0, #e0d4c4);
+            border-color: #6B4423;
+            transform: scale(1.02);
+        }
+        .folder-btn span.emoji { font-size: 2rem; }
+        .big-btn {
+            display: block;
+            width: 100%;
+            padding: 1.25rem 2rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #C9A961, #D4B86A);
+            color: white;
+            box-shadow: 0 4px 16px rgba(201, 169, 97, 0.5);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(201, 169, 97, 0.6);
+        }
+        .btn-secondary {
+            background: white;
+            color: #6B4423;
+            border: 3px solid #C9A961;
+        }
+        .btn-secondary:hover {
+            background: #fef9f0;
+            border-color: #6B4423;
+        }
+        .code-box {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            font-family: 'Consolas', monospace;
+            font-size: 1rem;
+            margin: 0.5rem 0;
+            overflow-x: auto;
+        }
+        .tip {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .tip strong { color: #2e7d32; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6B4423;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Volver a la página</a>
+
+        <h1>📸 Administrar Fotos</h1>
+        <p class="subtitle">¡Súper fácil! En 2 pasos tendrás tus fotos en la web</p>
+
+        <!-- Paso 1 -->
+        <div class="card">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-text">
+                    <h3>🍞 Pon tus fotos en la carpeta correcta</h3>
+                    <p>Arrastra las fotos a la carpeta que corresponda. ¡Así de simple!</p>
+                </div>
+            </div>
+            <div class="folder-grid">
+                <a href="#" class="folder-btn" data-folder="photos/Bread" onclick="openFolder(event, 'photos/Bread')">
+                    <span class="emoji">🍞</span>
+                    <span>Pan (Bread)</span>
+                </a>
+                <a href="#" class="folder-btn" data-folder="photos/Food" onclick="openFolder(event, 'photos/Food')">
+                    <span class="emoji">🍽️</span>
+                    <span>Comida (Food)</span>
+                </a>
+                <a href="#" class="folder-btn" data-folder="photos/Drinks" onclick="openFolder(event, 'photos/Drinks')">
+                    <span class="emoji">☕</span>
+                    <span>Bebidas (Drinks)</span>
+                </a>
+                <a href="#" class="folder-btn" data-folder="photos/Sweet" onclick="openFolder(event, 'photos/Sweet')">
+                    <span class="emoji">🍰</span>
+                    <span>Dulces (Sweet)</span>
+                </a>
+            </div>
+            <div class="tip">
+                <strong>💡 Tip:</strong> Si la carpeta "photos" no existe, créala. Puedes tener "photos" o "PHOTOS" (mayúsculas).
+            </div>
+        </div>
+
+        <!-- Paso 2 -->
+        <div class="card">
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-text">
+                    <h3>🔄 Actualizar la página</h3>
+                    <p>Después de añadir tus fotos, ejecuta el actualizador para que aparezcan en la web.</p>
+                </div>
+            </div>
+
+            <p style="margin-bottom: 0.5rem; font-weight: 600;">Opción A - Más fácil (Windows):</p>
+            <button class="big-btn btn-primary" onclick="runBatch()">
+                📁 Hacer doble clic en "Actualizar Fotos.bat"
+            </button>
+            <p style="margin: 1rem 0 0.5rem; font-size: 0.9rem; color: #666;">
+                El archivo está en la carpeta del proyecto. ¡Busca "Actualizar Fotos.bat" y dale doble clic!
+            </p>
+
+            <p style="margin: 1.5rem 0 0.5rem; font-weight: 600;">Opción B - Desde la consola:</p>
+            <div class="code-box">npm run actualizar-fotos</div>
+            <button class="big-btn btn-secondary" onclick="copyCommand()">
+                📋 Copiar comando
+            </button>
+        </div>
+
+        <div class="card">
+            <h3 style="color: #6B4423; margin-bottom: 0.5rem;">📂 Estructura de carpetas</h3>
+            <pre style="background: #f5efe6; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.9rem;">
+amherkut/
+├── photos/          (o PHOTOS/)
+│   ├── Bread/       🍞 Panes
+│   ├── Food/        🍽️ Comida salada
+│   ├── Drinks/      ☕ Bebidas
+│   └── Sweet/       🍰 Dulces y pasteles
+├── Actualizar Fotos.bat   ← Doble clic aquí
+└── admin-fotos.html      ← Estás aquí
+            </pre>
+        </div>
+    </div>
+
+    <script>
+        function openFolder(e, folder) {
+            e.preventDefault();
+            alert('Abre la carpeta del proyecto en el Explorador de archivos y navega hasta: ' + folder + '\n\nRuta típica: C:\\Users\\TuUsuario\\...\\amherkut\\' + folder);
+        }
+
+        function copyCommand() {
+            const cmd = 'npm run actualizar-fotos';
+            navigator.clipboard.writeText(cmd).then(() => {
+                const btn = document.querySelector('.btn-secondary');
+                const orig = btn.innerHTML;
+                btn.innerHTML = '✅ ¡Copiado!';
+                setTimeout(() => { btn.innerHTML = orig; }, 2000);
+            });
+        }
+
+        function runBatch() {
+            alert('1. Abre la carpeta del proyecto (amherkut)\n2. Busca el archivo "Actualizar Fotos.bat"\n3. Haz doble clic en él\n\n¡Las fotos se actualizarán automáticamente!');
+        }
+    </script>
+</body>
+</html>

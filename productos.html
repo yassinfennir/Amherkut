@@ -11,6 +11,7 @@
     <meta name="keywords" content="leipomo helsinki, premium kahvila, käsityöleipomo, erikoiskahvi, amherkut, kahvi suomi, kahvila, laadukasta kahvia">
     <meta name="author" content="Amherkut - Premium Leipomo">
     <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://amherkut.fi/productos.html">
     
     <!-- Theme Color -->
     <meta name="theme-color" content="#6B4423">
@@ -26,6 +27,9 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/icons/amherkut-logo-original.jpg">
     <link rel="apple-touch-icon" href="assets/icons/amherkut-logo-original.jpg">
+    
+    <!-- Performance: preload critical assets -->
+    <link rel="preload" as="image" href="assets/icons/amherkut-logo-original.jpg" fetchpriority="high">
     
     <style>
         /* ========================================
@@ -52,11 +56,6 @@
             line-height: 1.6;
             color: var(--text-dark);
             background-color: var(--white);
-            background-image: url('assets/images/food/amherkut_post_4_5_2025_8_37_34 PM3604204273555467807.jpg');
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
             position: relative;
             overflow-x: hidden;
             margin: 0;
@@ -86,6 +85,8 @@
             --dark-brown: #4A2C1A;
             --beige: #E8DCC8;
             --gold: #C9A961;
+            --primary-red: #C41E3A;
+            --dark-red: #8B0000;
             --text-dark: #2B1810;
             --white: #FFFFFF;
             --shadow: 0 8px 24px rgba(107, 68, 35, 0.15);
@@ -219,6 +220,11 @@
             width: 100%;
         }
         
+        .nav-link:focus,
+        .header-social-link:focus {
+            outline: none;
+        }
+        
         .btn {
             display: inline-block;
             padding: 0.75rem 1.5rem;
@@ -255,50 +261,34 @@
                         0 4px 12px rgba(0, 0, 0, 0.3);
         }
         
-        /* Botón moderno para "Ordenar Ahora" en el header */
+        /* Botón "Tilaa Nyt" en el header: rojo, hover rojo más oscuro, animación limpia */
         .btn-order-now {
-            background: linear-gradient(135deg, var(--gold) 0%, #D4B86A 100%);
-            color: var(--text-dark);
+            background: var(--primary-red);
+            color: var(--white);
             padding: 0.75rem 1.75rem;
             font-weight: 700;
             font-size: 0.95rem;
             letter-spacing: 0.5px;
             border: none;
             border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(201, 169, 97, 0.4),
-                        0 2px 8px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 15px rgba(196, 30, 58, 0.35);
             position: relative;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: background 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
             text-decoration: none;
             display: inline-block;
         }
         
-        .btn-order-now::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-        
-        .btn-order-now:hover::before {
-            left: 100%;
-        }
-        
         .btn-order-now:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(201, 169, 97, 0.5),
-                        0 4px 12px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(135deg, #D4B86A 0%, var(--gold) 100%);
+            background: var(--dark-red);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.4);
         }
         
         .btn-order-now:active {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 15px rgba(201, 169, 97, 0.4);
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(139, 0, 0, 0.35);
         }
         
         /* Header Social Links */
@@ -333,121 +323,6 @@
         .header-social-link svg {
             width: 20px;
             height: 20px;
-        }
-        
-        /* Language Selector */
-        .language-selector {
-            position: relative;
-        }
-        
-        .language-toggle {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(107, 68, 35, 0.2);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            position: relative;
-        }
-        
-        .language-toggle:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: var(--gold);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(107, 68, 35, 0.15);
-        }
-        
-        .language-toggle svg:first-child {
-            color: var(--primary-brown);
-            transition: var(--transition);
-        }
-        
-        .language-toggle:hover svg:first-child {
-            color: var(--gold);
-        }
-        
-        .language-current {
-            font-weight: 700;
-            color: var(--text-dark);
-            min-width: 28px;
-            text-align: center;
-        }
-        
-        .language-arrow {
-            transition: transform 0.3s ease;
-            color: var(--text-dark);
-        }
-        
-        .language-toggle[aria-expanded="true"] .language-arrow {
-            transform: rotate(180deg);
-        }
-        
-        .language-dropdown {
-            position: absolute;
-            top: calc(100% + 0.5rem);
-            right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(107, 68, 35, 0.1);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(107, 68, 35, 0.2);
-            min-width: 180px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 10001;
-            overflow: hidden;
-            padding: 0.5rem;
-        }
-        
-        .language-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .language-option {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 1rem;
-            background: transparent;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: var(--transition);
-            text-align: left;
-            font-size: 0.95rem;
-            color: var(--text-dark);
-        }
-        
-        .language-option:hover {
-            background: linear-gradient(90deg, rgba(168, 213, 255, 0.1), rgba(255, 179, 230, 0.1));
-            transform: translateX(4px);
-        }
-        
-        .language-option.active {
-            background: linear-gradient(90deg, rgba(168, 213, 255, 0.2), rgba(255, 179, 230, 0.2));
-            font-weight: 600;
-        }
-        
-        .language-flag {
-            font-size: 1.5rem;
-            line-height: 1;
-        }
-        
-        .language-name {
-            flex: 1;
-            font-weight: 500;
         }
         
         .hamburger {
@@ -652,30 +527,6 @@
                 display: flex;
             }
             
-            .language-toggle {
-                padding: 0.5rem 0.75rem;
-                font-size: 0.85rem;
-            }
-            
-            .language-current {
-                min-width: 24px;
-                font-size: 0.85rem;
-            }
-            
-            .language-dropdown {
-                right: auto;
-                left: 50%;
-                transform: translateX(-50%) translateY(-10px);
-                min-width: 160px;
-            }
-            
-            .language-dropdown.active {
-                transform: translateX(-50%) translateY(0);
-            }
-            
-            .nav-menu .language-selector {
-                margin: 1rem 0;
-            }
             
             .products-hero h1 {
                 font-size: 2.5rem;
@@ -1288,7 +1139,7 @@
     <header class="header" id="header">
         <nav class="nav">
             <a href="index.html#home" class="logo">
-                <img src="assets/icons/amherkut-logo-original.jpg" alt="Amherkut logo" />
+                <img src="assets/icons/amherkut-logo-original.jpg" alt="Amherkut logo" width="70" height="70" fetchpriority="high" decoding="async" />
             </a>
             
             <ul class="nav-menu" id="nav-menu">
@@ -1296,39 +1147,6 @@
                 <li><a href="productos.html" class="nav-link active" data-translate="nav.products">Tuotteet</a></li>
                 <li><a href="index.html#about" class="nav-link" data-translate="nav.about">Tietoa meistä</a></li>
                 <li><a href="index.html#quick-contact" class="nav-link" data-translate="nav.contact">Yhteystiedot</a></li>
-                <li>
-                    <div class="language-selector">
-                        <button class="language-toggle" id="language-toggle" aria-label="Vaihda kieltä" data-translate-aria="nav.language" aria-expanded="false">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="2" y1="12" x2="22" y2="12"></line>
-                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                            </svg>
-                            <span class="language-current" id="language-current">🇫🇮 FI</span>
-                            <svg class="language-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </button>
-                        <div class="language-dropdown" id="language-dropdown">
-                            <button class="language-option" data-lang="es" data-code="ES">
-                                <span class="language-flag">🇪🇸</span>
-                                <span class="language-name">Español</span>
-                            </button>
-                            <button class="language-option" data-lang="en" data-code="EN">
-                                <span class="language-flag">🇬🇧</span>
-                                <span class="language-name">English</span>
-                            </button>
-                            <button class="language-option" data-lang="fi" data-code="FI">
-                                <span class="language-flag">🇫🇮</span>
-                                <span class="language-name">Suomi</span>
-                            </button>
-                            <button class="language-option" data-lang="sv" data-code="SV">
-                                <span class="language-flag">🇸🇪</span>
-                                <span class="language-name">Svenska</span>
-                            </button>
-                        </div>
-                    </div>
-                </li>
                 <li>
                     <div class="header-social-links">
                         <a href="https://www.facebook.com/people/Amherkut/61570069226598/" class="header-social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
@@ -1375,7 +1193,7 @@
             <div class="products-grid">
                 <div class="product-card" data-product-id="bread-1" data-images="photos/Bread/20250627213608-9bce7cef.png">
                     <div class="product-image-wrapper">
-                        <img src="photos/Bread/20250627213608-9bce7cef.png" alt="bcecef" class="product-image">
+                        <img src="photos/Bread/20250627213608-9bce7cef.png" alt="bcecef" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1384,7 +1202,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="bread-2" data-images="photos/Bread/20250702110728-5f0dcbc8.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/Bread/20250702110728-5f0dcbc8.jpg" alt="fdcbc" class="product-image">
+                        <img src="photos/Bread/20250702110728-5f0dcbc8.jpg" alt="fdcbc" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1393,7 +1211,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="bread-3" data-images="photos/Bread/20250702111540-7ad99697.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/Bread/20250702111540-7ad99697.jpg" alt="ad" class="product-image">
+                        <img src="photos/Bread/20250702111540-7ad99697.jpg" alt="ad" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1402,7 +1220,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="bread-4" data-images="photos/Bread/Crakers beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/Bread/Crakers beige.jpg" alt="Crakers beige" class="product-image">
+                        <img src="photos/Bread/Crakers beige.jpg" alt="Crakers beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1411,7 +1229,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="bread-5" data-images="photos/Bread/Croissant beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/Bread/Croissant beige.jpg" alt="Croissant beige" class="product-image">
+                        <img src="photos/Bread/Croissant beige.jpg" alt="Croissant beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1420,7 +1238,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="bread-6" data-images="photos/Bread/Les pains beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/Bread/Les pains beige.jpg" alt="Les pains beige" class="product-image">
+                        <img src="photos/Bread/Les pains beige.jpg" alt="Les pains beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1429,7 +1247,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="bread-7" data-images="photos/Bread/Pain rond beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/Bread/Pain rond beige.jpg" alt="Pain rond beige" class="product-image">
+                        <img src="photos/Bread/Pain rond beige.jpg" alt="Pain rond beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1438,7 +1256,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="bread-8" data-images="photos/Bread/Pains en serie beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/Bread/Pains en serie beige.jpg" alt="Pains en serie beige" class="product-image">
+                        <img src="photos/Bread/Pains en serie beige.jpg" alt="Pains en serie beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1447,7 +1265,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="bread-9" data-images="photos/Bread/Pains fond beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/Bread/Pains fond beige.jpg" alt="Pains fond beige" class="product-image">
+                        <img src="photos/Bread/Pains fond beige.jpg" alt="Pains fond beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1456,7 +1274,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="bread-10" data-images="photos/Bread/Pains groupés avec fond gris.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/Bread/Pains groupés avec fond gris.jpg" alt="Pains groupés avec fond gris" class="product-image">
+                        <img src="photos/Bread/Pains groupés avec fond gris.jpg" alt="Pains groupés avec fond gris" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1465,7 +1283,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="bread-11" data-images="photos/Bread/Ruisleipä beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/Bread/Ruisleipä beige.jpg" alt="Ruisleipä beige" class="product-image">
+                        <img src="photos/Bread/Ruisleipä beige.jpg" alt="Ruisleipä beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1474,7 +1292,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="bread-12" data-images="photos/Bread/Tous les pains beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/Bread/Tous les pains beige.jpg" alt="Tous les pains beige" class="product-image">
+                        <img src="photos/Bread/Tous les pains beige.jpg" alt="Tous les pains beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1496,7 +1314,7 @@
             <div class="products-grid">
                 <div class="product-card" data-product-id="drinks-13" data-images="photos/DRINKS/u3829884585_lifestyle_image_of_espresso_at_home_--ar_21_--sty_2f05ab05-dded-4e06-ae09-e7ea15735558_2.png">
                     <div class="product-image-wrapper">
-                        <img src="photos/DRINKS/u3829884585_lifestyle_image_of_espresso_at_home_--ar_21_--sty_2f05ab05-dded-4e06-ae09-e7ea15735558_2.png" alt="U lifestyle image of espresso at home   ar    sty fab dded e ae eea" class="product-image">
+                        <img src="photos/DRINKS/u3829884585_lifestyle_image_of_espresso_at_home_--ar_21_--sty_2f05ab05-dded-4e06-ae09-e7ea15735558_2.png" alt="U lifestyle image of espresso at home   ar    sty fab dded e ae eea" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1505,7 +1323,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="drinks-14" data-images="photos/DRINKS/u3829884585_Making_coffee_with_latte_art_shaped_like_a_heart__f9fc4b4c-3bd6-44a1-97a1-007769d252e8_1.png">
                     <div class="product-image-wrapper">
-                        <img src="photos/DRINKS/u3829884585_Making_coffee_with_latte_art_shaped_like_a_heart__f9fc4b4c-3bd6-44a1-97a1-007769d252e8_1.png" alt="U Making coffee with latte art shaped like a heart  ffcbc bd a a de" class="product-image">
+                        <img src="photos/DRINKS/u3829884585_Making_coffee_with_latte_art_shaped_like_a_heart__f9fc4b4c-3bd6-44a1-97a1-007769d252e8_1.png" alt="U Making coffee with latte art shaped like a heart  ffcbc bd a a de" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1514,7 +1332,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="drinks-15" data-images="photos/DRINKS/u3829884585_Product_photography_of_a_tall_glass_of_americano__7fe54362-81e4-421d-ad03-3ee71fd28f9c_0.png">
                     <div class="product-image-wrapper">
-                        <img src="photos/DRINKS/u3829884585_Product_photography_of_a_tall_glass_of_americano__7fe54362-81e4-421d-ad03-3ee71fd28f9c_0.png" alt="U Product photography of a tall glass of americano  fe e d ad eefdfc" class="product-image">
+                        <img src="photos/DRINKS/u3829884585_Product_photography_of_a_tall_glass_of_americano__7fe54362-81e4-421d-ad03-3ee71fd28f9c_0.png" alt="U Product photography of a tall glass of americano  fe e d ad eefdfc" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1523,7 +1341,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="drinks-16" data-images="photos/DRINKS/u3829884585_Steaming_chai_tea_being_poured_into_a_transparent_d605f895-c3ce-45fb-bb9e-4291e1826c0a_0 (1).png">
                     <div class="product-image-wrapper">
-                        <img src="photos/DRINKS/u3829884585_Steaming_chai_tea_being_poured_into_a_transparent_d605f895-c3ce-45fb-bb9e-4291e1826c0a_0 (1).png" alt="U Steaming chai tea being poured into a transparent df cce fb bbe eca  ()" class="product-image">
+                        <img src="photos/DRINKS/u3829884585_Steaming_chai_tea_being_poured_into_a_transparent_d605f895-c3ce-45fb-bb9e-4291e1826c0a_0 (1).png" alt="U Steaming chai tea being poured into a transparent df cce fb bbe eca  ()" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1545,7 +1363,7 @@
             <div class="products-grid">
                 <div class="product-card" data-product-id="food-17" data-images="photos/FOOD/Carré beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/FOOD/Carré beige.jpg" alt="Carré beige" class="product-image">
+                        <img src="photos/FOOD/Carré beige.jpg" alt="Carré beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1554,7 +1372,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="food-18" data-images="photos/FOOD/Karjalapiirakka beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/FOOD/Karjalapiirakka beige.jpg" alt="Karjalapiirakka beige" class="product-image">
+                        <img src="photos/FOOD/Karjalapiirakka beige.jpg" alt="Karjalapiirakka beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1563,7 +1381,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="food-19" data-images="photos/FOOD/Petits pains 3.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/FOOD/Petits pains 3.jpg" alt="Petits pains" class="product-image">
+                        <img src="photos/FOOD/Petits pains 3.jpg" alt="Petits pains" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1572,7 +1390,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="food-20" data-images="photos/FOOD/Piirakat 1beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/FOOD/Piirakat 1beige.jpg" alt="Piirakat beige" class="product-image">
+                        <img src="photos/FOOD/Piirakat 1beige.jpg" alt="Piirakat beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1581,7 +1399,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="food-21" data-images="photos/FOOD/Piirakat 3 beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/FOOD/Piirakat 3 beige.jpg" alt="Piirakat  beige" class="product-image">
+                        <img src="photos/FOOD/Piirakat 3 beige.jpg" alt="Piirakat  beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1590,7 +1408,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="food-22" data-images="photos/FOOD/Ronds beiges.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/FOOD/Ronds beiges.jpg" alt="Ronds beiges" class="product-image">
+                        <img src="photos/FOOD/Ronds beiges.jpg" alt="Ronds beiges" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1599,7 +1417,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="food-23" data-images="photos/FOOD/Triangle beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/FOOD/Triangle beige.jpg" alt="Triangle beige" class="product-image">
+                        <img src="photos/FOOD/Triangle beige.jpg" alt="Triangle beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1621,7 +1439,7 @@
             <div class="products-grid">
                 <div class="product-card" data-product-id="sweet-24" data-images="photos/SWEET/20250627213603-6be1974d.png">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250627213603-6be1974d.png" alt="bed" class="product-image">
+                        <img src="photos/SWEET/20250627213603-6be1974d.png" alt="bed" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1630,7 +1448,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-25" data-images="photos/SWEET/20250627213604-5ee4b738.png">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250627213604-5ee4b738.png" alt="eeb" class="product-image">
+                        <img src="photos/SWEET/20250627213604-5ee4b738.png" alt="eeb" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1639,7 +1457,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-26" data-images="photos/SWEET/20250627213604-61d230a0.png">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250627213604-61d230a0.png" alt="da" class="product-image">
+                        <img src="photos/SWEET/20250627213604-61d230a0.png" alt="da" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1648,7 +1466,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-27" data-images="photos/SWEET/20250627213604-c70be31d.png">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250627213604-c70be31d.png" alt="cbed" class="product-image">
+                        <img src="photos/SWEET/20250627213604-c70be31d.png" alt="cbed" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1657,7 +1475,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-28" data-images="photos/SWEET/20250627213605-3cc399a4.png">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250627213605-3cc399a4.png" alt="cca" class="product-image">
+                        <img src="photos/SWEET/20250627213605-3cc399a4.png" alt="cca" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1666,7 +1484,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-29" data-images="photos/SWEET/20250627213605-adbad953.png">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250627213605-adbad953.png" alt="adbad" class="product-image">
+                        <img src="photos/SWEET/20250627213605-adbad953.png" alt="adbad" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1675,7 +1493,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-30" data-images="photos/SWEET/20250627213606-223befd0.png">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250627213606-223befd0.png" alt="befd" class="product-image">
+                        <img src="photos/SWEET/20250627213606-223befd0.png" alt="befd" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1684,7 +1502,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-31" data-images="photos/SWEET/20250627213606-86f0d6bc.png">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250627213606-86f0d6bc.png" alt="fdbc" class="product-image">
+                        <img src="photos/SWEET/20250627213606-86f0d6bc.png" alt="fdbc" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1693,7 +1511,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-32" data-images="photos/SWEET/20250627213607-0015c272.png">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250627213607-0015c272.png" alt="c" class="product-image">
+                        <img src="photos/SWEET/20250627213607-0015c272.png" alt="c" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1702,7 +1520,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-33" data-images="photos/SWEET/20250627213607-e5a801bc.png">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250627213607-e5a801bc.png" alt="eabc" class="product-image">
+                        <img src="photos/SWEET/20250627213607-e5a801bc.png" alt="eabc" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1711,7 +1529,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-34" data-images="photos/SWEET/20250627213607-f95346ab.png">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250627213607-f95346ab.png" alt="fab" class="product-image">
+                        <img src="photos/SWEET/20250627213607-f95346ab.png" alt="fab" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1720,7 +1538,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-35" data-images="photos/SWEET/20250627213608-f52cfa5f.png">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250627213608-f52cfa5f.png" alt="fcfaf" class="product-image">
+                        <img src="photos/SWEET/20250627213608-f52cfa5f.png" alt="fcfaf" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1729,7 +1547,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-36" data-images="photos/SWEET/20250627213609-73a2c471.png">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250627213609-73a2c471.png" alt="ac" class="product-image">
+                        <img src="photos/SWEET/20250627213609-73a2c471.png" alt="ac" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1738,7 +1556,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-37" data-images="photos/SWEET/20250702111535-9e2529f1.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250702111535-9e2529f1.jpg" alt="ef" class="product-image">
+                        <img src="photos/SWEET/20250702111535-9e2529f1.jpg" alt="ef" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1747,7 +1565,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-38" data-images="photos/SWEET/20250702111554-95e70287.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250702111554-95e70287.jpg" alt="e" class="product-image">
+                        <img src="photos/SWEET/20250702111554-95e70287.jpg" alt="e" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1756,7 +1574,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-39" data-images="photos/SWEET/20250702121648-f290b313.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250702121648-f290b313.jpg" alt="fb" class="product-image">
+                        <img src="photos/SWEET/20250702121648-f290b313.jpg" alt="fb" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1765,7 +1583,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-40" data-images="photos/SWEET/20250702121655-b1eefdd6.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250702121655-b1eefdd6.jpg" alt="beefdd" class="product-image">
+                        <img src="photos/SWEET/20250702121655-b1eefdd6.jpg" alt="beefdd" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1774,7 +1592,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-41" data-images="photos/SWEET/20250702121710-73fdcfce.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250702121710-73fdcfce.jpg" alt="fdcfce" class="product-image">
+                        <img src="photos/SWEET/20250702121710-73fdcfce.jpg" alt="fdcfce" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1783,7 +1601,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-42" data-images="photos/SWEET/20250702121715-cbff3fd2.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250702121715-cbff3fd2.jpg" alt="cbfffd" class="product-image">
+                        <img src="photos/SWEET/20250702121715-cbff3fd2.jpg" alt="cbfffd" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1792,7 +1610,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-43" data-images="photos/SWEET/20250706215157-821adf8b.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250706215157-821adf8b.jpg" alt="adfb" class="product-image">
+                        <img src="photos/SWEET/20250706215157-821adf8b.jpg" alt="adfb" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1801,7 +1619,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-44" data-images="photos/SWEET/20250706215231-839b0b2b.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/20250706215231-839b0b2b.jpg" alt="bbb" class="product-image">
+                        <img src="photos/SWEET/20250706215231-839b0b2b.jpg" alt="bbb" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1810,7 +1628,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-45" data-images="photos/SWEET/Chocolats 1 beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/Chocolats 1 beige.jpg" alt="Chocolats  beige" class="product-image">
+                        <img src="photos/SWEET/Chocolats 1 beige.jpg" alt="Chocolats  beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1819,7 +1637,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-46" data-images="photos/SWEET/Chocolats beiger.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/Chocolats beiger.jpg" alt="Chocolats beiger" class="product-image">
+                        <img src="photos/SWEET/Chocolats beiger.jpg" alt="Chocolats beiger" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1828,7 +1646,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-47" data-images="photos/SWEET/Croissant aux amandes beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/Croissant aux amandes beige.jpg" alt="Croissant aux amandes beige" class="product-image">
+                        <img src="photos/SWEET/Croissant aux amandes beige.jpg" alt="Croissant aux amandes beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1837,7 +1655,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-48" data-images="photos/SWEET/HCN_8344.JPG">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/HCN_8344.JPG" alt="HCN" class="product-image">
+                        <img src="photos/SWEET/HCN_8344.JPG" alt="HCN" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1846,7 +1664,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-49" data-images="photos/SWEET/HCN_8387.JPG">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/HCN_8387.JPG" alt="HCN" class="product-image">
+                        <img src="photos/SWEET/HCN_8387.JPG" alt="HCN" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1855,7 +1673,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-50" data-images="photos/SWEET/HCN_8388.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/HCN_8388.jpg" alt="HCN" class="product-image">
+                        <img src="photos/SWEET/HCN_8388.jpg" alt="HCN" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1864,7 +1682,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-51" data-images="photos/SWEET/HCN_8396.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/HCN_8396.jpg" alt="HCN" class="product-image">
+                        <img src="photos/SWEET/HCN_8396.jpg" alt="HCN" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1873,7 +1691,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-52" data-images="photos/SWEET/Kakku 1.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/Kakku 1.jpg" alt="Kakku" class="product-image">
+                        <img src="photos/SWEET/Kakku 1.jpg" alt="Kakku" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1882,7 +1700,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-53" data-images="photos/SWEET/Kakku sarja 1 beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/Kakku sarja 1 beige.jpg" alt="Kakku sarja  beige" class="product-image">
+                        <img src="photos/SWEET/Kakku sarja 1 beige.jpg" alt="Kakku sarja  beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1891,7 +1709,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-54" data-images="photos/SWEET/Kinuskikakku beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/Kinuskikakku beige.jpg" alt="Kinuskikakku beige" class="product-image">
+                        <img src="photos/SWEET/Kinuskikakku beige.jpg" alt="Kinuskikakku beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1900,7 +1718,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-55" data-images="photos/SWEET/Korvapuusti beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/Korvapuusti beige.jpg" alt="Korvapuusti beige" class="product-image">
+                        <img src="photos/SWEET/Korvapuusti beige.jpg" alt="Korvapuusti beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1909,7 +1727,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-56" data-images="photos/SWEET/Lautanen beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/Lautanen beige.jpg" alt="Lautanen beige" class="product-image">
+                        <img src="photos/SWEET/Lautanen beige.jpg" alt="Lautanen beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1918,7 +1736,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-57" data-images="photos/SWEET/Leivoset 1 beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/Leivoset 1 beige.jpg" alt="Leivoset  beige" class="product-image">
+                        <img src="photos/SWEET/Leivoset 1 beige.jpg" alt="Leivoset  beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1927,7 +1745,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-58" data-images="photos/SWEET/Leivoset 3 beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/Leivoset 3 beige.jpg" alt="Leivoset  beige" class="product-image">
+                        <img src="photos/SWEET/Leivoset 3 beige.jpg" alt="Leivoset  beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1936,7 +1754,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-59" data-images="photos/SWEET/Les roses beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/Les roses beige.jpg" alt="Les roses beige" class="product-image">
+                        <img src="photos/SWEET/Les roses beige.jpg" alt="Les roses beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1945,7 +1763,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-60" data-images="photos/SWEET/Petits pains 2.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/Petits pains 2.jpg" alt="Petits pains" class="product-image">
+                        <img src="photos/SWEET/Petits pains 2.jpg" alt="Petits pains" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1954,7 +1772,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-61" data-images="photos/SWEET/Porkkana-kinuskikakku beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/Porkkana-kinuskikakku beige.jpg" alt="Porkkana kinuskikakku beige" class="product-image">
+                        <img src="photos/SWEET/Porkkana-kinuskikakku beige.jpg" alt="Porkkana kinuskikakku beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1963,7 +1781,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-62" data-images="photos/SWEET/Porkkanakakku beige.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/Porkkanakakku beige.jpg" alt="Porkkanakakku beige" class="product-image">
+                        <img src="photos/SWEET/Porkkanakakku beige.jpg" alt="Porkkanakakku beige" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1972,7 +1790,7 @@
                     </div>
                 </div>                <div class="product-card" data-product-id="sweet-63" data-images="photos/SWEET/Untitled-1.jpg">
                     <div class="product-image-wrapper">
-                        <img src="photos/SWEET/Untitled-1.jpg" alt="Untitled" class="product-image">
+                        <img src="photos/SWEET/Untitled-1.jpg" alt="Untitled" class="product-image" loading="lazy" decoding="async">
                         
                     </div>
                     <div class="product-info">
@@ -1990,7 +1808,7 @@
             <div class="footer-content">
                 <!-- Logo y descripción centrados -->
                 <div class="footer-brand">
-                    <img src="assets/icons/amherkut-logo-original.jpg" alt="Amherkut logo" class="footer-logo-img" />
+                    <img src="assets/icons/amherkut-logo-original.jpg" alt="Amherkut logo" class="footer-logo-img" width="120" height="120" loading="lazy" decoding="async" />
                     <p class="footer-tagline" data-translate="footer.tagline">Premium Käsityökahvi Helsingissä</p>
                 </div>
                 
@@ -2055,12 +1873,11 @@
         </div>
     </footer>
 
-    <!-- Product Gallery Scripts -->
-    <script src="assets/js/product-gallery.js"></script>
-    <script src="assets/js/photos-loader.js"></script>
+    <!-- Product Gallery Scripts (defer = fast page load) -->
+    <script src="assets/js/product-gallery.js" defer></script>
+    <script src="assets/js/photos-loader.js" defer></script>
     
     <!-- Language Switcher Script (DEBE CARGARSE PRIMERO) -->
-    <script src="assets/js/language-switcher-v2.js?v=2"></script>
     
     <script>
         // Mobile menu toggle
