@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="fi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📸 Administrar Fotos - Amherkut</title>
+    <title>📸 Hallinnoi kuvia - Amherkut</title>
     <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <script src="navbar-component.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -158,79 +160,79 @@
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-link">← Volver a la página</a>
+        <a href="index.html" class="back-link">← Takaisin etusivulle</a>
 
-        <h1>📸 Administrar Fotos</h1>
-        <p class="subtitle">¡Súper fácil! En 2 pasos tendrás tus fotos en la web</p>
+        <h1>📸 Hallinnoi kuvia</h1>
+        <p class="subtitle">Helppoa! Kahdessa vaiheessa kuvasi näkyvät netissä</p>
 
-        <!-- Paso 1 -->
+        <!-- Vaihe 1 -->
         <div class="card">
             <div class="step">
                 <div class="step-num">1</div>
                 <div class="step-text">
-                    <h3>🍞 Pon tus fotos en la carpeta correcta</h3>
-                    <p>Arrastra las fotos a la carpeta que corresponda. ¡Así de simple!</p>
+                    <h3>🍞 Laita kuvat oikeaan kansioon</h3>
+                    <p>Vedä kuvat vastaavaan kansioon. Näin yksinkertaista!</p>
                 </div>
             </div>
             <div class="folder-grid">
                 <a href="#" class="folder-btn" data-folder="photos/Bread" onclick="openFolder(event, 'photos/Bread')">
                     <span class="emoji">🍞</span>
-                    <span>Pan (Bread)</span>
+                    <span>Leipä (Bread)</span>
                 </a>
                 <a href="#" class="folder-btn" data-folder="photos/Food" onclick="openFolder(event, 'photos/Food')">
                     <span class="emoji">🍽️</span>
-                    <span>Comida (Food)</span>
+                    <span>Ruoka (Food)</span>
                 </a>
                 <a href="#" class="folder-btn" data-folder="photos/Drinks" onclick="openFolder(event, 'photos/Drinks')">
                     <span class="emoji">☕</span>
-                    <span>Bebidas (Drinks)</span>
+                    <span>Juomat (Drinks)</span>
                 </a>
                 <a href="#" class="folder-btn" data-folder="photos/Sweet" onclick="openFolder(event, 'photos/Sweet')">
                     <span class="emoji">🍰</span>
-                    <span>Dulces (Sweet)</span>
+                    <span>Makeiset (Sweet)</span>
                 </a>
             </div>
             <div class="tip">
-                <strong>💡 Tip:</strong> Si la carpeta "photos" no existe, créala. Puedes tener "photos" o "PHOTOS" (mayúsculas).
+                <strong>💡 Vinkki:</strong> Jos kansiota "photos" ei ole, luo se. Voit käyttää "photos" tai "PHOTOS" (isoilla kirjaimilla).
             </div>
         </div>
 
-        <!-- Paso 2 -->
+        <!-- Vaihe 2 -->
         <div class="card">
             <div class="step">
                 <div class="step-num">2</div>
                 <div class="step-text">
-                    <h3>🔄 Actualizar la página</h3>
-                    <p>Después de añadir tus fotos, ejecuta el actualizador para que aparezcan en la web.</p>
+                    <h3>🔄 Päivitä sivu</h3>
+                    <p>Kun olet lisännyt kuvat, aja päivitys, jotta ne näkyvät netissä.</p>
                 </div>
             </div>
 
-            <p style="margin-bottom: 0.5rem; font-weight: 600;">Opción A - Más fácil (Windows):</p>
+            <p style="margin-bottom: 0.5rem; font-weight: 600;">Vaihtoehto A – Helpoin (Windows):</p>
             <button class="big-btn btn-primary" onclick="runBatch()">
-                📁 Hacer doble clic en "Actualizar Fotos.bat"
+                📁 Kaksoisnapsauta "Actualizar Fotos.bat"
             </button>
             <p style="margin: 1rem 0 0.5rem; font-size: 0.9rem; color: #666;">
-                El archivo está en la carpeta del proyecto. ¡Busca "Actualizar Fotos.bat" y dale doble clic!
+                Tiedosto on projektikansiossa. Etsi "Actualizar Fotos.bat" ja kaksoisnapsauta sitä!
             </p>
 
-            <p style="margin: 1.5rem 0 0.5rem; font-weight: 600;">Opción B - Desde la consola:</p>
+            <p style="margin: 1.5rem 0 0.5rem; font-weight: 600;">Vaihtoehto B – Konsolista:</p>
             <div class="code-box">npm run actualizar-fotos</div>
             <button class="big-btn btn-secondary" onclick="copyCommand()">
-                📋 Copiar comando
+                📋 Kopioi komento
             </button>
         </div>
 
         <div class="card">
-            <h3 style="color: #6B4423; margin-bottom: 0.5rem;">📂 Estructura de carpetas</h3>
+            <h3 style="color: #6B4423; margin-bottom: 0.5rem;">📂 Kansiorakenne</h3>
             <pre style="background: #f5efe6; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.9rem;">
 amherkut/
-├── photos/          (o PHOTOS/)
-│   ├── Bread/       🍞 Panes
-│   ├── Food/        🍽️ Comida salada
-│   ├── Drinks/      ☕ Bebidas
-│   └── Sweet/       🍰 Dulces y pasteles
-├── Actualizar Fotos.bat   ← Doble clic aquí
-└── admin-fotos.html      ← Estás aquí
+├── photos/          (tai PHOTOS/)
+│   ├── Bread/       🍞 Leivät
+│   ├── Food/        🍽️ Ruoka
+│   ├── Drinks/      ☕ Juomat
+│   └── Sweet/       🍰 Makeiset ja leivonnaiset
+├── Actualizar Fotos.bat   ← Kaksoisnapsauta tästä
+└── admin-fotos.html      ← Olet täällä
             </pre>
         </div>
     </div>
@@ -238,7 +240,7 @@ amherkut/
     <script>
         function openFolder(e, folder) {
             e.preventDefault();
-            alert('Abre la carpeta del proyecto en el Explorador de archivos y navega hasta: ' + folder + '\n\nRuta típica: C:\\Users\\TuUsuario\\...\\amherkut\\' + folder);
+            alert('Avaa projektin kansio tiedostoselaimessa ja siirry kohteeseen: ' + folder + '\n\nTyypillinen polku: C:\\Users\\Käyttäjä\\...\\amherkut\\' + folder);
         }
 
         function copyCommand() {
@@ -246,7 +248,7 @@ amherkut/
             navigator.clipboard.writeText(cmd).then(() => {
                 const btn = document.querySelector('.btn-secondary');
                 const orig = btn.innerHTML;
-                btn.innerHTML = '✅ ¡Copiado!';
+                btn.innerHTML = '✅ Kopioitu!';
                 setTimeout(() => { btn.innerHTML = orig; }, 2000);
             });
         }
@@ -300,14 +302,7 @@ amherkut/
             </nav>
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
-                    <p class="footer-copyright">&copy; 2025 Amherkut. Kaikki oikeudet pidätetään.</p>
-                    <div class="footer-legal">
-                        <a href="#" class="footer-legal-link">Tietosuoja</a>
-                        <span class="footer-legal-separator">•</span>
-                        <a href="#" class="footer-legal-link">Ehdot</a>
-                        <span class="footer-legal-separator">•</span>
-                        <a href="#" class="footer-legal-link">Evästekäytäntö</a>
-                    </div>
+                    <p class="footer-copyright">&copy; 2026 Amherkut. Kaikki oikeudet pidätetään.</p>
                 </div>
             </div>
         </div>

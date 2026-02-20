@@ -34,16 +34,20 @@ class ImageGalleryManager {
     async loadImageArrays() {
         // Usar configuración global GALLERY_IMAGES
         if (typeof GALLERY_IMAGES !== 'undefined') {
-            // Hakaniemet (tienda de Mohamed, izquierda): imágenes + videos desde la misma carpeta
+            // Hakaniemet (tienda de Mohamed/Moha, izquierda): imágenes + videos (hakaniemet + carpeta Moha)
             const hakaniemetFiles = GALLERY_IMAGES.hakaniemet || [];
-            this.images.hakaniemet = this.generateImagePaths('assets/images/hakaniemet', hakaniemetFiles);
+            const mohaFiles = GALLERY_IMAGES.moha || [];
+            this.images.hakaniemet = [
+                ...this.generateImagePaths('assets/images/hakaniemet', hakaniemetFiles),
+                ...this.generateImagePaths('Moha', mohaFiles)
+            ];
             // Leipomo (tienda de Nora, derecha): solo fotos y videos de la carpeta "nora 2" en la raíz del proyecto
             const leipomoFiles = GALLERY_IMAGES.leipomo || [];
             this.images.leipomo = this.generateImagePaths('nora 2', leipomoFiles, true);
-            this.images.food = this.generateImagePaths('PHOTOS/Food', GALLERY_IMAGES.food);
-            this.images.bread = this.generateImagePaths('PHOTOS/Bread', GALLERY_IMAGES.bread);
-            this.images.drinks = this.generateImagePaths('PHOTOS/Drinks', GALLERY_IMAGES.drinks);
-            this.images.sweet = this.generateImagePaths('PHOTOS/Sweet', GALLERY_IMAGES.sweet);
+            this.images.food = this.generateImagePaths('photos/FOOD', GALLERY_IMAGES.food);
+            this.images.bread = this.generateImagePaths('photos/Bread', GALLERY_IMAGES.bread);
+            this.images.drinks = this.generateImagePaths('photos/DRINKS', GALLERY_IMAGES.drinks);
+            this.images.sweet = this.generateImagePaths('photos/SWEET', GALLERY_IMAGES.sweet);
         }
     }
 
@@ -84,7 +88,7 @@ class ImageGalleryManager {
             return;
         }
         
-        const isVideo = (file) => (file || '').toLowerCase().endsWith('.mp4');
+        const isVideo = (file) => /\.(mp4|mov|webm)$/i.test(file || '');
         
         const html = mediaFiles.map((file, index) => {
             if (isVideo(file)) {
@@ -113,6 +117,7 @@ class ImageGalleryManager {
                 <img src="${file}" 
                      alt="Hakaniemet Myymalá - Imagen ${index + 1}" 
                      loading="lazy"
+                     decoding="async"
                      onclick="imageGallery.openLightbox('hakaniemet', ${index})">
             </div>
             `;
@@ -140,7 +145,7 @@ class ImageGalleryManager {
             return;
         }
         
-        const isVideo = (file) => (file || '').toLowerCase().endsWith('.mp4');
+        const isVideo = (file) => /\.(mp4|mov|webm)$/i.test(file || '');
         
         let html = mediaFiles.map((file, index) => {
             if (isVideo(file)) {
@@ -169,6 +174,7 @@ class ImageGalleryManager {
                     <img src="${file}" 
                          alt="Leipomo & Kahvilla - Imagen ${index + 1}" 
                          loading="lazy"
+                         decoding="async"
                          onerror="handleImageError(this, 'assets/images/placeholder.svg')"
                          onclick="imageGallery.openLightbox('leipomo', ${index})">
                 </div>
@@ -215,7 +221,7 @@ class ImageGalleryManager {
                      data-gallery-type="${meta.type}" 
                      data-index="${meta.index}"
                      ${productId ? `data-product-id="${productId}"` : ''}>
-                    <img src="${meta.img}" alt="${meta.title}" loading="lazy">
+                    <img src="${meta.img}" alt="${meta.title}" loading="lazy" decoding="async">
                     <span class="menu-card-category">${meta.categoryLabel}</span>
                     ${hasMultipleAngles ? '<span class="multiple-angles-badge" title="Múltiples ángulos disponibles">📷</span>' : ''}
                     <button type="button" class="menu-card-zoom" 
@@ -760,7 +766,7 @@ class ImageGalleryManager {
             <div class="lightbox-thumbnail ${index === currentIndex ? 'active' : ''}" 
                  data-index="${index}"
                  onclick="imageGallery.goToImage(${index})">
-                <img src="${img}" alt="Miniatura ${index + 1}" loading="lazy">
+                <img src="${img}" alt="Miniatura ${index + 1}" loading="lazy" decoding="async">
             </div>
         `).join('');
     }

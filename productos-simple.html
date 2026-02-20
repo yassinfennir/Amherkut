@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="fi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos - AM-Herkut</title>
+    <title>Tuotteet - Amherkut</title>
     <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <script src="navbar-component.js"></script>
     <style>
         * {
             margin: 0;
@@ -241,29 +243,29 @@
 </head>
 <body>
     <div class="container">
-        <h1>Nuestros Productos</h1>
+        <h1>Tuotteemme</h1>
         
-        <!-- Barra de búsqueda -->
+        <!-- Hakupalkki -->
         <div style="margin-bottom: 2rem; position: relative;">
             <input 
                 type="text" 
                 id="search-input" 
-                placeholder="Buscar por keyword, ingrediente o nombre (ej: Almendra, Pistacho, Baklava...)" 
+                placeholder="Hae avainsanalla, aineksella tai nimellä (esim. manteli, pistaasi, baklava...)" 
                 style="width: 100%; padding: 1rem; font-size: 1rem; border-radius: 8px; border: 2px solid #333333; background: #2a2a2a; color: #ffffff; outline: none;"
             >
             <div id="search-suggestions" style="position: absolute; top: 100%; left: 0; right: 0; background: #2a2a2a; border: 1px solid #333333; border-radius: 8px; margin-top: 0.5rem; max-height: 200px; overflow-y: auto; z-index: 1000; display: none;"></div>
         </div>
         
-        <!-- Sección de Filtros por Keywords -->
+        <!-- Avainsanasuodattimet -->
         <div class="filters-section">
-            <div class="filters-title">Filtrar por Keywords</div>
+            <div class="filters-title">Suodata avainsanoilla</div>
             <div class="filters-container" id="filters-container">
-                <!-- Los filtros se cargarán aquí dinámicamente -->
+                <!-- Suodattimet täytetään dynaamisesti -->
             </div>
-            <button class="clear-filters" id="clear-filters" onclick="clearAllFilters()">Limpiar Filtros</button>
+            <button class="clear-filters" id="clear-filters" onclick="clearAllFilters()">Tyhjennä suodattimet</button>
         </div>
         
-        <!-- Contador de resultados -->
+        <!-- Tulosten määrä -->
         <div id="results-count" style="margin-bottom: 1rem; color: #4a9eff; font-weight: 500;"></div>
         
         <div class="products-grid" id="products-grid">
@@ -277,7 +279,7 @@
         // Inicializar sistema de búsqueda
         let keywordsSearch;
         let allProducts = [];
-        let currentLang = localStorage.getItem('currentLanguage') || 'es'; // Español por defecto
+        let currentLang = localStorage.getItem('currentLanguage') || 'fi'; // Suomi oletuksena
         let activeFilters = new Set(); // Filtros activos
         
         // Cargar datos
@@ -299,9 +301,9 @@
                 renderProducts(allProducts);
                 updateResultsCount(allProducts.length);
             } catch (error) {
-                console.error('Error cargando productos:', error);
+                console.error('Tuotteiden lataus epäonnistui:', error);
                 document.getElementById('products-grid').innerHTML = 
-                    '<div style="color: #ff6b6b; text-align: center; padding: 3rem;">Error al cargar productos</div>';
+                    '<div style="color: #ff6b6b; text-align: center; padding: 3rem;">Tuotteiden lataus epäonnistui</div>';
             }
         }
         
@@ -383,7 +385,7 @@
             const grid = document.getElementById('products-grid');
             
             if (products.length === 0) {
-                grid.innerHTML = '<div style="color: #cccccc; text-align: center; padding: 3rem; grid-column: 1 / -1;">No se encontraron productos</div>';
+                grid.innerHTML = '<div style="color: #cccccc; text-align: center; padding: 3rem; grid-column: 1 / -1;">Tuotteita ei löytynyt</div>';
                 return;
             }
             
@@ -412,14 +414,14 @@
                             <h2 class="product-name">${producto.nombre}</h2>
                             
                             <div>
-                                <div class="section-title">Ingredientes</div>
+                                <div class="section-title">Aineet</div>
                                 <ul class="ingredientes-list">
                                     ${producto.ingredientes.map(ing => `<li>${ing}</li>`).join('')}
                                 </ul>
                             </div>
                             
                             <div>
-                                <div class="section-title">Keywords</div>
+                                <div class="section-title">Avainsanat</div>
                                 <div class="keywords-container">
                                     ${producto.keywords.map(keyword => {
                                         const translated = keywordsSearch.translateKeyword(keyword, currentLang);
@@ -437,7 +439,7 @@
         function updateResultsCount(count) {
             const countEl = document.getElementById('results-count');
             if (countEl) {
-                countEl.textContent = `${count} producto(s) encontrado(s)`;
+                countEl.textContent = count === 1 ? '1 tuote löytyi' : count + ' tuotetta löytyi';
             }
         }
         
@@ -525,7 +527,7 @@
         
         // Escuchar cambios de idioma
         document.addEventListener('languageChanged', (e) => {
-            currentLang = e.detail.language || 'es';
+            currentLang = e.detail.language || 'fi';
             if (keywordsSearch) {
                 keywordsSearch.setLanguage(currentLang);
                 // Re-renderizar filtros con nuevo idioma
@@ -581,14 +583,7 @@
             </nav>
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
-                    <p class="footer-copyright">&copy; 2025 Amherkut. Kaikki oikeudet pidätetään.</p>
-                    <div class="footer-legal">
-                        <a href="#" class="footer-legal-link">Tietosuoja</a>
-                        <span class="footer-legal-separator">•</span>
-                        <a href="#" class="footer-legal-link">Ehdot</a>
-                        <span class="footer-legal-separator">•</span>
-                        <a href="#" class="footer-legal-link">Evästekäytäntö</a>
-                    </div>
+                    <p class="footer-copyright">&copy; 2026 Amherkut. Kaikki oikeudet pidätetään.</p>
                 </div>
             </div>
         </div>

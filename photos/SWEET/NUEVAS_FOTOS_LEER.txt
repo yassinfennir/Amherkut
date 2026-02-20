@@ -1,0 +1,25 @@
+Fotos y video nuevos para la Galería de Productos (sección Dulces)
+==================================================================
+Copia tu video y tus 10 fotos de dulces/baklava a esta carpeta con EXACTAMENTE estos nombres:
+
+  VIDEO (aparece el primero en Dulces):
+  - WhatsApp_Video_2026-02-19_at_17.30.099.mp4
+
+  FOTOS:
+
+  1. WhatsApp_Image_2026-02-19_at_17.30.085.jpg
+  2. WhatsApp_Image_2026-02-19_at_17.30.086.jpg
+  3. WhatsApp_Image_2026-02-19_at_17.30.087.jpg
+  4. WhatsApp_Image_2026-02-19_at_17.30.088.jpg
+  5. WhatsApp_Image_2026-02-19_at_17.30.090.jpg
+  6. WhatsApp_Image_2026-02-19_at_17.30.07.jpg
+  7. WhatsApp_Image_2026-02-19_at_17.30.099.jpg
+  8. WhatsApp_Image_2026-02-19_at_173.30.07.jpg
+  9. WhatsApp_Image_2026-02-19_at_00.jpg
+ 10. Sweets_tray_2.jpg
+
+- Si tus archivos tienen otra extensión (.png), renómbralos a .jpg para que coincidan.
+- Estas fotos aparecerán AL PRINCIPIO de la sección "Dulces" y en el top cuando filtres por "Todos".
+
+Ruta de esta carpeta en tu PC:
+  c:\Users\kalil\Desktop\my-project\amherkut\photos\SWEET\

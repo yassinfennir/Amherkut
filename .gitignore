@@ -42,18 +42,19 @@ out/
 *.tar.gz
 *.rar
 
-# Archivos de video grandes (necesario para Netlify)
+# Archivos de video grandes (excepto en photos/ para la galería)
 *.mp4
 *.mov
 *.avi
 *.mkv
+!photos/**/*.mp4
+!photos/**/*.mov
 
 # Carpetas grandes innecesarias para producción
 Extras/
 Localisation/
 Video/
 Multiple/
-Moha/
 nora 2/
 Prozess/
 About Us/
@@ -62,6 +63,11 @@ Logo/
 src/
 galeria/
 public/
+
+# Copias duplicadas de index (no subir a producción)
+index (1).html
+index (2).html
+index (*).html
 
 # Archivos de desarrollo y prueba
 test-*.html
@@ -73,14 +79,13 @@ generate-*.html
 demo-*.html
 blog-post-*.html
 blog.html
-productos-galeria.html
 productos-react.html
-sweets.html
 
 # Archivos de documentación (excepto README principal)
 *.md
 !README.md
 *.txt
+!photos/**/*.txt
 AM  herkut.txt
 
 # Carpetas de desarrollo y despliegue

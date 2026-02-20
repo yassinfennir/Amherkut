@@ -43,6 +43,8 @@
     <link rel="icon" type="image/x-icon" href="assets/icons/amherkut-logo-original.jpg">
     <link rel="apple-touch-icon" href="assets/icons/amherkut-logo-original.jpg">
     <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <script src="navbar-component.js"></script>
     
     <!-- Preload crítico para logos y fondo hero -->
     <link rel="preload" as="image" href="assets/icons/amherkut-logo-original.jpg" fetchpriority="high">
@@ -478,31 +480,75 @@
         .hamburger {
             display: none;
             flex-direction: column;
-            cursor: pointer;
-            background: none;
+            justify-content: center;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.1);
             border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            gap: 5px;
             padding: 8px;
+            transition: background 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
         }
         
+        .hamburger:hover,
+        .hamburger:focus {
+            background: rgba(255,255,255,0.2);
+            outline: none;
+        }
+        
+        .hamburger .bar,
         .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: var(--white);
-            margin: 3px 0;
-            transition: var(--transition);
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #fff;
             border-radius: 2px;
+            transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.25s ease;
+            transform-origin: center;
         }
         
-        .hamburger.active span:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
+        .hamburger.active .bar:nth-child(1),
+        .hamburger.open .bar:nth-child(1),
+        .hamburger.active span:nth-child(1),
+        .hamburger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
         }
         
-        .hamburger.active span:nth-child(2) {
+        .hamburger.active .bar:nth-child(2),
+        .hamburger.open .bar:nth-child(2),
+        .hamburger.active span:nth-child(2),
+        .hamburger.open span:nth-child(2) {
             opacity: 0;
+            transform: scaleX(0);
         }
         
-        .hamburger.active span:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
+        .hamburger.active .bar:nth-child(3),
+        .hamburger.open .bar:nth-child(3),
+        .hamburger.active span:nth-child(3),
+        .hamburger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+        
+        .nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 9998;
+            top: 80px;
+        }
+        
+        .nav-overlay.active {
+            opacity: 1;
+            pointer-events: all;
         }
         
         /* ========================================
@@ -1691,34 +1737,66 @@
             .nav-menu {
                 position: fixed;
                 top: 80px;
-                left: -100%;
-                width: 100%;
+                right: -100%;
+                left: auto;
+                width: min(320px, 85vw);
                 height: calc(100vh - 80px);
-                background: var(--white);
+                background: linear-gradient(160deg, var(--primary-red), var(--dark-red));
                 flex-direction: column;
                 justify-content: flex-start;
-                padding: 2rem;
-                transition: var(--transition);
-                box-shadow: var(--shadow);
+                align-items: flex-start;
+                padding: 30px 20px;
+                gap: 4px;
+                z-index: 9999;
+                transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+                box-shadow: -10px 0 40px rgba(0,0,0,0.3);
                 overflow-y: auto;
                 overflow-x: hidden;
                 -webkit-overflow-scrolling: touch;
             }
             
             .nav-menu.active {
-                left: 0;
+                right: 0;
+                left: auto;
             }
             
             .nav-menu li {
-                margin: 1rem 0;
+                margin: 0;
+                width: 100%;
             }
             
             .nav-link {
-                font-size: 1.2rem;
-                padding: 1rem 0;
+                font-size: 17px;
+                padding: 14px 16px;
                 display: block;
                 width: 100%;
+                text-align: left;
+                border-radius: 10px;
+                color: rgba(255,255,255,0.9);
+            }
+            
+            .nav-menu .nav-link:hover,
+            .nav-menu .nav-link:active {
+                background: rgba(255,255,255,0.15);
+                color: #fff;
+            }
+            
+            .nav-menu .header-social-links {
+                padding: 14px 16px;
+                flex-direction: row;
+                gap: 8px;
+            }
+            
+            .nav-menu .header-social-link {
+                background: rgba(255,255,255,0.1);
+                border-radius: 8px;
+            }
+            
+            .nav-menu .btn-order-now {
+                margin-top: 10px;
                 text-align: center;
+                display: block;
+                width: 100%;
             }
             
             .hero-content {
@@ -3287,7 +3365,7 @@
     <header class="header" id="header">
         <nav class="nav">
             <a href="#home" class="logo">
-                <img src="assets/icons/amherkut-logo-original.jpg" alt="Amherkut logo" loading="eager" decoding="sync" onerror="handleImageError(this, 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzZCNEQyMyIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QU0gSEVSS1VUPC90ZXh0Pjwvc3ZnPg==')" />
+                <img src="assets/icons/amherkut-logo-original.jpg" alt="Amherkut logo" loading="eager" decoding="async" onerror="handleImageError(this, 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzZCNEQyMyIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QU0gSEVSS1VUPC90ZXh0Pjwvc3ZnPg==')" />
             </a>
             
             <ul class="nav-menu" id="nav-menu">
@@ -3317,12 +3395,13 @@
                 <li><a href="mailto:amherkut.hakis@gmail.com" class="btn btn-order-now">Tilaa Nyt</a></li>
             </ul>
             
-            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </button>
         </nav>
+        <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
     </header>
 
     <!-- Hero Section -->
@@ -3335,7 +3414,7 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-logo-container fade-in-up">
-                    <img src="assets/icons/amherkut-logo-original.jpg" alt="AM HERKUT Logo" class="hero-logo-circle" loading="eager" decoding="sync" onerror="handleImageError(this, 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjEwMCIgZmlsbD0iIzZCNEQyMyIvPjx0ZXh0IHg9IjEwMCIgeT0iMTEwIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXdlaWdodD0iYm9sZCI+QU0gSEVSS1VUPC90ZXh0Pjwvc3ZnPg==')">
+                    <img src="assets/icons/amherkut-logo-original.jpg" alt="AM HERKUT Logo" class="hero-logo-circle" loading="eager" decoding="async" onerror="handleImageError(this, 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjEwMCIgZmlsbD0iIzZCNEQyMyIvPjx0ZXh0IHg9IjEwMCIgeT0iMTEwIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXdlaWdodD0iYm9sZCI+QU0gSEVSS1VUPC90ZXh0Pjwvc3ZnPg==')">
                 </div>
                 <div class="hero-text fade-in-up">
                     <h1>Amherkut</h1>
@@ -3353,43 +3432,43 @@
     <section id="categories" class="categories-section section">
         <div class="container">
             <div class="categories-grid">
-                <!-- Comida -->
-                <a href="productos-galeria.html" class="category-card">
+                <!-- Ruoka -->
+                <a href="productos-galeria.html?category=food" class="category-card" aria-label="Näytä ruokagalleria">
                     <span class="category-tag">
                         <span class="category-title">COMIDA</span>
                     </span>
                     <div class="category-image-wrapper">
-                        <img src="photos/FOOD/Karjalapiirakka beige.jpg" alt="Comida - Karjalapiirakka tradicional" class="category-image" loading="eager" decoding="async" fetchpriority="low" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
+                        <img src="photos/FOOD/Karjalapiirakka beige.jpg" alt="Ruoka - Perinteinen karjalanpiirakka" class="category-image" loading="eager" decoding="async" fetchpriority="low" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
                     </div>
                 </a>
                 
                 <!-- Drinks -->
-                <a href="productos-galeria.html" class="category-card">
+                <a href="productos-galeria.html?category=drinks" class="category-card" aria-label="Näytä juomagalleria">
                     <span class="category-tag">
                         <span class="category-title">DRINKS</span>
                     </span>
                     <div class="category-image-wrapper">
-                        <img src="photos/DRINKS/u3829884585_Making_coffee_with_latte_art_shaped_like_a_heart__f9fc4b4c-3bd6-44a1-97a1-007769d252e8_1.png" alt="Drinks - Bebidas artesanales" class="category-image" loading="eager" decoding="async" fetchpriority="low" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
+                        <img src="photos/DRINKS/u3829884585_Making_coffee_with_latte_art_shaped_like_a_heart__f9fc4b4c-3bd6-44a1-97a1-007769d252e8_1.png" alt="Juomat - Käsityöjuomat" class="category-image" loading="eager" decoding="async" fetchpriority="low" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
                     </div>
                 </a>
                 
                 <!-- Sweets -->
-                <a href="productos-galeria.html" class="category-card">
+                <a href="productos-galeria.html?category=sweet" class="category-card" aria-label="Näytä makeisgalleria">
                     <span class="category-tag">
                         <span class="category-title">SWEETS</span>
                     </span>
                     <div class="category-image-wrapper">
-                        <img src="photos/SWEET/Leivoset 1 beige.jpg" alt="Sweets - Chocolates artesanales" class="category-image" loading="eager" decoding="async" fetchpriority="high" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
+                        <img src="photos/SWEET/Leivoset 1 beige.jpg" alt="Makeiset - Käsityösuklaat" class="category-image" loading="eager" decoding="async" fetchpriority="high" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
                     </div>
                 </a>
                 
                 <!-- Bread -->
-                <a href="productos-galeria.html" class="category-card">
+                <a href="productos-galeria.html?category=bread" class="category-card" aria-label="Näytä leipägalleria">
                     <span class="category-tag">
                         <span class="category-title">BREAD</span>
                     </span>
                     <div class="category-image-wrapper">
-                        <img src="photos/Bread/Tous les pains beige.jpg" alt="Bread - Variedad de panes artesanales" class="category-image" loading="eager" decoding="async" fetchpriority="high" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
+                        <img src="photos/Bread/Tous les pains beige.jpg" alt="Leipä - Käsityöleipiä" class="category-image" loading="eager" decoding="async" fetchpriority="high" onerror="handleImageError(this, 'assets/images/placeholder.svg')">
                     </div>
                 </a>
             </div>
@@ -3731,14 +3810,7 @@
             </nav>
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
-                    <p class="footer-copyright">&copy; 2025 Amherkut. Kaikki oikeudet pidätetään.</p>
-                    <div class="footer-legal">
-                        <a href="#" class="footer-legal-link">Tietosuoja</a>
-                        <span class="footer-legal-separator">•</span>
-                        <a href="#" class="footer-legal-link">Ehdot</a>
-                        <span class="footer-legal-separator">•</span>
-                        <a href="#" class="footer-legal-link">Evästekäytäntö</a>
-                    </div>
+                    <p class="footer-copyright">&copy; 2026 Amherkut. Kaikki oikeudet pidätetään.</p>
                 </div>
             </div>
         </div>
@@ -3856,50 +3928,78 @@
         // ========================================
         
         document.addEventListener('DOMContentLoaded', function() {
+        // Fix móvil: forzar re-render en Safari iOS y Chrome Android (evita página en blanco en Netlify)
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+            document.body.style.opacity = '0';
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    document.body.style.opacity = '1';
+                    document.body.style.transition = 'opacity 0.3s ease';
+                });
+            });
+        }
         // Initialize all functionality
         initNavigation();
         initScrollEffects();
         initAnimations();
         });
         
-        // Navigation functionality
+        // Navigation functionality — menú móvil con overlay, X moderna, cierre por overlay/tecla/rotación
         function initNavigation() {
             const hamburger = document.getElementById('hamburger');
             const navMenu = document.getElementById('nav-menu');
-            const navLinks = document.querySelectorAll('.nav-link');
+            const overlay = document.getElementById('navOverlay');
+            const navLinks = document.querySelectorAll('.nav-menu .nav-link, .nav-menu .header-social-link, .nav-menu .btn-order-now');
             
-            // Mobile menu toggle
+            function openMenu() {
+                hamburger.classList.add('active', 'open');
+                hamburger.setAttribute('aria-expanded', 'true');
+                navMenu.classList.add('active');
+                if (overlay) {
+                    overlay.classList.add('active');
+                    overlay.setAttribute('aria-hidden', 'false');
+                }
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeMenu() {
+                hamburger.classList.remove('active', 'open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                navMenu.classList.remove('active');
+                if (overlay) {
+                    overlay.classList.remove('active');
+                    overlay.setAttribute('aria-hidden', 'true');
+                }
+                document.body.style.overflow = '';
+            }
+            
             if (hamburger && navMenu) {
                 hamburger.addEventListener('click', function() {
-                    hamburger.classList.toggle('active');
-                    navMenu.classList.toggle('active');
-                    
-                    // Prevent body scroll when menu is open
                     if (navMenu.classList.contains('active')) {
-                        document.body.style.overflow = 'hidden';
+                        closeMenu();
                     } else {
-                        document.body.style.overflow = '';
+                        openMenu();
                     }
                 });
             }
             
-            // Close mobile menu when clicking on a link
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    if (navMenu.classList.contains('active')) {
-                        hamburger.classList.remove('active');
-                        navMenu.classList.remove('active');
-                        document.body.style.overflow = '';
-                    }
-                });
+            if (overlay) {
+                overlay.addEventListener('click', closeMenu);
+            }
+            
+            navLinks.forEach(function(link) {
+                link.addEventListener('click', closeMenu);
             });
             
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    document.body.style.overflow = '';
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && navMenu && navMenu.classList.contains('active')) {
+                    closeMenu();
+                }
+            });
+            
+            window.addEventListener('orientationchange', function() {
+                if (navMenu && navMenu.classList.contains('active')) {
+                    closeMenu();
                 }
             });
         }

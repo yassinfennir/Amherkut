@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
             products = data;
             renderProducts(products);
         })
-        .catch(error => console.error('Error fetching sweet products:', error));
+        .catch(error => console.error('Makeistuotteiden haku epäonnistui:', error));
 
     function renderProducts(productsToRender) {
         productContainer.innerHTML = '';
         if (productsToRender.length === 0) {
-            productContainer.innerHTML = '<p>No se encontraron productos.</p>';
+            productContainer.innerHTML = '<p>Tuotteita ei löytynyt.</p>';
             return;
         }
         const grid = document.createElement('div');
@@ -25,13 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
             productCard.innerHTML = `
                 <div class="product-image-wrapper" data-product-id="${product.id}">
                     <img src="${product.thumbnail}" alt="${product.name}" class="product-image">
-                    ${product.images.length > 1 ? `<div class="product-image-indicator"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>${product.images.length} vistas</div>` : ''}
+                    ${product.images.length > 1 ? `<div class="product-image-indicator"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>${product.images.length} kuvaa</div>` : ''}
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">${product.name}</h3>
                     <p class="product-description">${product.description}</p>
                     <div class="ingredients-container">
-                        <p class="ingredients-toggle">Ingredientes & alérgenos</p>
+                        <p class="ingredients-toggle">Aineet ja allergeenit</p>
                         <ul class="ingredients-list">
                             ${product.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
                         </ul>

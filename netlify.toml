@@ -27,13 +27,40 @@
   to = "/admin-fotos.html"
   status = 200
 
-# Redirigir todo lo demás a index.html para SPA
+# Páginas legales (estáticas)
+[[redirects]]
+  from = "/tietosuoja.html"
+  to = "/tietosuoja.html"
+  status = 200
+[[redirects]]
+  from = "/ehdot.html"
+  to = "/ehdot.html"
+  status = 200
+[[redirects]]
+  from = "/evastekaytanto.html"
+  to = "/evastekaytanto.html"
+  status = 200
+
+# IMPORTANTE: /photos/* y /assets/* deben servirse como archivos, no redirigir a index
+[[redirects]]
+  from = "/photos/*"
+  to = "/photos/:splat"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/assets/*"
+  to = "/assets/:splat"
+  status = 200
+  force = false
+
+# Redirigir el resto a index.html para SPA (solo rutas que no son archivos estáticos)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-# Headers de seguridad
+# Headers de seguridad (cybersecurity)
 [[headers]]
   for = "/*"
   [headers.values]
@@ -41,6 +68,8 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
 
 # Headers para archivos estáticos
 [[headers]]
