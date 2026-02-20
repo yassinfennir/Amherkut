@@ -282,7 +282,7 @@ class LanguageSwitcher {
                 'bakery.subtitle': 'Olemme ylpeitä käyttäessämme parasta kotimaista vehnää ja tuoreita, luonnollisia raaka-aineita leivonnaisten ja leipien valmistuksessa. Laadun sitoutumisemme takaa, että jokaisessa suupalassa on aito maku, paikallisesti hankittua voita ja luomuhedelmiä. Koe käsityön todellinen maku joka suupalassa!',
                 'bakery.feature1.title': 'Kotimainen Vehnä',
                 'bakery.feature1.desc': 'Laadukkaimpia kotimaisia jauhoja',
-                'bakery.feature2.title': 'Tuoret Raaka-aineet',
+                'bakery.feature2.title': 'tuoreet raaka aineet',
                 'bakery.feature2.desc': 'Luonnolliset ja tuoreet ainekset',
                 'bakery.feature3.title': 'Käsityötä',
                 'bakery.feature3.desc': 'Perinteiset valmistustavat',
