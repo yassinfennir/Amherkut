@@ -38,7 +38,7 @@ const translations = {
         'locations.hakaniemet.name': 'hakaniemen myymälä',
         'locations.hakaniemet.address': 'Hämeentie 1a, 00530 Helsinki, Finland',
         'locations.hakaniemet.hours': 'Lun - Sáb: 08:00 - 18:00 | Domingo: Cerrado',
-        'locations.leipomo.name': 'Leipomo & Kahvilla',
+        'locations.leipomo.name': 'leipomo & kahvila',
         'locations.leipomo.address': 'Niittylänpolku 7, 00630 Helsinki, Finland',
         'locations.leipomo.hours': 'Lun - Sáb: 08:00 - 18:00 | Domingo: Cerrado',
         'locations.gallery': 'Galería',

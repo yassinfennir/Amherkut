@@ -172,7 +172,7 @@ class ImageGalleryManager {
             return `
                 <div class="gallery-thumbnail fade-in" style="animation-delay: ${index * 0.05}s">
                     <img src="${file}" 
-                         alt="Leipomo & Kahvilla - Imagen ${index + 1}" 
+                         alt="leipomo & kahvila - Imagen ${index + 1}" 
                          loading="lazy"
                          decoding="async"
                          onerror="handleImageError(this, 'assets/images/placeholder.svg')"

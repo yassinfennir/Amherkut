@@ -388,7 +388,7 @@ class LanguageSwitcher {
                 
                 // Footer Locations
                 'footer.location1': 'hakaniemen myymälä',
-                'footer.location2': 'Leipomo & Kahvilla'
+                'footer.location2': 'leipomo & kahvila'
             },
             en: {
                 // Navigation
