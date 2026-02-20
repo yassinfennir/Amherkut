@@ -1,7 +1,7 @@
 /**
  * GALLERY CONFIGURATION - Auto-generado
  * Última actualización: 20/02/2026
- * Fotos desde photos/FOOD, photos/Bread, photos/DRINKS, photos/SWEET
+ * Leipomo: carpeta "nora 2". Resto: photos/FOOD, Bread, DRINKS, SWEET
  */
 
 const GALLERY_IMAGES = {
@@ -31,8 +31,11 @@ const GALLERY_IMAGES = {
     ],
     leipomo: [
         "2.png",
+        "17.jpg",
+        "19.jpg",
         "20250702111148-eed08dbe.jpg",
         "20250702111535-9e2529f1.jpg",
+        "amherkut_post_11_11_2025_8_07_46 PM3763639052349024987.mp4",
         "amherkut_post_11_11_2025_8_07_46 PM3763639058195882422.mp4",
         "amherkut_post_11_11_2025_8_07_46 PM3763639945609941889.jpg",
         "amherkut_post_11_11_2025_8_07_46 PM3763639945626756229.jpg",
@@ -45,6 +48,7 @@ const GALLERY_IMAGES = {
         "amherkut_reel_1_27_2025_6_17_13 PM3554848386214889185.mp4",
         "amherkut_reel_1_27_2025_6_20_50 PM3554850618045899443 (1).mp4",
         "amherkut_reel_2_8_2025_2_35_08 AM3563071468113069807.mp4",
+        "HCN_8346.JPG",
         "Kakku 1 black.jpg"
     ],
     food: [

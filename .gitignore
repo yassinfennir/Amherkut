@@ -42,20 +42,22 @@ out/
 *.tar.gz
 *.rar
 
-# Archivos de video grandes (excepto en photos/ para la galería)
+# Archivos de video grandes (excepto en photos/ y nora 2 para las galerías)
 *.mp4
 *.mov
 *.avi
 *.mkv
 !photos/**/*.mp4
 !photos/**/*.mov
+!nora 2/**/*.mp4
+!nora 2/**/*.mov
 
 # Carpetas grandes innecesarias para producción
 Extras/
 Localisation/
 Video/
 Multiple/
-nora 2/
+# nora 2/ — descomentado: carpeta usada por la galería Leipomo & Kahvilla (index.html)
 Prozess/
 About Us/
 background/
