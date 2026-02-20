@@ -12,7 +12,7 @@ class LocationSwitcher {
                 hours: 'Ma-Pe: 06:00-18:00\nLa: 07:00-16:00\nSu: 08:00-15:00'
             },
             hakaniemi2: {
-                name: 'Hakaniemen Myymälä',
+                name: 'hakaniemen myymälä',
                 address: 'Helsinki, Suomi',
                 mapUrl: 'https://www.google.com/maps/search/AMHERKUT+HAKANIEMEN+MYYM%C3%84L%C3%84',
                 phone: '+358 50 405 9862',

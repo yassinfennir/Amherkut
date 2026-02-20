@@ -32,7 +32,7 @@ const TRANSLATIONS = {
         
         // Locations
         'locations.title': 'Nuestras Ubicaciones',
-        'locations.hakaniemet': 'Hakaniemet Myymalá',
+        'locations.hakaniemet': 'hakaniemen myymälä',
         'locations.leipomo': 'Leipomo & Kahvilla',
         'locations.hours': 'Horario',
         'locations.gallery': 'Galería',
@@ -108,7 +108,7 @@ const TRANSLATIONS = {
         
         // Locations
         'locations.title': 'Toimipisteet',
-        'locations.hakaniemet': 'Hakaniemen Myymälä',
+        'locations.hakaniemet': 'hakaniemen myymälä',
         'locations.leipomo': 'Leipomo & Kahvila',
         'locations.hours': 'Aukioloajat',
         'locations.gallery': 'Galleria',

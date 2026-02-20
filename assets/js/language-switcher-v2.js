@@ -387,7 +387,7 @@ class LanguageSwitcher {
                 'lightbox.next.aria': 'Seuraava kuva',
                 
                 // Footer Locations
-                'footer.location1': 'Hakaniemen Myymälä',
+                'footer.location1': 'hakaniemen myymälä',
                 'footer.location2': 'Leipomo & Kahvilla'
             },
             en: {

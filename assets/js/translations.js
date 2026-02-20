@@ -35,7 +35,7 @@ const translations = {
         // Locations Section
         'locations.title': 'Nuestras Ubicaciones',
         'locations.subtitle': 'Visítanos en Helsinki',
-        'locations.hakaniemet.name': 'Hakaniemet Myymalá',
+        'locations.hakaniemet.name': 'hakaniemen myymälä',
         'locations.hakaniemet.address': 'Hämeentie 1a, 00530 Helsinki, Finland',
         'locations.hakaniemet.hours': 'Lun - Sáb: 08:00 - 18:00 | Domingo: Cerrado',
         'locations.leipomo.name': 'Leipomo & Kahvilla',

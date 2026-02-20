@@ -115,7 +115,7 @@ class ImageGalleryManager {
             return `
             <div class="gallery-thumbnail fade-in" style="animation-delay: ${index * 0.05}s">
                 <img src="${file}" 
-                     alt="Hakaniemet Myymalá - Imagen ${index + 1}" 
+                     alt="hakaniemen myymälä - Imagen ${index + 1}" 
                      loading="lazy"
                      decoding="async"
                      onclick="imageGallery.openLightbox('hakaniemet', ${index})">
